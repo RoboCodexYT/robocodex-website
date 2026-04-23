@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RoboCodex - Get in Touch</title>
+    <meta name="description" content="Have questions, ideas, or feedback? Contact RoboCodex for support regarding FIRST Tech Challenge resources, courses, and community.">
+    <meta name="keywords" content="contact FTC, RoboCodex support, FIRST Tech Challenge contact, Jose contact, robotics questions">
+    <meta name="author" content="Jose, RoboCodex">
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://robocodex.github.io/contact.html">
+    <meta property="og:title" content="RoboCodex - Get in Touch">
+    <meta property="og:description" content="Have questions, ideas, or feedback? Contact RoboCodex for support regarding FIRST Tech Challenge resources, courses, and community.">
+    <meta property="og:image" content="https://robocodex.github.io/images/social-share.jpg"> <!-- Placeholder social share image -->
+
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://robocodex.github.io/contact.html">
+    <meta property="twitter:title" content="RoboCodex - Get in Touch">
+    <meta property="twitter:description" content="Have questions, ideas, or feedback? Contact RoboCodex for support regarding FIRST Tech Challenge resources, courses, and community.">
+    <meta property="twitter:image" content="https://robocodex.github.io/images/social-share.jpg"> <!-- Placeholder social share image -->
+
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+    <header>
+        <nav class="navbar">
+            <a href="index.html" class="logo">RoboCodex</a>
+            <button class="hamburger-menu" aria-label="Toggle navigation">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </button>
+            <ul class="nav-menu">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="content.html">Content</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="course.html">Course</a></li>
+                <li><a href="contact.html" class="active">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <!-- Contact Hero Section -->
+        <section class="contact-hero-section small-hero-section">
+            <div class="container text-center">
+                <h1>Get in Touch</h1>
+                <p class="subheading">Questions? Ideas? Feedback? We read every message.</p>
+            </div>
+        </section>
+
+        <!-- Contact Form Section -->
+        <section class="contact-form-section section-padding">
+            <div class="container">
+                <form action="https://formspree.io/f/YOUR_FORMSPREE_ID" method="POST" id="contactForm" class="contact-form">
+                    <div class="form-group">
+                        <label for="name">Name</label>
+                        <input type="text" id="name" name="name" required placeholder="Your Name">
+                        <div class="error-message" id="name-error"></div>
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Email</label>
+                        <input type="email" id="email" name="email" required placeholder="your.email@example.com">
+                        <div class="error-message" id="email-error"></div>
+                    </div>
+                    <div class="form-group">
+                        <label for="subject">Subject</label>
+                        <input type="text" id="subject" name="subject" required placeholder="Subject of your message">
+                        <div class="error-message" id="subject-error"></div>
+                    </div>
+                    <div class="form-group">
+                        <label for="message">Message</label>
+                        <textarea id="message" name="message" required minlength="10" placeholder="Your message..."></textarea>
+                        <div class="error-message" id="message-error"></div>
+                    </div>
+                    <button type="submit" class="button button-primary">Send Message</button>
+                    <div class="success-message" id="success-message" style="display:none;">Message sent!</div>
+                </form>
+            </div>
+        </section>
+
+        <!-- Contact Info Section -->
+        <section class="contact-info-section section-padding" style="background-color: var(--light-background);">
+            <div class="container text-center">
+                <h2>Other Ways to Reach Us</h2>
+                <div class="other-contact-options">
+                    <div class="contact-option">
+                        <i class="fab fa-discord contact-icon"></i>
+                        <h3>Discord</h3>
+                        <p>Join our community on Discord for quick questions and discussions.</p>
+                        <a href="https://discord.gg/yourdiscordinvite" target="_blank" rel="noopener noreferrer" class="button button-secondary">Join Discord</a>
+                    </div>
+                    <div class="contact-option">
+                        <i class="fab fa-youtube contact-icon"></i>
+                        <h3>YouTube</h3>
+                        <p>Check out our video tutorials and competition breakdowns.</p>
+                        <a href="https://www.youtube.com/@RoboCodex" target="_blank" rel="noopener noreferrer" class="button button-secondary">Visit YouTube</a>
+                    </div>
+                    <div class="contact-option">
+                        <i class="fas fa-envelope contact-icon"></i>
+                        <h3>Email</h3>
+                        <p>For more formal inquiries, email us directly.</p>
+                        <a href="mailto:hello@robocodex.com" class="button button-secondary">hello@robocodex.com</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container text-center section-padding">
+            <p>&copy; 2025 RoboCodex. All rights reserved.</p>
+            <div class="footer-links">
+                <a href="#">Privacy Policy</a> |
+                <a href="contact.html">Contact</a> |
+                <a href="https://discord.gg/yourdiscordinvite" target="_blank" rel="noopener noreferrer">Discord</a>
+            </div>
+            <div class="social-icons">
+                <a href="https://www.youtube.com/@RoboCodex" target="_blank" rel="noopener noreferrer" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
+                <a href="https://discord.gg/yourdiscordinvite" target="_blank" rel="noopener noreferrer" aria-label="Discord"><i class="fab fa-discord"></i></a>
+            </div>
+        </div>
+    </footer>
+
+    <script src="js/script.js"></script>
+</body>
+</html>

@@ -1,0 +1,84 @@
+{
+  "videos": [
+    {
+      "id": "1",
+      "title": "FTC Robot Chassis Basics: Building Your Foundation",
+      "youtubeId": "dQw4w9WgXcQ",
+      "date": "2025-01-20",
+      "category": "FTC Basics",
+      "description": "Learn the fundamentals of building a robust and effective robot chassis for FIRST Tech Challenge."
+    },
+    {
+      "id": "2",
+      "title": "FLL to FTC Transition: What's Different?",
+      "youtubeId": "someOtherVideoId1",
+      "date": "2025-01-25",
+      "category": "FLL to FTC",
+      "description": "Making the jump from FLL to FTC? This video highlights the key differences and what to expect."
+    },
+    {
+      "id": "3",
+      "title": "FTC Game Strategy: Analyzing the 2025-2026 Season",
+      "youtubeId": "anotherVideoId2",
+      "date": "2025-02-01",
+      "category": "Strategy",
+      "description": "Deep dive into the upcoming season's game, breaking down potential strategies and robot designs."
+    },
+    {
+      "id": "4",
+      "title": "Introduction to Robot Programming (Blocks & Java)",
+      "youtubeId": "yetAnotherVideoId3",
+      "date": "2025-02-10",
+      "category": "FTC Basics",
+      "description": "Get started with robot programming using both Blocks and Java, perfect for beginners."
+    },
+    {
+      "id": "5",
+      "title": "Team Culture & Dynamics: Building a Winning Team",
+      "youtubeId": "videoID5",
+      "date": "2025-02-15",
+      "category": "Team Culture",
+      "description": "Discover tips and tricks for fostering a positive and productive team environment in FTC."
+    },
+    {
+      "id": "6",
+      "title": "Advanced Robot Mechanics: Lift Systems Explained",
+      "youtubeId": "videoID6",
+      "date": "2025-02-20",
+      "category": "Robot Mechanics",
+      "description": "An in-depth look at various lift mechanisms used in FTC robots, their pros and cons."
+    },
+    {
+      "id": "7",
+      "title": "Scouting and Alliance Selection: A Competition Edge",
+      "youtubeId": "videoID7",
+      "date": "2025-02-28",
+      "category": "Strategy",
+      "description": "Learn how effective scouting can make or break your alliance selection at tournaments."
+    },
+    {
+      "id": "8",
+      "title": "Beyond the Robot: Awards & Documentation in FTC",
+      "youtubeId": "videoID8",
+      "date": "2025-03-05",
+      "category": "FTC Basics",
+      "description": "Understand the importance of the Engineering Notebook and how to compete for awards beyond robot performance."
+    },
+    {
+      "id": "9",
+      "title": "FLL Masterpiece vs. FTC CENTERSTAGE: Comparing Seasons",
+      "youtubeId": "videoID9",
+      "date": "2025-03-10",
+      "category": "FLL to FTC",
+      "description": "A side-by-side comparison of the FLL Masterpiece season and FTC CENTERSTAGE, highlighting skill transfers."
+    },
+    {
+      "id": "10",
+      "title": "Troubleshooting Common Robot Issues: Quick Fixes",
+      "youtubeId": "videoID10",
+      "date": "2025-03-15",
+      "category": "Robot Mechanics",
+      "description": "Practical advice for diagnosing and fixing common problems encountered during robot build and competition."
+    }
+  ]
+}

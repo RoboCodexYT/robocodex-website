@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RoboCodex - Content Library</title>
+    <meta name="description" content="Explore the RoboCodex content library, featuring videos organized by topic for FIRST Tech Challenge students. FLL to FTC transition, robot mechanics, strategy, and more.">
+    <meta name="keywords" content="FTC content, robotics videos, FLL to FTC, robot mechanics, FTC strategy, team culture, RoboCodex">
+    <meta name="author" content="Jose, RoboCodex">
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://robocodex.github.io/content.html">
+    <meta property="og:title" content="RoboCodex - Content Library">
+    <meta property="og:description" content="Explore the RoboCodex content library, featuring videos organized by topic for FIRST Tech Challenge students. FLL to FTC transition, robot mechanics, strategy, and more.">
+    <meta property="og:image" content="https://robocodex.github.io/images/social-share.jpg"> <!-- Placeholder social share image -->
+
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://robocodex.github.io/content.html">
+    <meta property="twitter:title" content="RoboCodex - Content Library">
+    <meta property="twitter:description" content="Explore the RoboCodex content library, featuring videos organized by topic for FIRST Tech Challenge students. FLL to FTC transition, robot mechanics, strategy, and more.">
+    <meta property="twitter:image" content="https://robocodex.github.io/images/social-share.jpg"> <!-- Placeholder social share image -->
+
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+    <header>
+        <nav class="navbar">
+            <a href="index.html" class="logo">RoboCodex</a>
+            <button class="hamburger-menu" aria-label="Toggle navigation">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </button>
+            <ul class="nav-menu">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="content.html" class="active">Content</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="course.html">Course</a></li>
+                <li><a href="contact.html">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <!-- Small Hero Section -->
+        <section class="small-hero-section content-hero-section">
+            <div class="container text-center">
+                <h1>RoboCodex Content Library</h1>
+                <p class="subheading">All your FTC videos, organized by topic</p>
+            </div>
+        </section>
+
+        <!-- Filter Tabs/Buttons -->
+        <section class="filter-tabs-section">
+            <div class="container">
+                <div class="filter-buttons-container" id="filterButtons">
+                    <button class="filter-button active" data-category="all">All Content</button>
+                    <button class="filter-button" data-category="FLL to FTC">FLL to FTC</button>
+                    <button class="filter-button" data-category="FTC Basics">FTC Basics</button>
+                    <button class="filter-button" data-category="Robot Mechanics">Robot Mechanics</button>
+                    <button class="filter-button" data-category="Strategy">Strategy</button>
+                    <button class="filter-button" data-category="Team Culture">Team Culture</button>
+                </div>
+            </div>
+        </section>
+
+        <!-- Video Grid -->
+        <section class="video-grid-section section-padding" style="background-color: var(--light-background);">
+            <div class="container">
+                <div class="video-grid" id="videoGrid">
+                    <!-- Video cards will be loaded here by JavaScript -->
+                    <p class="no-videos-message" style="display: none;">No videos in this category yet.</p>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container text-center section-padding">
+            <p>&copy; 2025 RoboCodex. All rights reserved.</p>
+            <div class="footer-links">
+                <a href="#">Privacy Policy</a> |
+                <a href="contact.html">Contact</a> |
+                <a href="https://discord.gg/yourdiscordinvite" target="_blank" rel="noopener noreferrer">Discord</a>
+            </div>
+            <div class="social-icons">
+                <a href="https://www.youtube.com/@RoboCodex" target="_blank" rel="noopener noreferrer" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
+                <a href="https://discord.gg/yourdiscordinvite" target="_blank" rel="noopener noreferrer" aria-label="Discord"><i class="fab fa-discord"></i></a>
+            </div>
+        </div>
+    </footer>
+
+    <script src="js/script.js"></script>
+</body>
+</html>
