@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Team 24813 Stats - RoboCodex</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        .stats-container { margin-top: 40px; }
+        .stats-summary { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 20px; margin-bottom: 40px; }
+        .stat-box { background: white; padding: 20px; border-radius: 10px; box-shadow: 0 4px 6px rgba(0,0,0,0.1); text-align: center; border-top: 4px solid var(--primary-color); }
+        .stat-box h3 { margin-bottom: 10px; font-size: 1.1rem; color: var(--dark-text); text-transform: uppercase; }
+        .stat-box p { font-size: 1.8rem; font-weight: bold; color: var(--primary-color); }
+        .stat-box .subtext { font-size: 0.9rem; color: #666; margin-top: 5px; }
+        
+        .awards-list { margin-bottom: 40px; }
+        .award-item { background: #fff8e1; padding: 20px; margin-bottom: 15px; border-left: 6px solid #ffc107; border-radius: 8px; display: flex; align-items: center; gap: 20px; }
+        .award-item i { font-size: 2rem; color: #ffc107; }
+        
+        .sorting-controls { margin-bottom: 20px; display: flex; align-items: center; gap: 15px; flex-wrap: wrap; }
+        .sort-btn { padding: 8px 16px; border-radius: 20px; border: 2px solid var(--primary-color); background: white; color: var(--primary-color); cursor: pointer; font-weight: bold; transition: all 0.3s ease; }
+        .sort-btn.active { background: var(--primary-color); color: white; }
+        
+        .match-cards-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 25px; margin-top: 10px; }
+        .match-card { background: white; border-radius: 12px; padding: 20px; box-shadow: 0 5px 15px rgba(0,0,0,0.08); border: 1px solid #eee; text-decoration: none; color: inherit; display: block; transition: transform 0.2s ease; }
+        .match-card:hover { transform: translateY(-5px); border-color: var(--primary-color); }
+        .match-card-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px; border-bottom: 2px solid #f8f9fa; padding-bottom: 10px; }
+        .badge { padding: 4px 10px; border-radius: 20px; font-size: 0.8rem; font-weight: bold; text-transform: uppercase; }
+        .badge-elim { background: #e3f2fd; color: #1976d2; }
+        .badge-qual { background: #f1f8e9; color: #388e3c; }
+        
+        .score-row { display: flex; justify-content: space-between; margin-bottom: 10px; }
+        .score-label { color: #666; }
+        .score-value { font-weight: bold; }
+        .penalty-row { color: #dc3545; font-size: 0.9rem; }
+        
+        .total-np-row { margin-top: 15px; padding-top: 10px; border-top: 2px dashed #eee; display: flex; justify-content: space-between; font-size: 1.2rem; }
+        .total-np-label { font-weight: bold; color: var(--primary-color); }
+        .total-np-value { font-weight: 800; color: var(--primary-color); }
+
+        .percentile-section { background: linear-gradient(135deg, var(--primary-color), #0056b3); color: white; padding: 30px; border-radius: 15px; margin-bottom: 40px; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 20px; }
+        .percentile-value { font-size: 3.5rem; font-weight: 900; line-height: 1; }
+    </style>
+</head>
+<body>
+    <header>
+        <nav class="navbar">
+            <a href="index.html" class="logo">RoboCodex</a>
+            <ul class="nav-menu">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="stats.html" class="active">Stats</a></li>
+                <li><a href="content.html">Content</a></li>
+                <li><a href="about.html">About</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main class="container section-padding">
+        <h1>Team 24813: SHCA Happy Hawks</h1>
+        
+        <section class="stats-container">
+            <div class="percentile-section">
+                <div class="percentile-info">
+                    <h2>World OPR Percentile</h2>
+                    <p>Top 12% of Teams Worldwide (Season 2025)</p>
+                </div>
+                <div class="percentile-value">88.7%</div>
+            </div>
+
+            <div class="stats-summary">
+                <div class="stat-box"><h3>World Rank</h3><p>914</p></div>
+                <div class="stat-box"><h3>Event Rank</h3><p>4 / 22</p></div>
+                <div class="stat-box"><h3>Avg. NP Score</h3><p>121.2</p></div>
+            </div>
+
+            <div class="awards-list">
+                <h2>Awards & Recognition</h2>
+                <div class="award-item">
+                    <i class="fas fa-trophy"></i>
+                    <div>
+                        <strong>Inspire Award Winner (1st Place)</strong>
+                        <p>The highest honor at the competition, recognizing team excellence in all categories.</p>
+                    </div>
+                </div>
+                <div class="award-item" style="border-left-color: #28a745;">
+                    <i class="fas fa-user-tie" style="color: #28a745;"></i>
+                    <div>
+                        <strong>Leadership Award Winner: Jose Laurencio Soriano</strong>
+                        <p>Awarded for exceptional leadership, team management, and community impact.</p>
+                    </div>
+                </div>
+                <div class="award-item">
+                    <i class="fas fa-medal"></i>
+                    <div>
+                        <strong>Competition Finalist (2nd Place)</strong>
+                        <p>Tournament runner-up in a high-stakes championship series.</p>
+                    </div>
+                </div>
+            </div>
+
+            <h2>Top 5 Performance Breakdown</h2>
+            <div class="sorting-controls">
+                <span>Sort By:</span>
+                <button class="sort-btn active" onclick="sortMatches('np')" id="btn-np">Highest Total (NP)</button>
+                <button class="sort-btn" onclick="sortMatches('auto')" id="btn-auto">Best Auto</button>
+                <button class="sort-btn" onclick="sortMatches('teleop')" id="btn-teleop">Best TeleOp</button>
+            </div>
+            
+            <div class="match-cards-grid" id="match-grid">
+                <!-- Match 18 -->
+                <a href="match-18.html" class="match-card" data-np="142" data-auto="36" data-teleop="106">
+                    <div class="match-card-header"><h3>Match #18</h3><span class="badge badge-qual">Quals</span></div>
+                    <div class="score-row"><span class="score-label">Autonomous</span><span class="score-value">36 pts</span></div>
+                    <div class="score-row"><span class="score-label">Driver Control</span><span class="score-value">106 pts</span></div>
+                    <div class="score-row penalty-row"><span class="score-label">Penalty Points Committed</span><span class="score-value">5 pts</span></div>
+                    <div class="total-np-row"><span class="total-np-label">Total NP Score</span><span class="total-np-value">142</span></div>
+                </a>
+
+                <!-- Match 25001 -->
+                <a href="match-25001.html" class="match-card" data-np="140" data-auto="39" data-teleop="101">
+                    <div class="match-card-header"><h3>Match #25001</h3><span class="badge badge-elim">Elims</span></div>
+                    <div class="score-row"><span class="score-label">Autonomous</span><span class="score-value">39 pts</span></div>
+                    <div class="score-row"><span class="score-label">Driver Control</span><span class="score-value">101 pts</span></div>
+                    <div class="score-row penalty-row"><span class="score-label">Penalty Points Committed</span><span class="score-value">25 pts</span></div>
+                    <div class="total-np-row"><span class="total-np-label">Total NP Score</span><span class="total-np-value">140</span></div>
+                </a>
+
+                <!-- Match 28001 -->
+                <a href="match-28001.html" class="match-card" data-np="138" data-auto="34" data-teleop="104">
+                    <div class="match-card-header"><h3>Match #28001</h3><span class="badge badge-elim">Elims</span></div>
+                    <div class="score-row"><span class="score-label">Autonomous</span><span class="score-value">34 pts</span></div>
+                    <div class="score-row"><span class="score-label">Driver Control</span><span class="score-value">104 pts</span></div>
+                    <div class="score-row penalty-row"><span class="score-label">Penalty Points Committed</span><span class="score-value">10 pts</span></div>
+                    <div class="total-np-row"><span class="total-np-label">Total NP Score</span><span class="total-np-value">138</span></div>
+                </a>
+
+                <!-- Match 30001 -->
+                <a href="match-30001.html" class="match-card" data-np="129" data-auto="38" data-teleop="91">
+                    <div class="match-card-header"><h3>Match #30001</h3><span class="badge badge-elim">Elims</span></div>
+                    <div class="score-row"><span class="score-label">Autonomous</span><span class="score-value">38 pts</span></div>
+                    <div class="score-row"><span class="score-label">Driver Control</span><span class="score-value">91 pts</span></div>
+                    <div class="score-row penalty-row"><span class="score-label">Penalty Points Committed</span><span class="score-value">10 pts</span></div>
+                    <div class="total-np-row"><span class="total-np-label">Total NP Score</span><span class="total-np-value">129</span></div>
+                </a>
+
+                <!-- Match 29001 -->
+                <a href="match-29001.html" class="match-card" data-np="118" data-auto="47" data-teleop="71">
+                    <div class="match-card-header"><h3>Match #29001</h3><span class="badge badge-elim">Elims</span></div>
+                    <div class="score-row"><span class="score-label">Autonomous</span><span class="score-value">47 pts</span></div>
+                    <div class="score-row"><span class="score-label">Driver Control</span><span class="score-value">71 pts</span></div>
+                    <div class="score-row penalty-row"><span class="score-label">Penalty Points Committed</span><span class="score-value">30 pts</span></div>
+                    <div class="total-np-row"><span class="total-np-label">Total NP Score</span><span class="total-np-value">118</span></div>
+                </a>
+            </div>
+        </section>
+
+        <section class="section-padding text-center">
+            <a href="index.html" class="button button-primary">Back to Home</a>
+        </section>
+    </main>
+
+    <script>
+        function sortMatches(criteria) {
+            const grid = document.getElementById('match-grid');
+            const cards = Array.from(grid.getElementsByClassName('match-card'));
+            
+            // Update buttons
+            document.querySelectorAll('.sort-btn').forEach(btn => btn.classList.remove('active'));
+            document.getElementById('btn-' + criteria).classList.add('active');
+            
+            cards.sort((a, b) => {
+                const valA = parseInt(a.getAttribute('data-' + criteria));
+                const valB = parseInt(b.getAttribute('data-' + criteria));
+                return valB - valA; // Descending
+            });
+            
+            // Re-append in new order
+            cards.forEach(card => grid.appendChild(card));
+        }
+    </script>
+
+    <footer><div class="container text-center section-padding"><p>&copy; 2025 RoboCodex. All rights reserved.</p></div></footer>
+</body>
+</html>

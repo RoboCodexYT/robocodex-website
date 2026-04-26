@@ -18,6 +18,48 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
+    // --- Admin / Hidden Course Access Logic ---
+    const logo = document.querySelector('.logo');
+    let logoClicks = 0;
+    
+    if (logo) {
+        logo.addEventListener('click', (e) => {
+            // Prevent actual navigation if we want to use clicks as a trigger
+            // But usually, clicking a logo goes to home, so we just count them.
+            logoClicks++;
+            if (logoClicks === 5) {
+                const isAdmin = localStorage.getItem('robocodex_admin') === 'true';
+                localStorage.setItem('robocodex_admin', isAdmin ? 'false' : 'true');
+                alert(isAdmin ? 'Admin mode deactivated.' : 'Admin mode activated! Course link is now visible.');
+                location.reload();
+            }
+            
+            // Reset clicks after 2 seconds of inactivity
+            setTimeout(() => { logoClicks = 0; }, 2000);
+        });
+    }
+
+    // Restore course link if admin
+    if (localStorage.getItem('robocodex_admin') === 'true' && navMenu) {
+        if (!navMenu.querySelector('a[href="course.html"]')) {
+            const li = document.createElement('li');
+            li.innerHTML = '<a href="course.html">Course (Hidden)</a>';
+            navMenu.appendChild(li);
+        }
+    }
+
+    // Block course page if not admin
+    if (window.location.pathname.includes('course.html') && localStorage.getItem('robocodex_admin') !== 'true') {
+        document.body.innerHTML = `
+            <div style="height:100vh; display:flex; flex-direction:column; align-items:center; justify-content:center; font-family:sans-serif; text-align:center; padding: 20px;">
+                <h1 style="font-size: 4rem; margin-bottom: 0;">404</h1>
+                <h2>Oops! Page Not Found</h2>
+                <p>The page you are looking for might have been removed, had its name changed, or is temporarily unavailable.</p>
+                <a href="index.html" class="button button-primary" style="margin-top: 20px; text-decoration:none; padding: 10px 20px; background:#007bff; color:white; border-radius:5px;">Go to Homepage</a>
+            </div>
+        `;
+    }
+
     // Smooth scrolling for internal links
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
         anchor.addEventListener('click', function (e) {

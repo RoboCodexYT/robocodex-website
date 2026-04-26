@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Match #28001 Breakdown - RoboCodex</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        .detail-section { background: white; padding: 30px; border-radius: 15px; box-shadow: 0 5px 15px rgba(0,0,0,0.05); margin-bottom: 30px; }
+        .detail-section h2 { border-bottom: 2px solid var(--primary-color); padding-bottom: 10px; margin-bottom: 20px; display: flex; align-items: center; gap: 10px; }
+        .score-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px; }
+        .score-item { padding: 15px; background: #f8f9fa; border-radius: 8px; display: flex; justify-content: space-between; }
+        .score-item .label { color: #666; }
+        .score-item .value { font-weight: bold; color: var(--primary-color); }
+        .highlight-value { font-size: 1.2rem; font-weight: 800; color: var(--accent-color); }
+        .classifier-viz { display: grid; grid-template-columns: repeat(3, 1fr); gap: 5px; max-width: 150px; margin-top: 10px; }
+        .viz-box { width: 40px; height: 40px; border-radius: 4px; border: 1px solid #ccc; }
+        .viz-purple { background-color: #9c27b0; }
+        .viz-green { background-color: #4caf50; }
+        .viz-none { background-color: #e0e0e0; }
+    </style>
+</head>
+<body>
+    <header>
+        <nav class="navbar">
+            <a href="index.html" class="logo">RoboCodex</a>
+            <ul class="nav-menu">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="stats.html">Stats</a></li>
+                <li><a href="content.html">Content</a></li>
+                <li><a href="about.html">About</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main class="container section-padding">
+        <a href="stats.html" style="display: inline-block; margin-bottom: 20px;"><i class="fas fa-arrow-left"></i> Back to Stats</a>
+        
+        <div style="display: flex; justify-content: space-between; align-items: baseline; flex-wrap: wrap; gap: 10px;">
+            <h1>Match #28001 Detailed Breakdown</h1>
+            <span class="badge badge-elim" style="font-size: 1.2rem;">Double Elimination Match</span>
+        </div>
+        <p class="subheading">Team 24813 (Blue Alliance) vs. Red Alliance</p>
+
+        <div class="stats-summary" style="margin-top: 30px;">
+            <div class="stat-box">
+                <h3>Alliance Result</h3>
+                <p style="color: #28a745;">WIN</p>
+                <div class="subtext">153 - 140</div>
+            </div>
+            <div class="stat-box">
+                <h3>Team Contribution</h3>
+                <p>138</p>
+                <div class="subtext">Non-Penalty Points</div>
+            </div>
+            <div class="stat-box">
+                <h3>Clutch Factor</h3>
+                <p>VERY HIGH</p>
+                <div class="subtext">Close Victory</div>
+            </div>
+        </div>
+
+        <section class="detail-section">
+            <h2><i class="fas fa-robot"></i> Autonomous Phase</h2>
+            <div class="score-grid">
+                <div class="score-item"><span class="label">Auto Leave</span><span class="value">6 pts</span></div>
+                <div class="score-item"><span class="label">Auto Artifacts</span><span class="value">24 pts</span></div>
+                <div class="score-item"><span class="label">Auto Pattern</span><span class="value">4 pts</span></div>
+                <div class="score-item" style="grid-column: span 1; background: #e3f2fd;"><span class="label" style="font-weight: bold;">Phase Total</span><span class="highlight-value">34 pts</span></div>
+            </div>
+            <div style="margin-top: 20px;">
+                <h4 style="margin-bottom: 10px;">Classifier State Visualization:</h4>
+                <div class="classifier-viz">
+                    <div class="viz-box viz-green"></div><div class="viz-box viz-purple"></div><div class="viz-box viz-purple"></div>
+                    <div class="viz-box viz-green"></div><div class="viz-box viz-purple"></div><div class="viz-box viz-purple"></div>
+                    <div class="viz-box viz-green"></div><div class="viz-box viz-none"></div><div class="viz-box viz-none"></div>
+                </div>
+            </div>
+        </section>
+
+        <section class="detail-section">
+            <h2><i class="fas fa-gamepad"></i> Driver Controlled & Endgame</h2>
+            <div class="score-grid">
+                <div class="score-item"><span class="label">DC Base</span><span class="value">15 pts</span></div>
+                <div class="score-item"><span class="label">DC Artifacts</span><span class="value">81 pts</span></div>
+                <div class="score-item"><span class="label">DC Pattern</span><span class="value">8 pts</span></div>
+                <div class="score-item"><span class="label">Depot Points</span><span class="value">0 pts</span></div>
+                <div class="score-item" style="grid-column: span 1; background: #e3f2fd;"><span class="label" style="font-weight: bold;">Phase Total</span><span class="highlight-value">104 pts</span></div>
+            </div>
+        </section>
+
+        <section class="detail-section">
+            <h2><i class="fas fa-exclamation-triangle"></i> Penalties & Technical</h2>
+            <div class="score-grid">
+                <div class="score-item"><span class="label">Minor Penalties</span><span class="value">2 (10 pts)</span></div>
+                <div class="score-item"><span class="label">Bonus Points</span><span class="value">15 pts</span></div>
+            </div>
+        </section>
+
+        <section class="text-center" style="margin-top: 40px;">
+            <p class="lead-text">Strategic Analysis: A very close match where bonus points from opponent penalties played a crucial role in securing the win.</p>
+            <a href="stats.html" class="button button-primary">Back to Statistics</a>
+        </section>
+    </main>
+</body>
+</html>

@@ -2,83 +2,83 @@
   "videos": [
     {
       "id": "1",
-      "title": "FTC Robot Chassis Basics: Building Your Foundation",
-      "youtubeId": "dQw4w9WgXcQ",
-      "date": "2025-01-20",
-      "category": "FTC Basics",
-      "description": "Learn the fundamentals of building a robust and effective robot chassis for FIRST Tech Challenge."
+      "title": "STEM Students: Here’s How You Can Change the World with Clean Water",
+      "youtubeId": "138ZD3LkfxU",
+      "date": "2025-08-08",
+      "category": "Strategy",
+      "description": "Discover how STEM students can make a real-world impact by addressing global clean water challenges."
     },
     {
       "id": "2",
-      "title": "FLL to FTC Transition: What's Different?",
-      "youtubeId": "someOtherVideoId1",
-      "date": "2025-01-25",
-      "category": "FLL to FTC",
-      "description": "Making the jump from FLL to FTC? This video highlights the key differences and what to expect."
+      "title": "Top 3 MyBlocks for FIRST Lego League | Boost Your Robot's Performance!",
+      "youtubeId": "jwl_nZYEmb4",
+      "date": "2024-04-26",
+      "category": "Robot Mechanics",
+      "description": "Enhance your FLL robot's efficiency with these three essential MyBlocks for better performance."
     },
     {
       "id": "3",
-      "title": "FTC Game Strategy: Analyzing the 2025-2026 Season",
-      "youtubeId": "anotherVideoId2",
-      "date": "2025-02-01",
+      "title": "7 Essential Teamwork Tips for FLL Success",
+      "youtubeId": "IVyXBulDeqA",
+      "date": "2024-04-26",
       "category": "Strategy",
-      "description": "Deep dive into the upcoming season's game, breaking down potential strategies and robot designs."
+      "description": "Teamwork is key in FLL. Here are seven tips to help your team collaborate and succeed together."
     },
     {
       "id": "4",
-      "title": "Introduction to Robot Programming (Blocks & Java)",
-      "youtubeId": "yetAnotherVideoId3",
-      "date": "2025-02-10",
-      "category": "FTC Basics",
-      "description": "Get started with robot programming using both Blocks and Java, perfect for beginners."
+      "title": "The FASTEST Way to Achieve Perfect Straight Movement on SPIKE Prime!",
+      "youtubeId": "WT-aUj57rpI",
+      "date": "2024-04-26",
+      "category": "Robot Mechanics",
+      "description": "Master straight-line movement on your SPIKE Prime robot with this fast and effective technique."
     },
     {
       "id": "5",
-      "title": "Team Culture & Dynamics: Building a Winning Team",
-      "youtubeId": "videoID5",
-      "date": "2025-02-15",
-      "category": "Team Culture",
-      "description": "Discover tips and tricks for fostering a positive and productive team environment in FTC."
+      "title": "Mastering Turning: Spike Prime Robot Gyro Tutorial",
+      "youtubeId": "K8IR9YBYssU",
+      "date": "2024-04-26",
+      "category": "Robot Mechanics",
+      "description": "Learn how to use the gyro sensor on Spike Prime for precise and consistent turns."
     },
     {
       "id": "6",
-      "title": "Advanced Robot Mechanics: Lift Systems Explained",
-      "youtubeId": "videoID6",
-      "date": "2025-02-20",
+      "title": "Get READY to Move Your SPIKE Prime Robot Forward FAST!",
+      "youtubeId": "gAnNf3ji-Ig",
+      "date": "2024-04-26",
       "category": "Robot Mechanics",
-      "description": "An in-depth look at various lift mechanisms used in FTC robots, their pros and cons."
+      "description": "Tips and tricks to get your Spike Prime robot moving forward quickly and reliably."
     },
     {
       "id": "7",
-      "title": "Scouting and Alliance Selection: A Competition Edge",
-      "youtubeId": "videoID7",
-      "date": "2025-02-28",
-      "category": "Strategy",
-      "description": "Learn how effective scouting can make or break your alliance selection at tournaments."
+      "title": "3-Minute SPIKE Prime App Tutorial for Beginners!",
+      "youtubeId": "nPpmz8iWNjY",
+      "date": "2024-04-26",
+      "category": "FTC Basics",
+      "description": "A quick and easy guide to getting started with the SPIKE Prime app."
     },
     {
       "id": "8",
-      "title": "Beyond the Robot: Awards & Documentation in FTC",
-      "youtubeId": "videoID8",
-      "date": "2025-03-05",
-      "category": "FTC Basics",
-      "description": "Understand the importance of the Engineering Notebook and how to compete for awards beyond robot performance."
+      "title": "Ultimate Robot Design Guide for FLL Competitions",
+      "youtubeId": "_poAQvN-MEU",
+      "date": "2024-04-26",
+      "category": "Robot Mechanics",
+      "description": "The comprehensive guide to designing a competitive and robust robot for FLL."
     },
     {
       "id": "9",
-      "title": "FLL Masterpiece vs. FTC CENTERSTAGE: Comparing Seasons",
-      "youtubeId": "videoID9",
-      "date": "2025-03-10",
-      "category": "FLL to FTC",
-      "description": "A side-by-side comparison of the FLL Masterpiece season and FTC CENTERSTAGE, highlighting skill transfers."
+      "title": "Final Versatile Robot Suspension - Centerstage FTC",
+      "youtubeId": "RgTlkBg_b3Y",
+      "date": "2023-04-26",
+      "category": "Robot Mechanics",
+      "description": "A detailed look at a versatile suspension system designed for the FTC Centerstage season."
     },
     {
       "id": "10",
-      "title": "Troubleshooting Common Robot Issues: Quick Fixes",
-      "youtubeId": "videoID10",
-      "date": "2025-03-15",
-      "category": "Robot Mechanics",
-      "description": "Practical advice for diagnosing and fixing common problems encountered during robot build and competition."
+      "title": "Masterpiece Season Teaser Breakdown",
+      "youtubeId": "6iGUjZEUQjw",
+      "date": "2023-04-26",
+      "category": "Strategy",
+      "description": "Breaking down the teaser for the FLL Masterpiece season and what it means for teams."
     }
   ]
 }
