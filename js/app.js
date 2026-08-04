@@ -97,10 +97,19 @@ function filterVideos(videos) {
 function renderVideoCards() {
   const grid = document.getElementById('video-grid');
   const countTarget = document.getElementById('video-count');
+  const statusTarget = document.getElementById('video-status');
   if (!grid) return;
   const visible = sortVideos(filterVideos(state.videos));
   if (countTarget) {
     countTarget.textContent = `${visible.length} video${visible.length === 1 ? '' : 's'} currently shown from the available RoboCodex library.`;
+  }
+  if (statusTarget) {
+    const source = state.videos?.[0]?.source || 'local';
+    const lastUpdated = state.videos?.[0]?.lastUpdated || state.videos?.[0]?.date;
+    const label = source === 'youtube' && lastUpdated
+      ? `Last refreshed ${formatDate(lastUpdated)}`
+      : 'The library updates whenever new video data is added.';
+    statusTarget.textContent = label;
   }
   if (!visible.length) {
     grid.innerHTML = '<div class="card list-item">No RoboCodex videos currently match this search.</div>';
@@ -327,6 +336,9 @@ async function initApp() {
     const response = await fetch('data/videos.json');
     const payload = await response.json();
     state.videos = payload.videos || [];
+    if (payload.lastUpdated) {
+      state.videos = state.videos.map((video) => ({ ...video, lastUpdated: payload.lastUpdated, source: payload.source || 'local' }));
+    }
     renderFeaturedVideo();
     renderVideoCards();
   } catch (error) {

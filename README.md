@@ -62,6 +62,24 @@ robocodex.github.io/
 
 ### Local Development
 
+### Update the video library
+
+The site reads video data from [data/videos.json](data/videos.json).
+
+To refresh it from YouTube, run:
+
+```bash
+node scripts/update-videos.mjs
+```
+
+You can also set one of these environment variables before running it:
+
+- `YOUTUBE_CHANNEL_ID`
+- `YOUTUBE_USERNAME`
+- `YOUTUBE_HANDLE`
+
+If none are set, the script uses the RoboCodex YouTube feed by default.
+
 To view and develop the website locally:
 
 1.  **Clone the repository:**
