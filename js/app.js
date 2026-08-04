@@ -50,7 +50,9 @@ function getTheme() {
 }
 
 function applyTheme(theme) {
-  document.body.classList.toggle('dark', theme === 'dark');
+  const isDark = theme === 'dark';
+  document.documentElement.classList.toggle('dark', isDark);
+  document.body.classList.toggle('dark', isDark);
   const toggle = document.getElementById('theme-toggle');
   if (toggle) {
     toggle.innerHTML = theme === 'dark'
