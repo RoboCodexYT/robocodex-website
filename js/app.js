@@ -5,6 +5,8 @@ const STORAGE_KEYS = {
 
 const state = {
   videos: [],
+  resources: [],
+  resourceFilter: 'All',
   filters: { query: '', category: 'All', sort: 'newest' },
 };
 
@@ -184,8 +186,8 @@ function renderGuides() {
         <button class="bookmark-btn ${isBookmarked('guide', guide.slug) ? 'active' : ''}" data-type="guide" data-id="${guide.slug}">★ Save</button>
       </div>
       ${guide.content
-        ? `<button type="button" class="focus-link" onclick="openGuideModal('${guide.slug}')">Open in focus mode</button>`
-        : ''}
+      ? `<button type="button" class="focus-link" onclick="openGuideModal('${guide.slug}')">Open in focus mode</button>`
+      : ''}
     </article>
   `).join('');
 }
@@ -420,16 +422,40 @@ function closeGuideReader() {
 function renderResources() {
   const target = document.getElementById('resource-grid');
   if (!target) return;
-  const resources = [
-    { title: 'FIRST Tech Challenge', organization: 'FIRST', summary: 'Official FTC program overview and season information.', category: 'Official FIRST', url: 'https://www.firstinspires.org/programs/ftc' },
-    { title: 'FTC Docs', organization: 'FIRST Tech Challenge', summary: 'Hardware, software, and control-system documentation from FTC Docs.', category: 'Technical docs', url: 'https://ftc-docs.firstinspires.org/' },
-    { title: 'Road Runner', organization: 'Road Runner', summary: 'A community-developed pathing library for FTC teams.', category: 'Autonomous libraries', url: 'https://rr.brott.dev/docs/' },
-  ];
-  target.innerHTML = resources.map((resource) => `
+
+  const select = document.getElementById('resource-category');
+  if (select) {
+    const categories = ['All', ...new Set(state.resources.map((r) => r.category))];
+    if (select.options.length !== categories.length) {
+      select.innerHTML = categories
+        .map((c) => `<option value="${c}"${c === state.resourceFilter ? ' selected' : ''}>${c}</option>`)
+        .join('');
+    }
+  }
+
+  const countTarget = document.getElementById('resource-count');
+  const visible = state.resourceFilter === 'All'
+    ? state.resources
+    : state.resources.filter((r) => r.category === state.resourceFilter);
+  if (countTarget) {
+    countTarget.textContent = `${visible.length} resource${visible.length === 1 ? '' : 's'} from the RoboCodex directory.`;
+  }
+
+  if (!state.resources.length) {
+    target.innerHTML = '<div class="card list-item">Loading resources…</div>';
+    return;
+  }
+  if (!visible.length) {
+    target.innerHTML = '<div class="card list-item">No resources in this category yet.</div>';
+    return;
+  }
+
+  target.innerHTML = visible.map((resource) => `
     <article class="card resource-card">
       <div class="badge">${resource.category}</div>
       <h3>${resource.title}</h3>
       <p class="muted">${resource.summary}</p>
+      <p class="meta-row"><span>${resource.organization || 'Community'}</span></p>
       <div class="inline-list">
         <a class="btn btn-primary" href="${resource.url}" target="_blank" rel="noopener noreferrer">Open</a>
         <button class="bookmark-btn ${isBookmarked('resource', resource.title) ? 'active' : ''}" data-type="resource" data-id="${resource.title}">★ Save</button>
@@ -534,7 +560,7 @@ const KNOWLEDGE_MAP_DATA = {
     videos: ['HIBxntPlIus'],
     guides: ['control-system'],
     calculators: [],
-    docs: [{ title: 'AprilTag FTC Documentation', url: 'https://ftc-docs.firstinspires.org/en/latest/apriltags/index.html' }]
+    docs: [{ title: 'Limelight Docs', url: 'https://docs.limelightvision.io/en/latest/' }, { title: 'AprilTag FTC Documentation', url: 'https://ftc-docs.firstinspires.org/en/latest/apriltags/index.html' }, { title: 'OpenCV Documentation', url: 'https://docs.opencv.org/' }, { title: 'TensorFlow Documentation', url: 'https://www.tensorflow.org/' }]
   },
   autonomous: {
     title: 'Autonomous',
@@ -543,10 +569,10 @@ const KNOWLEDGE_MAP_DATA = {
     summary: 'Program your robot to drive and score automatically in the first 30 seconds.',
     description: 'Autonomous period scoring can make or break a match. Using localization libraries (like Road Runner or PedroPathing), PID control, and state machines allows your robot to execute complex pre-programmed tasks reliably regardless of field friction.',
     connections: ['programming', 'drivetrains', 'sensors', 'vision'],
-    videos: ['leWZTYAR42s', 'bdOogbHBDNY', 'QK5E3F7vqrE', 'HIBxntPlIus'],
+    videos: ['6v7QgzRhOwA', 'HIBxntPlIus', 'QviWmKy0HFA'],
     guides: ['autonomous-intro', 'encoders'],
     calculators: ['#encoder-distance'],
-    docs: [{ title: 'Pedro Pathing Docs', url: 'https://pedropathing.com/' }, { title: 'Road Runner Docs', url: 'https://rr.brott.dev/docs/' }]
+    docs: [{ title: 'Pedro Pathing Docs (Recommended)', url: 'https://pedropathing.com/' }, { title: 'Road Runner Docs', url: 'https://rr.brott.dev/docs/' }]
   },
   cad: {
     title: 'CAD',
@@ -558,7 +584,7 @@ const KNOWLEDGE_MAP_DATA = {
     videos: ['7jyLT9H6CSI'],
     guides: ['cad-ftc'],
     calculators: ['#gear-ratio'],
-    docs: [{ title: 'Onshape Learning Center', url: 'https://learn.onshape.com/' }]
+    docs: [{ title: 'Onshape Learning Center', url: 'https://learn.onshape.com/' },{title: 'gm0 CAD tutorial gallery', url: 'https://gm0.org/en/latest/docs/design-skills/cad-tutorials.html'}, { title: 'Fusion 360 Docs', url: 'https://help.autodesk.com/view/Fusion360/EN/' }]
   },
   manufacturing: {
     title: 'Manufacturing',
@@ -594,7 +620,7 @@ const KNOWLEDGE_MAP_DATA = {
     videos: ['h60NvS6MYV8', 'leWZTYAR42s'],
     guides: ['what-is-ftc'],
     calculators: [],
-    docs: [{ title: 'FIRST FTC Official Resource Library', url: 'https://www.firstinspires.org/resource-library/ftc/game-and-season-info' }]
+    docs: [{ title: 'FIRST FTC Official Resource Library', url: 'https://www.firstinspires.org/resource-library/ftc/game-and-season-info' }, { title: 'FTC Game Manual', url: 'https://ftc-docs.firstinspires.org/en/latest/game-manual/index.html' }]
   }
 };
 
@@ -1032,6 +1058,14 @@ function wireEvents() {
     });
   }
 
+  const resourceCategorySelect = document.getElementById('resource-category');
+  if (resourceCategorySelect) {
+    resourceCategorySelect.addEventListener('change', (event) => {
+      state.resourceFilter = event.target.value;
+      renderResources();
+    });
+  }
+
   document.addEventListener('click', (event) => {
     const button = event.target.closest('.bookmark-btn');
     if (button) {
@@ -1072,6 +1106,18 @@ async function initApp() {
   renderKnowledgeMap();
   renderCalculators();
   renderBookmarks();
+
+  // Load the expanded FTC resource directory
+  try {
+    const resourceResponse = await fetch('data/resources.json');
+    if (resourceResponse.ok) {
+      const payload = await resourceResponse.json();
+      if (Array.isArray(payload)) state.resources = payload;
+    }
+  } catch (err) {
+    console.warn('Could not load resources.json — resource grid will be empty.', err);
+  }
+  renderResources();
 
   // Deep-link: auto-open a guide when the hash is #guide-{slug}
   const hashMatch = /#guide-([\w-]+)/.exec(window.location.hash);

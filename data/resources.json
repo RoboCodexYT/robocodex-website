@@ -1,0 +1,53 @@
+[
+  { "title": "FIRST Tech Challenge", "organization": "FIRST", "summary": "Official FTC program overview, structure, and how to start a team.", "category": "Official FIRST", "url": "https://www.firstinspires.org/programs/ftc" },
+  { "title": "FTC Game & Season Info", "organization": "FIRST", "summary": "Current season manual, rules, and game element reveal.", "category": "Official FIRST", "url": "https://www.firstinspires.org/resource-library/ftc/game-and-season-info" },
+  { "title": "FTC Game Manual Part 1", "organization": "FIRST", "summary": "Official game rules, field setup, and robot eligibility.", "category": "Official FIRST", "url": "https://www.firstinspires.org/resource-library/ftc/game-and-season-info" },
+  { "title": "FTC Game Manual Part 2", "organization": "FIRST", "summary": "Tournament administration, legal part lists, and judging details.", "category": "Official FIRST", "url": "https://www.firstinspires.org/resource-library/ftc/game-and-season-info" },
+  { "title": "FIRST Inspires Community", "organization": "FIRST", "summary": "FTC announcements, awards guidance, and season resources.", "category": "Official FIRST", "url": "https://fcec.firstinspires.org" },
+
+  { "title": "FTC Docs", "organization": "FIRST Tech Challenge", "summary": "The centralized hardware, software, and control-system reference.", "category": "FTC Docs & SDK", "url": "https://ftc-docs.firstinspires.org/" },
+  { "title": "FTC Robot Java SDK", "organization": "GitHub", "summary": "Official source, Blocks, and OnBot Java bundled in the SDK.", "category": "FTC Docs & SDK", "url": "https://github.com/FIRST-Tech-Challenge/FtcRobotController" },
+  { "title": "FTC Blocks Programming", "organization": "FTC Docs", "summary": "Browser-based drag-and-drop programming inside the SDK.", "category": "FTC Docs & SDK", "url": "https://ftc-docs.firstinspires.org/en/latest/programming_resources/blocks_programming/block_introduction.html" },
+  { "title": "OnBot Java Editor", "organization": "FTC Docs", "summary": "Browser Java editor with no local tools required.", "category": "FTC Docs & SDK", "url": "https://ftc-docs.firstinspires.org/en/latest/programming_resources/onbot_java/OnBot-Java-Introduction.html" },
+  { "title": "Android Studio Setup", "organization": "FTC Docs", "summary": "Set up the full IDE workflow and upload code to the Control Hub.", "category": "FTC Docs & SDK", "url": "https://ftc-docs.firstinspires.org/en/latest/programming_resources/android_studio_intro/android_studio_intro.html" },
+  { "title": "FTC Control System Overview", "organization": "FTC Docs", "summary": "How the Driver Station and Robot Controller communicate.", "category": "FTC Docs & SDK", "url": "https://ftc-docs.firstinspires.org/en/latest/hardware_and_software_references/control_system_tutorial/control-system-tutorial.html" },
+  { "title": "REV FTC Documentation", "organization": "REV Robotics", "summary": "Wiring, Control Hub, and Expansion Hub guides from REV.", "category": "FTC Docs & SDK", "url": "https://docs.revrobotics.com/" },
+
+  { "title": "REV Robotics", "organization": "REV", "summary": "Common FTC motors, Control Hub, servos, and brackets.", "category": "Hardware & Vendors", "url": "https://www.revrobotics.com/" },
+  { "title": "goBILDA", "organization": "goBILDA", "summary": "Modular building system, motors, and FTC-specific kits.", "category": "Hardware & Vendors", "url": "https://www.gobilda.com/" },
+  { "title": "ServoCity Actobotics", "organization": "ServoCity", "summary": "Building system, shafts, gears, and servo hardware.", "category": "Hardware & Vendors", "url": "https://www.servocity.com/" },
+  { "title": "AndyMark FTC", "organization": "AndyMark", "summary": "Motors, wheels, and drivetrain parts used by many FTC teams.", "category": "Hardware & Vendors", "url": "https://www.andymark.com/" },
+  { "title": "TETRIX by Pitsco", "organization": "Pitsco", "summary": "Classic TETRIX kit components and gear sets.", "category": "Hardware & Vendors", "url": "https://www.pitsco.com/TETRIX-MAX-Robotics" },
+  { "title": "REV Control Hub", "organization": "REV", "summary": "Specs and quick-start for the FTC robot controller brain.", "category": "Hardware & Vendors", "url": "https://docs.revrobotics.com/rev-control-hub/" },
+
+  { "title": "FTCLib", "organization": "FTCLib", "summary": "Community framework with command-based and PIDF abstractions.", "category": "Programming", "url": "https://www.ftclib.org/" },
+  { "title": "FTC Dashboard", "organization": "Community", "summary": "Live telemetry and tuning dashboard for FTC robots.", "category": "Programming", "url": "https://ftcdocs.ftcdashboard.com/" },
+  { "title": "EOCV Sim", "organization": "Community", "summary": "OpenCV Team Prop vision simulator with prebuilt configurations.", "category": "Programming", "url": "https://eocvsim.org/" },
+  { "title": "EasyOpenCV", "organization": "OpenFTC", "summary": "Camera pipeline library for FTC vision tasks.", "category": "Programming", "url": "https://github.com/OpenFTC/EasyOpenCV" },
+  { "title": "OpenCV Documentation", "organization": "OpenCV", "summary": "Reference for the computer-vision tools used in FTC vision.", "category": "Programming", "url": "https://docs.opencv.org/" },
+  { "title": "Java Tutorials", "organization": "Oracle", "summary": "Core Java reference for writing cleaner FTC opmodes.", "category": "Programming", "url": "https://docs.oracle.com/javase/tutorial/" },
+  { "title": "W3Schools Java", "organization": "W3Schools", "summary": "Beginner-friendly Java syntax and examples.", "category": "Programming", "url": "https://www.w3schools.com/java/" },
+
+  { "title": "Road Runner Docs", "organization": "Road Runner", "summary": "The motion-profile and tuning documentation suite.", "category": "Motion & Pathing", "url": "https://rr.brott.dev/docs/" },
+  { "title": "Road Runner Quickstart", "organization": "Road Runner", "summary": "Copy, install, and run your first trajectory in minutes.", "category": "Motion & Pathing", "url": "https://rr.brott.dev/docs/lessons/1-setup/" },
+  { "title": "Pedro Pathing", "organization": "Community", "summary": "Community-favorite localizer and path-following library.", "category": "Motion & Pathing", "url": "https://pedropathing.com/" },
+  { "title": "DogeCV", "organization": "OpenFTC", "summary": "Computer-vision pipeline stack tailored for FTC.", "category": "Motion & Pathing", "url": "https://github.com/OpenFTC/DogeCV" },
+
+  { "title": "Onshape Learning Center", "organization": "Onshape", "summary": "Free CAD platform plus FTC part libraries and tutorials.", "category": "CAD & Design", "url": "https://learn.onshape.com/" },
+  { "title": "Onshape FTC Library", "organization": "Community", "summary": "Community FTC part libraries to model your robot.", "category": "CAD & Design", "url": "https://cad.onshape.com/" },
+  { "title": "Fusion 360 for Students", "organization": "Autodesk", "summary": "Free student CAD/CAM including generative design.", "category": "CAD & Design", "url": "https://www.autodesk.com/education/edu-software/overview" },
+  { "title": "GrabCAD Community", "organization": "GrabCAD", "summary": "Large library of shared CAD parts and assemblies.", "category": "CAD & Design", "url": "https://grabcad.com/" },
+
+  { "title": "Game Manual 0 (gm0)", "organization": "Community", "summary": "The unofficial all-in-one FTC knowledge base for new teams.", "category": "Community & Forums", "url": "https://gm0.org/en/latest/" },
+  { "title": "Chief Delphi", "organization": "Community", "summary": "The main FRC/FTC discussion forum for hardware and software.", "category": "Community & Forums", "url": "https://www.chiefdelphi.com/" },
+  { "title": "r/FTC on Reddit", "organization": "Community", "summary": "Active FTC community sharing tips, photos, and debugging help.", "category": "Community & Forums", "url": "https://www.reddit.com/r/FTC/" },
+  { "title": "FTC Discord (Community)", "organization": "Community", "summary": "Real-time chat for FTC help across all disciplines.", "category": "Community & Forums", "url": "https://gm0.org/en/latest/docs/community-resources.html" },
+  { "title": "FTC YouTube (Official)", "organization": "FIRST", "summary": "Season reveals, award ceremonies, and official announcements.", "category": "Community & Forums", "url": "https://www.youtube.com/@FIRSTLegacy" },
+  { "title": "RoboCodex Channel", "organization": "RoboCodex", "summary": "FTC videos, build tips, and lesson content right from this site.", "category": "Community & Forums", "url": "https://www.youtube.com/@RoboCodex" },
+  { "title": "FIRST Alumni Network", "organization": "FIRST", "summary": "Mentorship, community, and career paths for former students.", "category": "Community & Forums", "url": "https://www.firstinspires.org/alumni" },
+
+  { "title": "MIT OpenCourseWare Robotics", "organization": "MIT", "summary": "University-level intro robotics lecture materials, free.", "category": "Learn Robotics", "url": "https://ocw.mit.edu/search/?q=robotics" },
+  { "title": "edX Robotics Courses", "organization": "edX", "summary": "Free online courses covering kinematics and control.", "category": "Learn Robotics", "url": "https://www.edx.org/learn/robotics" },
+  { "title": "Coursera Robotics Specialization", "organization": "Coursera", "summary": "Estimation, control, and planning in a structured sequence.", "category": "Learn Robotics", "url": "https://www.coursera.org/specializations/robotics" },
+  { "title": "Excel High School Robotics", "organization": "Community", "summary": "A practical guide to design, coding, and competition skill.", "category": "Learn Robotics", "url": "https://www.excelhighschool.com/" }
+]

@@ -189,6 +189,16 @@ button {
   font-weight: 800;
 }
 
+.brand-logo {
+  width: 2.5rem;
+  height: 2.5rem;
+  border-radius: 50%;
+  object-fit: cover;
+  display: inline-block;
+  flex-shrink: 0;
+  border: 2px solid rgba(255, 255, 255, 0.25);
+}
+
 .nav-links {
   display: flex;
   align-items: center;

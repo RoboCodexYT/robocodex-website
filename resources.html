@@ -10,7 +10,7 @@
 <body>
   <header class="site-header">
     <div class="container navbar">
-      <a class="brand" href="index.html"><span class="brand-mark">RC</span><span>RoboCodex</span></a>
+      <a class="brand" href="index.html"><img src="images/logo.png" alt="RoboCodex Logo" class="brand-logo"><span>RoboCodex</span></a>
       <nav class="nav-links" aria-label="Main navigation">
         <a href="index.html">Home</a>
         <a href="content.html">Videos</a>
@@ -20,6 +20,7 @@
       </nav>
       <div class="header-actions">
         <button id="theme-toggle" class="btn btn-ghost" type="button" aria-label="Switch color theme"><i class="fa-solid fa-moon"></i></button>
+        <a class="btn btn-primary" href="content.html">Explore Videos</a>
       </div>
     </div>
   </header>
@@ -30,8 +31,14 @@
         <div>
           <div class="badge">Resources</div>
           <h1>Curated FTC resources</h1>
-          <p class="muted">A simple starter directory for official FIRST material, technical docs, and community libraries.</p>
+          <p class="muted">A growing directory of official FIRST material, technical docs, hardware vendors, programming tools, and community libraries.</p>
         </div>
+      </div>
+      <div class="filter-bar">
+        <p id="resource-count" class="muted" style="margin:0; align-self:center;">Loading resources…</p>
+        <select id="resource-category" aria-label="Filter resources by category">
+          <option value="All">All categories</option>
+        </select>
       </div>
       <div id="resource-grid" class="feature-grid"></div>
     </div>
