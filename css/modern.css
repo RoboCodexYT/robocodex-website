@@ -827,7 +827,11 @@ input[type="number"] {
   border-radius: 10px;
   margin-bottom: 0.5rem;
   font-size: 0.9rem;
+  font-family: var(--font-body);
   color: var(--text);
+  text-align: left;
+  width: 100%;
+  cursor: pointer;
   transition: border-color 0.2s, transform 0.2s;
   text-decoration: none;
 }
@@ -1075,46 +1079,77 @@ input[type="number"] {
   color: var(--text);
 }
 
+/* ==========================================================================
+   Guide typography (shared between the modal and the inline reader)
+   ========================================================================== */
+
+.prose,
 .guide-modal-body {
-  padding: 2rem 1.75rem;
-  overflow-y: auto;
-  flex: 1;
   font-size: 1rem;
   line-height: 1.75;
   color: var(--text);
 }
 
+.guide-modal-body {
+  padding: 2rem 1.75rem;
+  overflow-y: auto;
+  flex: 1;
+}
+
+.prose h1,
+.prose h2,
+.prose h3,
 .guide-modal-body h1,
 .guide-modal-body h2,
 .guide-modal-body h3 {
   font-family: var(--font-heading);
   color: var(--text);
   margin: 1.75rem 0 0.5rem;
+  scroll-margin-top: 1.5rem;
 }
+
+.prose h1 { font-size: 1.6rem; }
+.prose h2 { font-size: 1.25rem; border-bottom: 2px solid var(--border); padding-bottom: 0.3rem; }
+.prose h3 { font-size: 1.05rem; color: var(--primary-2); }
 
 .guide-modal-body h1 { font-size: 1.6rem; }
 .guide-modal-body h2 { font-size: 1.25rem; border-bottom: 2px solid var(--border); padding-bottom: 0.3rem; }
 .guide-modal-body h3 { font-size: 1.05rem; color: var(--primary-2); }
 
+.prose p,
 .guide-modal-body p { margin: 0 0 1rem; }
+.prose p:first-child,
 .guide-modal-body p:first-child { margin-top: 0; }
 
+.prose ul,
+.prose ol,
 .guide-modal-body ul,
 .guide-modal-body ol {
   padding-left: 1.5rem;
   margin: 0.5rem 0 1rem;
 }
 
+.prose li,
 .guide-modal-body li { margin-bottom: 0.35rem; }
 
+.prose hr,
 .guide-modal-body hr {
   border: 0;
   border-top: 1px solid var(--border);
   margin: 1.5rem 0;
 }
 
+.prose strong,
 .guide-modal-body strong { color: var(--text); }
 
+.prose a,
+.guide-modal-body a {
+  color: var(--primary);
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+
+.prose code,
 .guide-modal-body code {
   background: var(--bg);
   padding: 0.15rem 0.4rem;
@@ -1124,6 +1159,7 @@ input[type="number"] {
   color: var(--primary);
 }
 
+.prose pre,
 .guide-modal-body pre {
   background: var(--bg);
   border: 1px solid var(--border);
@@ -1131,12 +1167,176 @@ input[type="number"] {
   padding: 1rem 1.25rem;
   overflow-x: auto;
   margin: 1rem 0;
+  white-space: pre;
 }
 
+.prose pre code,
 .guide-modal-body pre code {
   background: none;
   padding: 0;
   border-radius: 0;
   font-size: 0.9rem;
   color: var(--text);
+  white-space: pre;
+}
+
+/* ==========================================================================
+   Inline Guide Reader (guides.html)
+   ========================================================================== */
+
+.guide-reader {
+  display: none;
+  margin-top: 3rem;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  overflow: hidden;
+}
+
+.guide-reader.is-open {
+  display: block;
+  animation: reader-in 0.3s ease;
+}
+
+@keyframes reader-in {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.reader-header {
+  padding: 1.25rem 1.75rem;
+  border-bottom: 1px solid var(--border);
+  background: var(--surface-strong);
+}
+
+.reader-header-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 1rem;
+}
+
+.reader-header-top .btn-ghost {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.reader-title-group h2 {
+  margin: 0.4rem 0 0;
+}
+
+.reader-toc-wrap {
+  padding: 0.75rem 1.75rem;
+  border-bottom: 1px solid var(--border);
+  background: var(--surface);
+}
+
+.reader-toc-wrap strong {
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--muted);
+}
+
+.reader-toc-wrap ul {
+  list-style: none;
+  margin: 0.5rem 0 0;
+  padding: 0;
+}
+
+.reader-toc-wrap li {
+  margin-bottom: 0.25rem;
+}
+
+.reader-toc-wrap a {
+  color: var(--primary);
+  text-decoration: none;
+}
+
+.reader-toc-wrap a:hover {
+  text-decoration: underline;
+}
+
+.reader-toc-wrap.empty {
+  display: none;
+}
+
+.reader-body {
+  padding: 2rem 1.75rem;
+}
+
+.reader-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+  padding: 1rem 1.75rem;
+  border-top: 1px solid var(--border);
+  background: var(--surface-strong);
+}
+
+.reader-footer .btn-ghost {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  max-width: 45%;
+}
+
+.reader-footer .btn-ghost span {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.reader-footer .btn-ghost:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+
+.focus-link {
+  background: none;
+  border: none;
+  padding: 0;
+  margin-top: 0.5rem;
+  font-family: var(--font-body);
+  font-size: 0.85rem;
+  color: var(--muted);
+  text-decoration: underline;
+  text-underline-offset: 2px;
+  cursor: pointer;
+}
+
+.focus-link:hover {
+  color: var(--primary);
+}
+
+.bookmark-open {
+  color: var(--primary);
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+
+@media (max-width: 640px) {
+  .reader-footer .btn-ghost {
+    max-width: 48%;
+  }
+
+  .reader-footer .btn-ghost span {
+    display: none;
+  }
+
+  .reader-footer .btn-ghost::after {
+    content: 'Next';
+  }
+
+  .reader-footer .btn-ghost[data-slug] {
+    font-size: 0.9rem;
+  }
+
+  #reader-prev::after {
+    content: 'Prev';
+  }
 }

@@ -30,6 +30,7 @@ function toggleBookmark(type, id) {
   }
   saveBookmarks(bookmarks);
   renderBookmarks();
+  renderGuides();
   renderVideoCards();
   renderResources();
 }
@@ -37,6 +38,7 @@ function toggleBookmark(type, id) {
 function clearBookmarks() {
   localStorage.removeItem(STORAGE_KEYS.bookmarks);
   renderBookmarks();
+  renderGuides();
   renderVideoCards();
   renderResources();
 }
@@ -177,38 +179,124 @@ function renderGuides() {
       <div class="badge">${guide.difficulty}</div>
       <h3>${guide.title}</h3>
       <p class="muted">${guide.summary}</p>
+      <div class="inline-list">
+        <button class="btn btn-primary" type="button" onclick="openGuideReader('${guide.slug}')">Read guide</button>
+        <button class="bookmark-btn ${isBookmarked('guide', guide.slug) ? 'active' : ''}" data-type="guide" data-id="${guide.slug}">★ Save</button>
+      </div>
       ${guide.content
-        ? `<button class="btn btn-secondary" type="button" onclick="openGuideModal('${guide.slug}')">Read guide</button>`
-        : `<a class="btn btn-secondary" href="guides.html#${guide.slug}">Read guide</a>`
-      }
+        ? `<button type="button" class="focus-link" onclick="openGuideModal('${guide.slug}')">Open in focus mode</button>`
+        : ''}
     </article>
   `).join('');
 }
 
-function simpleMarkdown(text) {
-  return text
-    .replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;')
-    // headings
-    .replace(/^### (.+)$/gm, '<h3>$1</h3>')
-    .replace(/^## (.+)$/gm, '<h2>$1</h2>')
-    .replace(/^# (.+)$/gm, '<h1>$1</h1>')
-    // horizontal rules
-    .replace(/^---$/gm, '<hr>')
-    // bold
-    .replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>')
+function escapeHtml(value) {
+  return value.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+}
+
+function renderInline(text) {
+  return escapeHtml(text)
     // inline code
     .replace(/`([^`]+)`/g, '<code>$1</code>')
-    // code blocks
-    .replace(/```[\w]*\n([\s\S]*?)```/gm, '<pre><code>$1</code></pre>')
-    // unordered list items
-    .replace(/^\* (.+)$/gm, '<li>$1</li>')
-    .replace(/(<li>.*<\/li>)/gs, '<ul>$1</ul>')
-    // ordered list items
-    .replace(/^\d+\. (.+)$/gm, '<li>$1</li>')
-    // paragraphs (double newline)
-    .replace(/\n\n(?!<)/g, '</p><p>')
-    .replace(/^(?!<)(.+)$/gm, '$1')
-    .trim();
+    // bold
+    .replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>')
+    // links: [label](url) — internal /guides/{slug} link to this page, others external
+    .replace(/\[([^\]]+)\]\(([^)\s]+)(?:\s+"[^"]*")?\)/g, (match, label, url) => {
+      const safeUrl = url.startsWith('/guides/')
+        ? `guides.html#guide-${encodeURIComponent(url.replace(/^\/guides\//, ''))}`
+        : url;
+      const external = !url.startsWith('/') && !url.startsWith('#');
+      return `<a href="${safeUrl}"${external ? ' target="_blank" rel="noopener noreferrer"' : ''}>${label}</a>`;
+    });
+}
+
+function parseMarkdown(markdown, guideSlug = '') {
+  const lines = markdown.split('\n');
+  const blocks = [];
+  let i = 0;
+  let headingIndex = 0;
+
+  while (i < lines.length) {
+    const trimmed = lines[i].trim();
+
+    // Skip blank lines (they separate blocks but render nothing)
+    if (trimmed === '') {
+      i++;
+      continue;
+    }
+
+    // Fenced code block
+    if (trimmed.startsWith('```')) {
+      const buf = [];
+      i++;
+      while (i < lines.length && !lines[i].trim().startsWith('```')) {
+        buf.push(lines[i]);
+        i++;
+      }
+      i++;
+      blocks.push({ type: 'code', text: buf.join('\n') });
+      continue;
+    }
+
+    // Heading
+    const heading = /^(#{1,3})\s+(.+)$/.exec(trimmed);
+    if (heading) {
+      headingIndex++;
+      blocks.push({ type: 'heading', level: heading[1].length, text: heading[2], id: `${guideSlug}-h${headingIndex}` });
+      i++;
+      continue;
+    }
+
+    // Horizontal rule
+    if (/^-{3,}$/.test(trimmed)) {
+      blocks.push({ type: 'hr' });
+      i++;
+      continue;
+    }
+
+    // List
+    if (/^(\*|-)\s+/.test(trimmed) || /^\d+\.\s+/.test(trimmed)) {
+      const ordered = /^\d+\.\s+/.test(trimmed);
+      const items = [];
+      while (i < lines.length) {
+        const t = lines[i].trim();
+        const m = ordered ? /^\d+\.\s+(.*)$/.exec(t) : /^(?:\*|-)\s+(.*)$/.exec(t);
+        if (!m) break;
+        items.push(m[1]);
+        i++;
+      }
+      blocks.push({ type: ordered ? 'ol' : 'ul', items });
+      continue;
+    }
+
+    // Paragraph
+    const buf = [];
+    while (i < lines.length) {
+      const t = lines[i].trim();
+      if (t === ''
+        || /^(#{1,3})\s+/.test(t)
+        || /^```/.test(t)
+        || /^-{3,}$/.test(t)
+        || /^(\*|-)\s+/.test(t)
+        || /^\d+\.\s+/.test(t)) break;
+      buf.push(t);
+      i++;
+    }
+    blocks.push({ type: 'p', text: buf.join(' ') });
+    while (i < lines.length && lines[i].trim() === '') i++;
+  }
+
+  return blocks.map((block) => {
+    switch (block.type) {
+      case 'code': return `<pre><code>${escapeHtml(block.text)}</code></pre>`;
+      case 'heading': return `<h${block.level} id="${block.id}">${renderInline(block.text)}</h${block.level}>`;
+      case 'hr': return '<hr>';
+      case 'ul': return `<ul>${block.items.map((item) => `<li>${renderInline(item)}</li>`).join('')}</ul>`;
+      case 'ol': return `<ol>${block.items.map((item) => `<li>${renderInline(item)}</li>`).join('')}</ol>`;
+      case 'p': return `<p>${renderInline(block.text)}</p>`;
+      default: return '';
+    }
+  }).join('\n');
 }
 
 function openGuideModal(slug) {
@@ -236,7 +324,7 @@ function openGuideModal(slug) {
             <i class="fa-solid fa-xmark"></i>
           </button>
         </header>
-        <div id="guide-modal-body" class="guide-modal-body"></div>
+        <div id="guide-modal-body" class="guide-modal-body prose"></div>
       </div>
     `;
     document.body.appendChild(modal);
@@ -250,7 +338,7 @@ function openGuideModal(slug) {
 
   document.getElementById('guide-modal-title').textContent = guide.title;
   document.getElementById('guide-modal-difficulty').textContent = guide.difficulty;
-  document.getElementById('guide-modal-body').innerHTML = `<p>${simpleMarkdown(guide.content)}</p>`;
+  document.getElementById('guide-modal-body').innerHTML = parseMarkdown(guide.content, guide.slug);
 
   modal.setAttribute('aria-hidden', 'false');
   modal.classList.add('active');
@@ -264,6 +352,69 @@ function closeGuideModal() {
   modal.setAttribute('aria-hidden', 'true');
   modal.classList.remove('active');
   document.body.style.overflow = '';
+}
+
+function renderGuideReader(guide) {
+  const reader = document.getElementById('guide-reader');
+  const body = document.getElementById('reader-body');
+  if (!reader || !body || !guide || !guide.content) return null;
+
+  const titleEl = document.getElementById('reader-title');
+  const difficultyEl = document.getElementById('reader-difficulty');
+  const toc = document.getElementById('reader-toc');
+  const prevBtn = document.getElementById('reader-prev');
+  const nextBtn = document.getElementById('reader-next');
+
+  if (titleEl) titleEl.textContent = guide.title;
+  if (difficultyEl) { difficultyEl.textContent = guide.difficulty; difficultyEl.className = 'badge'; }
+
+  body.innerHTML = parseMarkdown(guide.content, guide.slug);
+
+  if (toc) {
+    const headings = Array.from(body.querySelectorAll('h2, h3')).filter((h) => h.textContent.trim());
+    toc.innerHTML = headings.map((h) => {
+      const level = Number(h.tagName[1]);
+      return `<li style="margin-left:${(level - 2) * 12}px"><a href="#${h.id}">${escapeHtml(h.textContent.trim())}</a></li>`;
+    }).join('');
+    const wrap = toc.closest('.reader-toc-wrap');
+    if (wrap) wrap.classList.toggle('empty', !headings.length);
+  }
+
+  const index = GUIDES_DATA.findIndex((g) => g.slug === guide.slug);
+  const prev = GUIDES_DATA[index - 1];
+  const next = GUIDES_DATA[index + 1];
+  if (prevBtn) {
+    prevBtn.disabled = !prev;
+    prevBtn.dataset.slug = prev ? prev.slug : '';
+    prevBtn.innerHTML = prev ? `<i class="fa-solid fa-arrow-left"></i><span>${escapeHtml(prev.title)}</span>` : '';
+  }
+  if (nextBtn) {
+    nextBtn.disabled = !next;
+    nextBtn.dataset.slug = next ? next.slug : '';
+    nextBtn.innerHTML = next ? `<span>${escapeHtml(next.title)}</span><i class="fa-solid fa-arrow-right"></i>` : '';
+  }
+
+  return reader;
+}
+
+function openGuideReader(slug, { scroll = true } = {}) {
+  const guide = GUIDES_DATA.find((g) => g.slug === slug);
+  const reader = renderGuideReader(guide);
+  if (!reader) return;
+
+  closeGuideModal();
+  reader.hidden = false;
+  reader.classList.add('is-open');
+  history.replaceState(null, '', `#guide-${slug}`);
+  if (scroll) reader.scrollIntoView({ behavior: 'smooth', block: 'start' });
+}
+
+function closeGuideReader() {
+  const reader = document.getElementById('guide-reader');
+  if (!reader) return;
+  reader.classList.remove('is-open');
+  reader.hidden = true;
+  history.replaceState(null, '', window.location.pathname);
 }
 
 function renderResources() {
@@ -296,12 +447,28 @@ function renderBookmarks() {
     target.innerHTML = '<div class="card list-item">No bookmarks yet. Save a video or resource to see it here.</div>';
     return;
   }
-  target.innerHTML = items.map((item) => `
-    <div class="card list-item">
-      <strong>${item.id}</strong>
-      <p class="muted">Saved ${item.type} • ${new Date(item.savedAt).toLocaleDateString()}</p>
-    </div>
-  `).join('');
+  target.innerHTML = items.map((item) => {
+    let label = item.id;
+    let link = null;
+    if (item.type === 'guide') {
+      const guide = GUIDES_DATA.find((g) => g.slug === item.id);
+      if (guide) label = guide.title;
+      link = `guides.html#guide-${item.id}`;
+    }
+    if (item.type === 'video') {
+      const video = state.videos.find((v) => v.id === item.id || v.youtubeId === item.id);
+      if (video) label = video.title;
+    }
+    const linkHtml = link
+      ? ` <a class="bookmark-open" href="${link}">Open →</a>`
+      : '';
+    return `
+      <div class="card list-item">
+        <strong>${escapeHtml(label)}</strong>
+        <p class="muted">Saved ${item.type} • ${item.id} • ${new Date(item.savedAt).toLocaleDateString()}${linkHtml}</p>
+      </div>
+    `;
+  }).join('');
 }
 
 // ==========================================================================
@@ -506,13 +673,13 @@ function renderTopicLinks(node) {
       const guide = GUIDES_DATA.find(g => g.slug === slug);
       if (guide) {
         content += `
-          <a class="drawer-link-card" href="guides.html#${slug}">
+          <button type="button" class="drawer-link-card" data-guide="${slug}" onclick="openGuideReader('${slug}')">
             <i class="fa-solid fa-book-open"></i>
             <div>
               <strong>${guide.title}</strong>
               <p style="margin:0;font-size:0.8rem;color:var(--muted);">${guide.summary}</p>
             </div>
-          </a>
+          </button>
         `;
       }
     });
@@ -815,6 +982,30 @@ function wireEvents() {
     clearButton.addEventListener('click', clearBookmarks);
   }
 
+  const readerBack = document.getElementById('reader-back');
+  if (readerBack) {
+    readerBack.addEventListener('click', () => {
+      closeGuideReader();
+      const grid = document.getElementById('guide-grid');
+      if (grid) grid.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    });
+  }
+
+  const readerFocus = document.getElementById('reader-focus');
+  if (readerFocus) {
+    readerFocus.addEventListener('click', () => {
+      const m = /#guide-([\w-]+)/.exec(window.location.hash);
+      if (m) openGuideModal(m[1]);
+    });
+  }
+
+  document.querySelectorAll('#reader-prev, #reader-next').forEach((btn) => {
+    btn.addEventListener('click', () => {
+      if (btn.disabled || !btn.dataset.slug) return;
+      openGuideReader(btn.dataset.slug);
+    });
+  });
+
   document.querySelectorAll('[data-bookmark]').forEach((button) => {
     button.addEventListener('click', () => toggleBookmark(button.dataset.type, button.dataset.id));
   });
@@ -881,6 +1072,13 @@ async function initApp() {
   renderKnowledgeMap();
   renderCalculators();
   renderBookmarks();
+
+  // Deep-link: auto-open a guide when the hash is #guide-{slug}
+  const hashMatch = /#guide-([\w-]+)/.exec(window.location.hash);
+  if (hashMatch) {
+    const target = GUIDES_DATA.find((g) => g.slug === hashMatch[1]);
+    if (target && target.content) openGuideReader(target.slug, { scroll: false });
+  }
 
   try {
     const response = await fetch('data/videos.json');

@@ -112,6 +112,41 @@ YOUTUBE_CHANNEL_ID=UCxxxxxxxx node scripts/update-videos.mjs
 - if you invent a new `category`, go add a matching filter button in `content.html` or nobody will ever see those videos.
 - json doesn't allow trailing commas. if the library page goes blank, that's the first thing to check — open the console and it'll tell you.
 
+## writing and reading guides
+
+guides live in `data/guides.json` and are **readable inline** on `guides.html` — clicking a card, or one of the "Related Guides" links in the knowledge-map drawer / mobile accordion, opens a reader panel right on the page (no plugin, no new tab). the same content also opens in a "focus mode" modal from the reader's header.
+
+each guide is an object:
+
+```json
+{
+  "slug": "encoders",
+  "title": "Understanding Motor Encoders",
+  "summary": "Learn how encoders support distance and position feedback.",
+  "difficulty": "Intermediate",
+  "content": "# ..."
+}
+```
+
+- `slug` must be unique and url-safe — it becomes the deep link (`guides.html#guide-encoders`) and the bookmark key.
+- `difficulty` is matched to a card badge.
+- `content` is a small subset of markdown parsed client-side in `js/app.js` (`parseMarkdown`). supported:
+
+| syntax | renders as |
+|---|---|
+| `# ## ###` | h1 / h2 / h3 (h2/h3 become toc entries + anchor ids) |
+| `---` (line by itself) | horizontal rule |
+| `- ` / `* ` bullet lines | unordered list |
+| `1. ` numbered lines | ordered list |
+| `` `inline code` `` | `<code>` |
+| ```` ``` ```` fenced block | `<pre><code>` (line breaks preserved, inline markup ignored) |
+| `**bold**` | `<strong>` |
+| `[text](url)` | link — `/guides/...` resolves to a same-page guide, anything else opens in a new tab |
+
+blanks between blocks are required — one block won't merge into another. `content` is escaped before it's inserted, so a stray `<` or `&` is safe to type literally.
+
+you can also bookmark a guide like a video/resource; bookmarks show up on `bookmarks.html` with an "Open" link back to the guide.
+
 ## hooking up the contact form
 
 form submissions go through formspree so there's no backend to run.

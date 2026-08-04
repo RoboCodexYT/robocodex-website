@@ -72,6 +72,35 @@
       </div>
       <div id="guide-grid" class="feature-grid"></div>
     </div>
+
+    <!-- Inline Guide Reader -->
+    <div class="container">
+      <article id="guide-reader" class="guide-reader" aria-live="polite" hidden>
+        <header class="reader-header">
+          <div class="reader-header-top">
+            <button id="reader-back" class="btn btn-ghost" type="button">
+              <i class="fa-solid fa-arrow-left"></i> All guides
+            </button>
+            <button id="reader-focus" class="btn btn-ghost" type="button">
+              <i class="fa-solid fa-expand"></i> Focus mode
+            </button>
+          </div>
+          <div class="reader-title-group">
+            <span id="reader-difficulty" class="badge"></span>
+            <h2 id="reader-title"></h2>
+          </div>
+        </header>
+        <nav class="reader-toc-wrap" aria-label="Sections in this guide">
+          <strong>In this guide</strong>
+          <ul id="reader-toc"></ul>
+        </nav>
+        <div id="reader-body" class="reader-body prose"></div>
+        <footer class="reader-footer">
+          <button id="reader-prev" class="btn btn-ghost" type="button"></button>
+          <button id="reader-next" class="btn btn-ghost" type="button"></button>
+        </footer>
+      </article>
+    </div>
   </main>
 
   <!-- Side Drawer Details Panel -->
