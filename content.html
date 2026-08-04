@@ -39,16 +39,15 @@
         </div>
       </div>
 
-      <div class="card" style="padding:1.2rem; margin-bottom:1.2rem;">
-        <p id="video-count" class="muted" style="margin:0 0 .75rem;">Loading current video list…</p>
-        <p id="video-status" class="muted" style="margin:0 0 .75rem;">The library updates from your latest uploads when new data is available.</p>
+      <div class="card library-controls">
+        <div class="library-controls-top">
+          <div class="badge">Browse</div>
+          <span id="video-count" class="status-pill">Loading current video list…</span>
+        </div>
         <div class="filter-bar">
           <input id="video-search" type="search" placeholder="Search videos, topics, or keywords">
           <select id="video-category">
             <option value="All">All categories</option>
-            <option value="Strategy">Strategy</option>
-            <option value="Robot Mechanics">Robot Mechanics</option>
-            <option value="FTC Basics">FTC Basics</option>
           </select>
           <select id="video-sort">
             <option value="newest">Newest first</option>
@@ -56,6 +55,7 @@
             <option value="most-viewed">Most viewed</option>
           </select>
         </div>
+        <p id="video-status" class="muted library-status">The library updates from your latest uploads when new data is available.</p>
       </div>
 
       <div id="video-grid" class="feature-grid"></div>

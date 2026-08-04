@@ -100,6 +100,60 @@ function filterVideos(videos) {
   });
 }
 
+function cleanVideoTitle(title) {
+  const cleaned = (title || '').replace(/\s+#[^\s]+/g, '').trim();
+  return cleaned || title;
+}
+
+function populateVideoCategorySelect() {
+  const select = document.getElementById('video-category');
+  if (!select || !state.videos.length) return;
+  const categories = ['All', ...new Set(state.videos.map((v) => v.category).filter(Boolean))];
+  if (select.options.length === categories.length) return;
+  const current = state.filters.category;
+  select.innerHTML = categories.map((c) => {
+    const label = c === 'All' ? 'All categories' : c;
+    return `<option value="${c}">${label}</option>`;
+  }).join('');
+  select.value = current;
+}
+
+function formatDuration(video) {
+  if (!video.duration || video.duration === 'Video') return '';
+  return video.duration;
+}
+
+function buildVideoCard(video) {
+  const title = cleanVideoTitle(video.title);
+  const thumb = `https://img.youtube.com/vi/${video.youtubeId}/hqdefault.jpg`;
+  const duration = formatDuration(video);
+  const views = video.views ? `${video.views.toLocaleString()} views` : 'New';
+  const desc = (video.description || '').replace(/\s+/g, ' ').trim() || 'No description yet — check back soon.';
+  return `
+    <article class="card video-card">
+      <div class="video-thumb">
+        <img src="${thumb}" alt="${video.title}" loading="lazy">
+        <span class="video-badge category">${escapeHtml(video.category)}</span>
+        ${duration ? `<span class="video-badge duration">${duration}</span>` : ''}
+      </div>
+      <div class="video-card-body">
+        <h3>${escapeHtml(title)}</h3>
+        <p class="muted video-desc">${escapeHtml(desc)}</p>
+        <div class="meta-row">
+          <span><i class="fa-regular fa-calendar"></i> ${formatDate(video.date)}</span>
+          <span class="view-count">${views}</span>
+        </div>
+      </div>
+      <div class="inline-list video-actions">
+        <a class="btn btn-primary" href="https://www.youtube.com/watch?v=${video.youtubeId}" target="_blank" rel="noopener noreferrer">
+          <i class="fa-solid fa-play"></i> Watch
+        </a>
+        <button class="bookmark-btn ${isBookmarked('video', video.id) ? 'active' : ''}" data-type="video" data-id="${video.id}">★ Save</button>
+      </div>
+    </article>
+  `;
+}
+
 function renderVideoCards() {
   const grid = document.getElementById('video-grid');
   const countTarget = document.getElementById('video-count');
@@ -107,7 +161,7 @@ function renderVideoCards() {
   if (!grid) return;
   const visible = sortVideos(filterVideos(state.videos));
   if (countTarget) {
-    countTarget.textContent = `${visible.length} video${visible.length === 1 ? '' : 's'} currently shown from the available RoboCodex library.`;
+    countTarget.textContent = `${visible.length} video${visible.length === 1 ? '' : 's'} shown`;
   }
   if (statusTarget) {
     const source = state.videos?.[0]?.source || 'local';
@@ -121,25 +175,7 @@ function renderVideoCards() {
     grid.innerHTML = '<div class="card list-item">No RoboCodex videos currently match this search.</div>';
     return;
   }
-  grid.innerHTML = visible.map((video) => `
-    <article class="card video-card">
-      <img src="https://img.youtube.com/vi/${video.youtubeId}/hqdefault.jpg" alt="${video.title}" loading="lazy">
-      <div class="meta-row">
-        <span>${video.category}</span>
-        <span>${video.duration || 'Video'}</span>
-      </div>
-      <h3>${video.title}</h3>
-      <p class="muted">${video.description}</p>
-      <div class="meta-row">
-        <span>${formatDate(video.date)}</span>
-        <span>${video.views ? `${video.views.toLocaleString()} views` : 'Views pending'}</span>
-      </div>
-      <div class="inline-list">
-        <a class="btn btn-primary" href="https://www.youtube.com/watch?v=${video.youtubeId}" target="_blank" rel="noopener noreferrer">Watch</a>
-        <button class="bookmark-btn ${isBookmarked('video', video.id) ? 'active' : ''}" data-type="video" data-id="${video.id}">★ Save</button>
-      </div>
-    </article>
-  `).join('');
+  grid.innerHTML = visible.map(buildVideoCard).join('');
 }
 
 function renderFeaturedVideo() {
@@ -1133,6 +1169,7 @@ async function initApp() {
     if (payload.lastUpdated) {
       state.videos = state.videos.map((video) => ({ ...video, lastUpdated: payload.lastUpdated, source: payload.source || 'local' }));
     }
+    populateVideoCategorySelect();
     renderFeaturedVideo();
     renderVideoCards();
     // Re-render knowledge map now that videos are loaded
