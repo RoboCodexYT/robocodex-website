@@ -23,6 +23,7 @@
         <a href="about.html">About</a>
       </nav>
       <div class="header-actions">
+        <button id="theme-toggle" class="btn btn-ghost" type="button" aria-label="Switch color theme"><i class="fa-solid fa-moon"></i></button>
         <a class="btn btn-primary" href="bookmarks.html">Saved items</a>
       </div>
     </div>
@@ -34,11 +35,12 @@
         <div>
           <div class="badge">Video library</div>
           <h1>RoboCodex video library</h1>
-          <p class="muted">Search the current RoboCodex video catalog, filter by topic, and save items you want to revisit.</p>
+          <p class="muted">This section is meant to be a practical starting point for the current RoboCodex catalog. It will grow as more videos are added and better metadata is collected.</p>
         </div>
       </div>
 
       <div class="card" style="padding:1.2rem; margin-bottom:1.2rem;">
+        <p id="video-count" class="muted" style="margin:0 0 .75rem;">Loading current video list…</p>
         <div class="filter-bar">
           <input id="video-search" type="search" placeholder="Search videos, topics, or keywords">
           <select id="video-category">

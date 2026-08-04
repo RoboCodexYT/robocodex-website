@@ -53,7 +53,11 @@ function applyTheme(theme) {
   document.body.classList.toggle('dark', theme === 'dark');
   const toggle = document.getElementById('theme-toggle');
   if (toggle) {
-    toggle.textContent = theme === 'dark' ? '☀️ Light' : '🌙 Dark';
+    toggle.innerHTML = theme === 'dark'
+      ? '<i class="fa-solid fa-sun"></i>'
+      : '<i class="fa-solid fa-moon"></i>';
+    toggle.setAttribute('aria-label', theme === 'dark' ? 'Switch to light mode' : 'Switch to dark mode');
+    toggle.setAttribute('title', theme === 'dark' ? 'Switch to light mode' : 'Switch to dark mode');
   }
 }
 
@@ -92,8 +96,12 @@ function filterVideos(videos) {
 
 function renderVideoCards() {
   const grid = document.getElementById('video-grid');
+  const countTarget = document.getElementById('video-count');
   if (!grid) return;
   const visible = sortVideos(filterVideos(state.videos));
+  if (countTarget) {
+    countTarget.textContent = `${visible.length} video${visible.length === 1 ? '' : 's'} currently shown from the available RoboCodex library.`;
+  }
   if (!visible.length) {
     grid.innerHTML = '<div class="card list-item">No RoboCodex videos currently match this search.</div>';
     return;
