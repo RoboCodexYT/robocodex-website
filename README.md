@@ -1,10 +1,10 @@
-# robocodex
+# robocodex-website
 
 hey, this is the repo for the robocodex site. it's a resource for people going from FLL to FTC, because that jump is way harder than anyone tells you and i got tired of watching rookie teams figure it out the painful way.
 
 built with plain html, css, and js. no react, no build step, no npm install before you can see a button. you open a file, you edit it, you refresh. hosted free on github pages.
 
-made by jose — 15, FTC team captain, INSPIRE award national winner.
+made by jose — 16, FTC team captain, INSPIRE award national winner.
 
 ## what's in here
 
