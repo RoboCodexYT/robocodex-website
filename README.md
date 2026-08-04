@@ -4,7 +4,7 @@ hey, this is the repo for the robocodex site. it's a resource for people going f
 
 built with plain html, css, and js. no react, no build step, no npm install before you can see a button. you open a file, you edit it, you refresh. hosted free on github pages.
 
-made by jose — 16, FTC team captain, INSPIRE award national winner.
+made by jose — 16, FTC team captain, INSPIRE award national winner, FTC Leadership Award Winner.
 
 ## what's in here
 
