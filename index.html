@@ -1,167 +1,156 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>RoboCodex - Everything You Need to Know About FTC</title>
-    <meta name="description" content="RoboCodex is your ultimate resource for students transitioning from FLL to FIRST Tech Challenge. Learn FTC basics, competition strategy, and join a supportive community.">
-    <meta name="keywords" content="FTC, FIRST Tech Challenge, FLL, robotics, education, STEM, Jose, RoboCodex, robot, competition">
-    <meta name="author" content="Jose, RoboCodex">
-
-    <!-- Open Graph / Facebook -->
-    <meta property="og:type" content="website">
-    <meta property="og:url" content="https://robocodex.github.io/">
-    <meta property="og:title" content="RoboCodex - Everything You Need to Know About FTC">
-    <meta property="og:description" content="RoboCodex is your ultimate resource for students transitioning from FLL to FIRST Tech Challenge. Learn FTC basics, competition strategy, and join a supportive community.">
-    <meta property="og:image" content="https://robocodex.github.io/images/social-share.jpg"> <!-- Placeholder social share image -->
-
-    <!-- Twitter -->
-    <meta property="twitter:card" content="summary_large_image">
-    <meta property="twitter:url" content="https://robocodex.github.io/">
-    <meta property="twitter:title" content="RoboCodex - Everything You Need to Know About FTC">
-    <meta property="twitter:description" content="RoboCodex is your ultimate resource for students transitioning from FLL to FIRST Tech Challenge. Learn FTC basics, competition strategy, and join a supportive community.">
-    <meta property="twitter:image" content="https://robocodex.github.io/images/social-share.jpg"> <!-- Placeholder social share image -->
-
-    <link rel="stylesheet" href="css/style.css">
-    <!-- Font Awesome for icons -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>RoboCodex | FTC Videos, Robotics Guides, and Engineering Tools</title>
+  <meta name="description" content="Explore RoboCodex robotics videos, practical FIRST Tech Challenge guides, interactive engineering calculators, and trusted resources for FTC teams and students.">
+  <link rel="stylesheet" href="css/modern.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 </head>
 <body>
-    <header>
-        <nav class="navbar">
-            <a href="index.html" class="logo">RoboCodex</a>
-            <button class="hamburger-menu" aria-label="Toggle navigation">
-                <span class="bar"></span>
-                <span class="bar"></span>
-                <span class="bar"></span>
-            </button>
-            <ul class="nav-menu">
-                <li><a href="index.html" class="active">Home</a></li>
-                <li><a href="content.html">Content</a></li>
-                <li><a href="about.html">About</a></li>
-                <li><a href="contact.html">Contact</a></li>
-            </ul>
-        </nav>
-    </header>
+  <header class="site-header">
+    <div class="container navbar">
+      <a class="brand" href="index.html">
+        <span class="brand-mark">RC</span>
+        <span>RoboCodex</span>
+      </a>
+      <nav class="nav-links" aria-label="Main navigation">
+        <a class="active" href="index.html">Home</a>
+        <a href="content.html">Videos</a>
+        <a href="guides.html">Guides</a>
+        <a href="resources.html">Resources</a>
+        <a href="about.html">About</a>
+      </nav>
+      <div class="header-actions">
+        <button id="theme-toggle" class="btn btn-ghost" type="button">🌙 Dark</button>
+        <a class="btn btn-primary" href="content.html">Explore Videos</a>
+      </div>
+    </div>
+  </header>
 
-    <main>
-        <!-- Hero Section -->
-        <section class="hero-section">
-            <div class="hero-overlay"></div>
-            <div class="container hero-content">
-                <h1>Everything You Need to Know About FTC</h1>
-                <p class="subheading">FLL ended. You're moving to FTC. I'll guide you through it.</p>
-                <div class="hero-buttons">
-                    <a href="content.html" class="button button-primary">Browse Content</a>
-                    <a href="stats.html" class="button button-secondary">View Team Stats</a>
-                </div>
+  <main>
+    <section class="hero">
+      <div class="container">
+        <div class="grid grid-2">
+          <div>
+            <div class="badge">FTC toolkit • robotics videos • practical guides</div>
+            <h1>Build smarter robots. Understand how they work.</h1>
+            <p>Explore RoboCodex videos, practical FIRST Tech Challenge guides, interactive engineering tools, and trusted resources for designing, programming, and competing with confidence.</p>
+            <div class="hero-actions">
+              <a class="btn btn-primary" href="content.html">Explore Videos</a>
+              <a class="btn btn-secondary" href="guides.html">Open FTC Toolkit</a>
             </div>
-        </section>
-
-        <!-- Value Proposition Section -->
-        <section class="value-prop-section section-padding">
-            <div class="container">
-                <div class="value-cards-grid">
-                    <div class="value-card">
-                        <i class="fas fa-book-open card-icon"></i>
-                        <h3>Learn FTC Basics</h3>
-                        <p>Free video content organized by topic. For FLL students like you.</p>
-                    </div>
-                    <a href="stats.html" class="value-card">
-                        <i class="fas fa-video card-icon"></i>
-                        <h3>Competition Breakdowns</h3>
-                        <p>Detailed statistical match analysis for Team 24813. See every match and award from ARC 2026.</p>
-                    </a>
-                    <div class="value-card">
-                        <i class="fas fa-users card-icon"></i>
-                        <h3>Join the Community</h3>
-                        <p>Connect with other FTC students. Get help on Discord. Share your journey.</p>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Featured Content Section (placeholder) -->
-        <section class="featured-content-section section-padding" style="background-color: var(--light-background);">
-            <div class="container text-center">
-                <h2>Latest Videos</h2>
-                <p class="subtitle">Check out our newest content</p>
-                <div class="video-grid-placeholder">
-                    <div class="video-card">
-                        <img src="https://img.youtube.com/vi/138ZD3LkfxU/hqdefault.jpg" alt="Video Thumbnail" loading="lazy">
-                        <div class="video-info">
-                            <h4>STEM Students: Change the World with Clean Water</h4>
-                            <span class="video-date">Aug 08, 2025</span>
-                            <span class="category-badge">Strategy</span>
-                            <a href="https://www.youtube.com/watch?v=138ZD3LkfxU" target="_blank" rel="noopener noreferrer" class="watch-link">Watch on YouTube <i class="fas fa-external-link-alt"></i></a>
-                        </div>
-                    </div>
-                    <div class="video-card">
-                        <img src="https://img.youtube.com/vi/jwl_nZYEmb4/hqdefault.jpg" alt="Video Thumbnail" loading="lazy">
-                        <div class="video-info">
-                            <h4>Top 3 MyBlocks for FIRST Lego League</h4>
-                            <span class="video-date">Apr 26, 2024</span>
-                            <span class="category-badge">Robot Mechanics</span>
-                            <a href="https://www.youtube.com/watch?v=jwl_nZYEmb4" target="_blank" rel="noopener noreferrer" class="watch-link">Watch on YouTube <i class="fas fa-external-link-alt"></i></a>
-                        </div>
-                    </div>
-                    <div class="video-card">
-                        <img src="https://img.youtube.com/vi/IVyXBulDeqA/hqdefault.jpg" alt="Video Thumbnail" loading="lazy">
-                        <div class="video-info">
-                            <h4>7 Essential Teamwork Tips for FLL Success</h4>
-                            <span class="video-date">Apr 26, 2024</span>
-                            <span class="category-badge">Strategy</span>
-                            <a href="https://www.youtube.com/watch?v=IVyXBulDeqA" target="_blank" rel="noopener noreferrer" class="watch-link">Watch on YouTube <i class="fas fa-external-link-alt"></i></a>
-                        </div>
-                    </div>
-                    <div class="video-card">
-                        <img src="https://img.youtube.com/vi/WT-aUj57rpI/hqdefault.jpg" alt="Video Thumbnail" loading="lazy">
-                        <div class="video-info">
-                            <h4>FASTEST Way to Achieve Perfect Straight Movement</h4>
-                            <span class="video-date">Apr 26, 2024</span>
-                            <span class="category-badge">Robot Mechanics</span>
-                            <a href="https://www.youtube.com/watch?v=WT-aUj57rpI" target="_blank" rel="noopener noreferrer" class="watch-link">Watch on YouTube <i class="fas fa-external-link-alt"></i></a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Course Coming Soon Teaser -->
-        <section class="course-teaser-section section-padding">
-            <div class="container text-center">
-                <i class="fas fa-graduation-cap course-icon"></i>
-                <h2>Complete FTC Transition Course Coming Soon</h2>
-                <p class="subheading">The ultimate guide for students moving from FLL to FTC</p>
-                <div class="course-features">
-                    <ul>
-                        <li><i class="fas fa-check-circle"></i> 7 Video Modules</li>
-                        <li><i class="fas fa-check-circle"></i> Downloadable Resources</li>
-                        <li><i class="fas fa-check-circle"></i> Bonus Interviews</li>
-                        <li><i class="fas fa-check-circle"></i> Community Access</li>
-                    </ul>
-                </div>
-                <a href="course.html" class="button button-secondary">Learn More</a>
-
-            </div>
-        </section>
-    </main>
-
-    <footer>
-        <div class="container text-center section-padding">
-            <p>&copy; 2025 RoboCodex. All rights reserved.</p>
-            <div class="footer-links">
-                <a href="#">Privacy Policy</a> |
-                <a href="contact.html">Contact</a> |
-                <a href="https://discord.gg/yourdiscordinvite" target="_blank" rel="noopener noreferrer">Discord</a>
-            </div>
-            <div class="social-icons">
-                <a href="https://www.youtube.com/@RoboCodex" target="_blank" rel="noopener noreferrer" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
-                <a href="https://discord.gg/yourdiscordinvite" target="_blank" rel="noopener noreferrer" aria-label="Discord"><i class="fab fa-discord"></i></a>
-            </div>
+          </div>
+          <div id="featured-video"></div>
         </div>
-    </footer>
+      </div>
+    </section>
 
-    <script src="js/script.js"></script>
+    <section class="section">
+      <div class="container">
+        <div class="section-title">
+          <h2>Three ways to use RoboCodex</h2>
+        </div>
+        <div class="feature-grid">
+          <article class="card feature-card">
+            <div class="badge">Watch</div>
+            <h3>Discover original RoboCodex videos</h3>
+            <p class="muted">Follow robotics stories, build tips, and FTC-focused lessons in one place.</p>
+            <a class="btn btn-secondary" href="content.html">Browse videos</a>
+          </article>
+          <article class="card feature-card">
+            <div class="badge">Learn</div>
+            <h3>Read concise FTC guides</h3>
+            <p class="muted">Start with beginner-friendly guides that connect technical concepts to real team work.</p>
+            <a class="btn btn-secondary" href="guides.html">Open guides</a>
+          </article>
+          <article class="card feature-card">
+            <div class="badge">Calculate</div>
+            <h3>Use practical engineering calculators</h3>
+            <p class="muted">Check gear ratios, drivetrain speed, and encoder distance before you build or test.</p>
+            <a class="btn btn-secondary" href="calculators.html">Try calculators</a>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section-sm" style="background: rgba(255,255,255,0.35);">
+      <div class="container">
+        <div class="section-title">
+          <h2>FTC toolkit preview</h2>
+          <a href="calculators.html">View all calculators</a>
+        </div>
+        <div class="tool-grid grid-3">
+          <article class="card tool-card">
+            <h3>Encoder Distance Calculator</h3>
+            <p class="muted">Estimate how many encoder ticks are required for a target travel distance.</p>
+            <a class="btn btn-secondary" href="calculators.html#encoder-distance">Open calculator</a>
+          </article>
+          <article class="card tool-card">
+            <h3>Gear Ratio Calculator</h3>
+            <p class="muted">Model simple or compound gear reductions and estimate output speed and torque.</p>
+            <a class="btn btn-secondary" href="calculators.html#gear-ratio">Open calculator</a>
+          </article>
+          <article class="card tool-card">
+            <h3>Drivetrain Speed Calculator</h3>
+            <p class="muted">Estimate theoretical drivetrain speed from motor, gear reduction, and wheel size.</p>
+            <a class="btn btn-secondary" href="calculators.html#drivetrain-speed">Open calculator</a>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container">
+        <div class="section-title">
+          <h2>Competition breakdowns</h2>
+          <a href="stats.html">Open full breakdown</a>
+        </div>
+        <div class="card status-card">
+          <div class="badge">Keep the current breakdowns</div>
+          <h3>Season insights and match analysis remain available</h3>
+          <p class="muted">The existing competition breakdowns are preserved as a dedicated section of the site, with the same content and navigation flow.</p>
+          <a class="btn btn-primary" href="stats.html">See match breakdowns</a>
+        </div>
+      </div>
+    </section>
+
+    <section class="section-sm">
+      <div class="container">
+        <div class="section-title">
+          <h2>Helpful starting points</h2>
+        </div>
+        <div class="start-grid grid-3">
+          <article class="card start-card">
+            <h3>New to FTC</h3>
+            <p class="muted">Learn the roles, structure, and basic expectations for a first season.</p>
+          </article>
+          <article class="card start-card">
+            <h3>Programming your first robot</h3>
+            <p class="muted">Start simple, then expand to more reliable autonomous and control patterns.</p>
+          </article>
+          <article class="card start-card">
+            <h3>Preparing for inspection</h3>
+            <p class="muted">Use checklists and official guidance to reduce last-minute surprises.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <p>© 2026 RoboCodex. An independent educational resource.</p>
+      <div class="footer-links">
+        <a href="about.html">About</a>
+        <a href="resources.html">Resources</a>
+        <a href="content.html">Videos</a>
+        <a href="https://www.youtube.com/@RoboCodex" target="_blank" rel="noopener noreferrer">YouTube</a>
+      </div>
+    </div>
+  </footer>
+
+  <script src="js/app.js"></script>
 </body>
 </html>

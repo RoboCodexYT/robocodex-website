@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Calculators • RoboCodex</title>
+  <link rel="stylesheet" href="css/modern.css">
+</head>
+<body>
+  <header class="site-header">
+    <div class="container navbar">
+      <a class="brand" href="index.html"><span class="brand-mark">RC</span><span>RoboCodex</span></a>
+      <nav class="nav-links" aria-label="Main navigation">
+        <a href="index.html">Home</a>
+        <a href="content.html">Videos</a>
+        <a href="guides.html">Guides</a>
+        <a href="resources.html">Resources</a>
+        <a href="about.html">About</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="section">
+    <div class="container">
+      <div class="section-title">
+        <div>
+          <div class="badge">Calculators</div>
+          <h1>FTC engineering calculators</h1>
+          <p class="muted">These calculators are intentionally simple, educational, and easy to expand with more formulas later.</p>
+        </div>
+      </div>
+
+      <div class="grid grid-3">
+        <article class="card calc-card" id="gear-ratio">
+          <h3>Gear ratio</h3>
+          <form data-type="gear">
+            <div class="input-row">
+              <label>Driving gear teeth<input name="driving" type="number" value="12"></label>
+              <label>Driven gear teeth<input name="driven" type="number" value="36"></label>
+              <label>Motor RPM<input name="motorRpm" type="number" value="3120"></label>
+            </div>
+            <button class="btn btn-primary" type="submit">Calculate</button>
+          </form>
+          <div class="result-box">Results will appear here.</div>
+        </article>
+
+        <article class="card calc-card" id="drivetrain-speed">
+          <h3>Drivetrain speed</h3>
+          <form data-type="drivetrain">
+            <div class="input-row">
+              <label>Motor free speed<input name="freeSpeed" type="number" value="3120"></label>
+              <label>Gear reduction<input name="reduction" type="number" value="10.71"></label>
+              <label>Wheel diameter (cm)<input name="diameter" type="number" value="8"></label>
+            </div>
+            <button class="btn btn-primary" type="submit">Calculate</button>
+          </form>
+          <div class="result-box">Results will appear here.</div>
+        </article>
+
+        <article class="card calc-card" id="encoder-distance">
+          <h3>Encoder distance</h3>
+          <form data-type="encoder">
+            <div class="input-row">
+              <label>Encoder ticks per motor revolution<input name="ticks" type="number" value="537"></label>
+              <label>Gear ratio<input name="ratio" type="number" value="1"></label>
+              <label>Wheel diameter (cm)<input name="diameter" type="number" value="8"></label>
+              <label>Target distance (cm)<input name="distance" type="number" value="100"></label>
+            </div>
+            <button class="btn btn-primary" type="submit">Calculate</button>
+          </form>
+          <div class="result-box">Results will appear here.</div>
+        </article>
+      </div>
+    </div>
+  </main>
+
+  <script src="js/app.js"></script>
+</body>
+</html>
