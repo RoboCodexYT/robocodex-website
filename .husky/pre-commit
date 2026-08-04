@@ -1,0 +1,12 @@
+#!/usr/bin/env sh
+# Runs the guides validator before every commit.
+# Skip with:  git commit --no-verify
+if git diff --cached --name-only | grep -qE '(^data/guides\.json$|^js/app\.js$)'; then
+  echo "-> validating guides..."
+  node scripts/validate-guides.mjs || {
+    echo "x guides validation failed."
+    echo "  Fix the issue and git add again, or bypass with: git commit --no-verify"
+    exit 1
+  }
+fi
+exit 0

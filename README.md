@@ -147,6 +147,30 @@ blanks between blocks are required — one block won't merge into another. `cont
 
 you can also bookmark a guide like a video/resource; bookmarks show up on `bookmarks.html` with an "Open" link back to the guide.
 
+## validating guides
+
+before a commit lands, `data/guides.json` is checked against these rules so a typo never silently breaks the site:
+
+| rule | what it catches |
+|---|---|
+| valid JSON | trailing commas, missing brackets |
+| unique `slug` | duplicate guide ids |
+| `slug` matches `[a-z0-9-]` | urls + bookmark keys stay safe |
+| `summary` ≤ 200 chars | keeps card layout intact |
+| `difficulty` ∈ Beginner / Intermediate / Advanced | consistent badges |
+| headings only `#`…`###` | the parser drops deeper headings |
+| balanced `[ ]` and `( )` | broken `[text](url)` links |
+| even number of ``` fences | unclosed code blocks |
+| knowledge-map refs exist | a `guides: [...]` slug that has no guide |
+
+it runs three ways:
+
+- **manually** — `npm run validate` (or `node scripts/validate-guides.mjs`)
+- **on every commit** — done by the husky pre-commit hook when `data/guides.json` or `js/app.js` is staged (skip with `git commit --no-verify`)
+- **on CI** — `.github/workflows/lint.yml` runs it on every push and PR
+
+to install the local hook after a fresh clone, run `npm install` once. exits `0` when clean (warnings allowed), `1` on any error.
+
 ## hooking up the contact form
 
 form submissions go through formspree so there's no backend to run.

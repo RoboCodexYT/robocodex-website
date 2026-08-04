@@ -1,0 +1,14 @@
+{
+  "name": "robocodex-website",
+  "version": "1.0.0",
+  "private": true,
+  "description": "FTC learning resource site (static HTML/CSS/JS).",
+  "scripts": {
+    "prepare": "husky",
+    "validate": "node scripts/validate-guides.mjs",
+    "serve": "python3 -m http.server 8000"
+  },
+  "devDependencies": {
+    "husky": "^9.1.7"
+  }
+}
