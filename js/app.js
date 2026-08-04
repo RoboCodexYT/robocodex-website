@@ -484,7 +484,7 @@ const KNOWLEDGE_MAP_DATA = {
     description: 'Software is the brain of the robot. In FTC, teams write code to read sensor values, run motor algorithms, compute coordinate paths, and handle driver inputs. Choosing the right environment (Blocks, OnBot Java, or Android Studio) and structuring your code using OOP or sub-systems is key to a reliable robot.',
     connections: ['autonomous', 'sensors', 'vision', 'wiring'],
     videos: ['noN-R8Zt6GQ', 'HIBxntPlIus'],
-    guides: ['programming-paths', 'encoders'],
+    guides: ['programming-paths', 'encoders', 'pid-tuning'],
     calculators: ['#encoder-distance'],
     docs: [{ title: 'FTC Docs Software Section', url: 'https://ftc-docs.firstinspires.org/en/latest/programming_resources/index.html' }]
   },
