@@ -2,10 +2,10 @@
 
 :root {
     /* Colors */
-    --primary-color: #003d82; /* FIRST blue */
+    --primary-color: #1D4D79; /* RoboCodex blue */
     --secondary-color: #ffffff; /* white */
     --accent-color: #ff6b35; /* orange for CTAs */
-    --dark-text: #333333;
+    --dark-text: #415dcd;
     --light-background: #f5f5f5;
     --footer-background: #1a1a1a;
     --success-color: #28a745;
@@ -30,8 +30,8 @@
     --gap-md: calc(3 * var(--spacing-unit)); /* 24px */
 
     /* Border Radius */
-    --border-radius-sm: 5px;
-    --border-radius-md: 8px;
+    --border-radius-sm: 8px;
+    --border-radius-md: 10px;
 }
 
 /* Base Styles & Reset */

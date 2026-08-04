@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,6 +8,7 @@
   <link rel="stylesheet" href="css/modern.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 </head>
+
 <body>
   <header class="site-header">
     <div class="container navbar">
@@ -19,7 +21,8 @@
         <a href="about.html">About</a>
       </nav>
       <div class="header-actions">
-        <button id="theme-toggle" class="btn btn-ghost" type="button" aria-label="Switch color theme"><i class="fa-solid fa-moon"></i></button>
+        <button id="theme-toggle" class="btn btn-ghost" type="button" aria-label="Switch color theme"><i
+            class="fa-solid fa-moon"></i></button>
       </div>
     </div>
   </header>
@@ -28,15 +31,70 @@
     <div class="container">
       <div class="section-title">
         <div>
-          <div class="badge">FTC guides</div>
-          <h1>Guides and starter topics</h1>
-          <p class="muted">This section is now structured as a clean, editable guide hub for the first MVP release.</p>
+          <div class="badge">FTC Interactive Map</div>
+          <h1>FTC Robotics Knowledge Map</h1>
+          <p class="muted">Explore how key hardware, software, and competition concepts connect. Click a node to view
+            detailed guides, videos, calculators, and official documentation.</p>
+        </div>
+      </div>
+
+      <!-- Desktop & Tablet Interactive Map View -->
+      <div class="map-section-wrapper">
+        <div class="keyboard-instructions">
+          <p><i class="fa-solid fa-keyboard"></i> <strong>Keyboard Navigation:</strong> Use <kbd>Tab</kbd> to move
+            between topics, <kbd>Enter</kbd> or <kbd>Space</kbd> to open details, and <kbd>Esc</kbd> to close them.</p>
+        </div>
+        <div class="map-outer-container">
+          <div id="knowledge-map-container" class="map-inner-container">
+            <svg id="map-connections-svg" class="map-svg-connections" aria-hidden="true"></svg>
+            <div id="knowledge-map-nodes" class="map-nodes-layer"></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Mobile Topic List Alternative -->
+      <div class="mobile-map-alternative">
+        <div class="search-bar-wrapper">
+          <input type="text" id="mobile-search-input" placeholder="Search topics (e.g. CAD, Sensors, Wiring)..."
+            aria-label="Search topics">
+        </div>
+        <div id="mobile-topic-accordion" class="accordion-list"></div>
+      </div>
+
+      <!-- Static guides grid still available below as a directory -->
+      <hr style="margin: 4rem 0; border: 0; border-top: 1px solid var(--border);">
+
+      <div class="section-title">
+        <div>
+          <h2>All Starter Guides</h2>
+          <p class="muted">Browse the full library of FTC starter topics.</p>
         </div>
       </div>
       <div id="guide-grid" class="feature-grid"></div>
     </div>
   </main>
 
+  <!-- Side Drawer Details Panel -->
+  <div id="detail-drawer" class="detail-drawer" role="dialog" aria-modal="true" aria-hidden="true"
+    aria-labelledby="drawer-title">
+    <div class="drawer-overlay" tabindex="-1"></div>
+    <div class="drawer-content">
+      <header class="drawer-header">
+        <div class="drawer-header-title-area">
+          <span id="drawer-icon-badge" class="drawer-icon-badge"></span>
+          <h2 id="drawer-title">Topic Details</h2>
+        </div>
+        <button id="close-drawer-btn" class="close-btn" aria-label="Close details panel" type="button">
+          <i class="fa-solid fa-xmark"></i>
+        </button>
+      </header>
+      <div id="drawer-body" class="drawer-body">
+        <!-- Dynamic content injected here -->
+      </div>
+    </div>
+  </div>
+
   <script src="js/app.js"></script>
 </body>
+
 </html>

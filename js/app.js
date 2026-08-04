@@ -160,25 +160,110 @@ function renderFeaturedVideo() {
   `;
 }
 
+const GUIDES_DATA = [
+  { title: 'What Is FIRST Tech Challenge?', summary: 'A beginner-friendly overview of the program, structure, and goals.', slug: 'what-is-ftc', difficulty: 'Beginner' },
+  { title: 'How the FTC Control System Works', summary: 'A practical explanation of the robot controller, driver station, and wiring.', slug: 'control-system', difficulty: 'Beginner' },
+  { title: 'Choosing Blocks, OnBot Java, or Android Studio', summary: 'Compare common programming paths for new teams.', slug: 'programming-paths', difficulty: 'Beginner' },
+  { title: 'Understanding Motor Encoders', summary: 'Learn how encoders support distance and position feedback.', slug: 'encoders', difficulty: 'Intermediate' },
+  { title: 'Introduction to Autonomous Programming', summary: 'A simple first look at autonomous planning and reliability.', slug: 'autonomous-intro', difficulty: 'Intermediate' },
+  { title: 'CAD for FTC with Onshape', summary: 'How CAD supports prototyping and manufacturing decisions.', slug: 'cad-ftc', difficulty: 'Intermediate' },
+];
+
 function renderGuides() {
   const target = document.getElementById('guide-grid');
   if (!target) return;
-  const guides = [
-    { title: 'What Is FIRST Tech Challenge?', summary: 'A beginner-friendly overview of the program, structure, and goals.', slug: 'what-is-ftc', difficulty: 'Beginner' },
-    { title: 'How the FTC Control System Works', summary: 'A practical explanation of the robot controller, driver station, and wiring.', slug: 'control-system', difficulty: 'Beginner' },
-    { title: 'Choosing Blocks, OnBot Java, or Android Studio', summary: 'Compare common programming paths for new teams.', slug: 'programming-paths', difficulty: 'Beginner' },
-    { title: 'Understanding Motor Encoders', summary: 'Learn how encoders support distance and position feedback.', slug: 'encoders', difficulty: 'Intermediate' },
-    { title: 'Introduction to Autonomous Programming', summary: 'A simple first look at autonomous planning and reliability.', slug: 'autonomous-intro', difficulty: 'Intermediate' },
-    { title: 'CAD for FTC with Onshape', summary: 'How CAD supports prototyping and manufacturing decisions.', slug: 'cad-ftc', difficulty: 'Intermediate' },
-  ];
-  target.innerHTML = guides.map((guide) => `
-    <article class="card guide-card">
+  target.innerHTML = GUIDES_DATA.map((guide) => `
+    <article class="card guide-card" id="guide-card-${guide.slug}">
       <div class="badge">${guide.difficulty}</div>
       <h3>${guide.title}</h3>
       <p class="muted">${guide.summary}</p>
-      <a class="btn btn-secondary" href="guides.html#${guide.slug}">Read guide</a>
+      ${guide.content
+        ? `<button class="btn btn-secondary" type="button" onclick="openGuideModal('${guide.slug}')">Read guide</button>`
+        : `<a class="btn btn-secondary" href="guides.html#${guide.slug}">Read guide</a>`
+      }
     </article>
   `).join('');
+}
+
+function simpleMarkdown(text) {
+  return text
+    .replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;')
+    // headings
+    .replace(/^### (.+)$/gm, '<h3>$1</h3>')
+    .replace(/^## (.+)$/gm, '<h2>$1</h2>')
+    .replace(/^# (.+)$/gm, '<h1>$1</h1>')
+    // horizontal rules
+    .replace(/^---$/gm, '<hr>')
+    // bold
+    .replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>')
+    // inline code
+    .replace(/`([^`]+)`/g, '<code>$1</code>')
+    // code blocks
+    .replace(/```[\w]*\n([\s\S]*?)```/gm, '<pre><code>$1</code></pre>')
+    // unordered list items
+    .replace(/^\* (.+)$/gm, '<li>$1</li>')
+    .replace(/(<li>.*<\/li>)/gs, '<ul>$1</ul>')
+    // ordered list items
+    .replace(/^\d+\. (.+)$/gm, '<li>$1</li>')
+    // paragraphs (double newline)
+    .replace(/\n\n(?!<)/g, '</p><p>')
+    .replace(/^(?!<)(.+)$/gm, '$1')
+    .trim();
+}
+
+function openGuideModal(slug) {
+  const guide = GUIDES_DATA.find(g => g.slug === slug);
+  if (!guide || !guide.content) return;
+
+  // Create modal if it doesn't exist
+  let modal = document.getElementById('guide-reader-modal');
+  if (!modal) {
+    modal = document.createElement('div');
+    modal.id = 'guide-reader-modal';
+    modal.className = 'guide-modal';
+    modal.setAttribute('role', 'dialog');
+    modal.setAttribute('aria-modal', 'true');
+    modal.setAttribute('aria-labelledby', 'guide-modal-title');
+    modal.innerHTML = `
+      <div class="guide-modal-overlay"></div>
+      <div class="guide-modal-content">
+        <header class="guide-modal-header">
+          <div>
+            <span id="guide-modal-difficulty" class="badge"></span>
+            <h2 id="guide-modal-title"></h2>
+          </div>
+          <button id="close-guide-modal" class="close-btn" type="button" aria-label="Close guide">
+            <i class="fa-solid fa-xmark"></i>
+          </button>
+        </header>
+        <div id="guide-modal-body" class="guide-modal-body"></div>
+      </div>
+    `;
+    document.body.appendChild(modal);
+
+    document.getElementById('close-guide-modal').addEventListener('click', closeGuideModal);
+    modal.querySelector('.guide-modal-overlay').addEventListener('click', closeGuideModal);
+    modal.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') closeGuideModal();
+    });
+  }
+
+  document.getElementById('guide-modal-title').textContent = guide.title;
+  document.getElementById('guide-modal-difficulty').textContent = guide.difficulty;
+  document.getElementById('guide-modal-body').innerHTML = `<p>${simpleMarkdown(guide.content)}</p>`;
+
+  modal.setAttribute('aria-hidden', 'false');
+  modal.classList.add('active');
+  document.body.style.overflow = 'hidden';
+  setTimeout(() => document.getElementById('close-guide-modal').focus(), 50);
+}
+
+function closeGuideModal() {
+  const modal = document.getElementById('guide-reader-modal');
+  if (!modal) return;
+  modal.setAttribute('aria-hidden', 'true');
+  modal.classList.remove('active');
+  document.body.style.overflow = '';
 }
 
 function renderResources() {
@@ -219,22 +304,461 @@ function renderBookmarks() {
   `).join('');
 }
 
+// ==========================================================================
+// Interactive FTC Robotics Knowledge Map Logic
+// ==========================================================================
+
+const KNOWLEDGE_MAP_DATA = {
+  programming: {
+    title: 'Programming',
+    icon: 'fa-code',
+    x: 50, y: 50,
+    summary: 'Learn to write clean, modular Java or Blocks code for your robot.',
+    description: 'Software is the brain of the robot. In FTC, teams write code to read sensor values, run motor algorithms, compute coordinate paths, and handle driver inputs. Choosing the right environment (Blocks, OnBot Java, or Android Studio) and structuring your code using OOP or sub-systems is key to a reliable robot.',
+    connections: ['autonomous', 'sensors', 'vision', 'wiring'],
+    videos: ['noN-R8Zt6GQ', 'HIBxntPlIus'],
+    guides: ['programming-paths', 'encoders'],
+    calculators: ['#encoder-distance'],
+    docs: [{ title: 'FTC Docs Software Section', url: 'https://ftc-docs.firstinspires.org/en/latest/programming_resources/index.html' }]
+  },
+  drivetrains: {
+    title: 'Drivetrains',
+    icon: 'fa-circle-nodes',
+    x: 80, y: 35,
+    summary: 'Design and program drivetrains like Mecanum, Swerve, or Tank drive.',
+    description: 'The drivetrain is the foundation of robot movement. FTC matches require quick positioning, defense navigation, and precise trajectories. Mecanum is popular for its omnidirectional movement, while swerve drive offers unmatched maneuverability, and tank drive provides high traction.',
+    connections: ['mechanisms', 'autonomous', 'cad'],
+    videos: ['7jyLT9H6CSI'],
+    guides: ['control-system'],
+    calculators: ['#drivetrain-speed', '#gear-ratio'],
+    docs: [{ title: 'FTC Docs Drivetrain Guide', url: 'https://ftc-docs.firstinspires.org/en/latest/hardware_and_software_references/drivetrains/drivetrains.html' }]
+  },
+  mechanisms: {
+    title: 'Mechanisms',
+    icon: 'fa-wrench',
+    x: 80, y: 55,
+    summary: 'Build intakes, lifts, claws, and arm mechanisms to score points.',
+    description: 'Custom mechanisms allow your robot to interact with game elements. From simple slide lifts and surgical tubing intakes to articulated claws, design mechanisms with proper gear ratios and torque limits to prevent motor burnouts.',
+    connections: ['drivetrains', 'wiring', 'cad', 'manufacturing'],
+    videos: ['7jyLT9H6CSI'],
+    guides: ['encoders'],
+    calculators: ['#gear-ratio'],
+    docs: [{ title: 'FTC Robot Design Guidelines', url: 'https://ftc-docs.firstinspires.org/en/latest/hardware_and_software_references/robot_design/index.html' }]
+  },
+  sensors: {
+    title: 'Sensors',
+    icon: 'fa-microchip',
+    x: 20, y: 40,
+    summary: 'Use encoders, touch, distance, and IMU sensors for feedback.',
+    description: 'Sensors allow your robot to perceive its environment. Distance sensors detect game elements, encoders track wheel rotation, and the Control Hub\'s built-in IMU reports heading. Combining these inputs allows for precise closed-loop control (like PID loops).',
+    connections: ['programming', 'wiring', 'autonomous'],
+    videos: ['HIBxntPlIus'],
+    guides: ['encoders', 'control-system'],
+    calculators: ['#encoder-distance'],
+    docs: [{ title: 'FTC Control Hub Sensors Docs', url: 'https://ftc-docs.firstinspires.org/en/latest/hardware_and_software_references/sensors/sensors.html' }]
+  },
+  vision: {
+    title: 'Vision',
+    icon: 'fa-eye',
+    x: 20, y: 20,
+    summary: 'Implement OpenCV, AprilTags, and TensorFlow for object tracking.',
+    description: 'Computer vision is critical for modern FTC autonomous tasks. Detecting AprilTags provides absolute position updates, while custom OpenCV pipelines allow your robot to locate and classify game pieces dynamically on the field.',
+    connections: ['programming', 'sensors', 'autonomous'],
+    videos: ['HIBxntPlIus'],
+    guides: ['control-system'],
+    calculators: [],
+    docs: [{ title: 'AprilTag FTC Documentation', url: 'https://ftc-docs.firstinspires.org/en/latest/apriltags/index.html' }]
+  },
+  autonomous: {
+    title: 'Autonomous',
+    icon: 'fa-robot',
+    x: 50, y: 25,
+    summary: 'Program your robot to drive and score automatically in the first 30 seconds.',
+    description: 'Autonomous period scoring can make or break a match. Using localization libraries (like Road Runner or PedroPathing), PID control, and state machines allows your robot to execute complex pre-programmed tasks reliably regardless of field friction.',
+    connections: ['programming', 'drivetrains', 'sensors', 'vision'],
+    videos: ['leWZTYAR42s', 'bdOogbHBDNY', 'QK5E3F7vqrE', 'HIBxntPlIus'],
+    guides: ['autonomous-intro', 'encoders'],
+    calculators: ['#encoder-distance'],
+    docs: [{ title: 'Pedro Pathing Docs', url: 'https://pedropathing.com/' }, { title: 'Road Runner Docs', url: 'https://rr.brott.dev/docs/' }]
+  },
+  cad: {
+    title: 'CAD',
+    icon: 'fa-drafting-table',
+    x: 80, y: 15,
+    summary: 'Design and verify your robot virtually before building.',
+    description: 'Computer-Aided Design (CAD) is essential for modern FTC teams. Using Onshape or Fusion 360, teams model their entire robot to verify clearances, check gear spacing, calculate weight distribution, and design custom parts for 3D printing.',
+    connections: ['mechanisms', 'drivetrains', 'manufacturing'],
+    videos: ['7jyLT9H6CSI'],
+    guides: ['cad-ftc'],
+    calculators: ['#gear-ratio'],
+    docs: [{ title: 'Onshape Learning Center', url: 'https://learn.onshape.com/' }]
+  },
+  manufacturing: {
+    title: 'Manufacturing',
+    icon: 'fa-industry',
+    x: 80, y: 75,
+    summary: 'Fabricate parts using 3D printing, laser cutting, and CNC routing.',
+    description: 'Manufacturing turns virtual CAD files into physical parts. Understanding 3D printing parameters (infill, walls), tolerances for laser-cut acrylic or wood, and basic tool operations allows you to manufacture robust custom parts.',
+    connections: ['cad', 'mechanisms', 'competition-prep'],
+    videos: ['7jyLT9H6CSI'],
+    guides: ['cad-ftc'],
+    calculators: [],
+    docs: [{ title: 'FTC Manufacturing Guidelines', url: 'https://ftc-docs.firstinspires.org/en/latest/hardware_and_software_references/manufacturing/index.html' }]
+  },
+  wiring: {
+    title: 'Wiring',
+    icon: 'fa-bolt',
+    x: 20, y: 65,
+    summary: 'Wire the Control Hub, Expansion Hub, battery, and motors securely.',
+    description: 'Electrical failure is a major cause of robot disconnections during matches. Solid wiring involves anchoring cables, labeling connections, separating power lines from high-current motor wires, and securing battery connections.',
+    connections: ['programming', 'sensors', 'mechanisms'],
+    videos: ['HIBxntPlIus'],
+    guides: ['control-system'],
+    calculators: [],
+    docs: [{ title: 'FTC Docs Wiring Guide', url: 'https://ftc-docs.firstinspires.org/en/latest/hardware_and_software_references/control_hub/wiring.html' }]
+  },
+  'competition-prep': {
+    title: 'Competition Preparation',
+    icon: 'fa-trophy',
+    x: 50, y: 75,
+    summary: 'Prepare your engineering portfolio, practice driving, and build a strategy.',
+    description: 'Winning in FTC is about more than just a great robot. Teams must present an engineering portfolio, execute a solid game strategy with alliance partners, practice drive controls for hours, and perform systematic pre-match checklists.',
+    connections: ['programming', 'wiring', 'manufacturing'],
+    videos: ['h60NvS6MYV8', 'leWZTYAR42s'],
+    guides: ['what-is-ftc'],
+    calculators: [],
+    docs: [{ title: 'FIRST FTC Official Resource Library', url: 'https://www.firstinspires.org/resource-library/ftc/game-and-season-info' }]
+  }
+};
+
+let lastActiveFocusedElement = null;
+
 function renderKnowledgeMap() {
-  const target = document.getElementById('knowledge-map');
-  if (!target) return;
-  const nodes = [
-    { title: 'Getting started', summary: 'The big-picture view of FTC for new teams.' },
-    { title: 'Control system', summary: 'How the robot controller, driver station, and sensors connect.' },
-    { title: 'Autonomous', summary: 'Planning reliable actions before the match starts.' },
-    { title: 'Drivetrains', summary: 'How motor gearing and wheel choice affect motion.' },
-  ];
-  target.innerHTML = nodes.map((node) => `
-    <article class="card map-card">
-      <h3>${node.title}</h3>
-      <p class="muted">${node.summary}</p>
-      <a class="btn btn-secondary" href="guides.html">Related guides</a>
-    </article>
+  const nodesContainer = document.getElementById('knowledge-map-nodes');
+  const svgContainer = document.getElementById('map-connections-svg');
+  if (!nodesContainer || !svgContainer) return;
+
+  // 1. Render Nodes
+  nodesContainer.innerHTML = Object.entries(KNOWLEDGE_MAP_DATA).map(([id, node]) => `
+    <button type="button" class="node-button" id="node-${id}" data-id="${id}" style="left: ${node.x}%; top: ${node.y}%;" aria-haspopup="dialog" aria-expanded="false">
+      <i class="fa-solid ${node.icon}"></i>
+      <span>${node.title}</span>
+    </button>
   `).join('');
+
+  // 2. Render Connection Lines
+  const drawnConnections = new Set();
+  let svgContent = '';
+
+  Object.entries(KNOWLEDGE_MAP_DATA).forEach(([fromId, node]) => {
+    node.connections.forEach(toId => {
+      const connKey = [fromId, toId].sort().join('-');
+      if (!drawnConnections.has(connKey) && KNOWLEDGE_MAP_DATA[toId]) {
+        drawnConnections.add(connKey);
+        const targetNode = KNOWLEDGE_MAP_DATA[toId];
+        svgContent += `
+          <line x1="${node.x}%" y1="${node.y}%" x2="${targetNode.x}%" y2="${targetNode.y}%" 
+                class="connection-line" data-from="${fromId}" data-to="${toId}" id="line-${connKey}">
+          </line>
+        `;
+      }
+    });
+  });
+  svgContainer.innerHTML = svgContent;
+
+  // 3. Set up mobile view list
+  renderMobileAccordion();
+
+  // 4. Initialize interactions
+  setupMapInteractions();
+}
+
+function renderMobileAccordion() {
+  const target = document.getElementById('mobile-topic-accordion');
+  if (!target) return;
+
+  target.innerHTML = Object.entries(KNOWLEDGE_MAP_DATA).map(([id, node]) => `
+    <div class="accordion-item" id="accordion-${id}" data-search-text="${node.title.toLowerCase()} ${node.summary.toLowerCase()} ${node.description.toLowerCase()}">
+      <button type="button" class="accordion-header" aria-expanded="false" aria-controls="panel-${id}" data-id="${id}">
+        <span class="accordion-header-title">
+          <i class="fa-solid ${node.icon}"></i>
+          <span>${node.title}</span>
+        </span>
+        <i class="fa-solid fa-chevron-down chevron"></i>
+      </button>
+      <div id="panel-${id}" class="accordion-panel" role="region" aria-labelledby="accordion-${id}">
+        <div class="accordion-content">
+          <p>${node.description}</p>
+          ${renderTopicLinks(node)}
+        </div>
+      </div>
+    </div>
+  `).join('');
+}
+
+function renderTopicLinks(node) {
+  let content = '';
+
+  // Related Guides
+  if (node.guides && node.guides.length > 0) {
+    content += `<h3>Related Guides</h3>`;
+    node.guides.forEach(slug => {
+      const guide = GUIDES_DATA.find(g => g.slug === slug);
+      if (guide) {
+        content += `
+          <a class="drawer-link-card" href="guides.html#${slug}">
+            <i class="fa-solid fa-book-open"></i>
+            <div>
+              <strong>${guide.title}</strong>
+              <p style="margin:0;font-size:0.8rem;color:var(--muted);">${guide.summary}</p>
+            </div>
+          </a>
+        `;
+      }
+    });
+  }
+
+  // Related Calculators
+  if (node.calculators && node.calculators.length > 0) {
+    content += `<h3>Calculators</h3>`;
+    node.calculators.forEach(hash => {
+      let title = '';
+      if (hash === '#encoder-distance') title = 'Encoder Distance Calculator';
+      if (hash === '#gear-ratio') title = 'Gear Ratio Calculator';
+      if (hash === '#drivetrain-speed') title = 'Drivetrain Speed Calculator';
+      if (title) {
+        content += `
+          <a class="drawer-link-card" href="calculators.html${hash}">
+            <i class="fa-solid fa-calculator"></i>
+            <div><strong>${title}</strong></div>
+          </a>
+        `;
+      }
+    });
+  }
+
+  // Related Videos
+  if (node.videos && node.videos.length > 0) {
+    content += `<h3>RoboCodex Videos</h3>`;
+    content += `<div class="drawer-video-list">`;
+    node.videos.forEach(videoId => {
+      const video = state.videos.find(v => v.youtubeId === videoId || v.id === videoId);
+      if (video) {
+        content += `
+          <a class="drawer-video-card" href="https://www.youtube.com/watch?v=${video.youtubeId}" target="_blank" rel="noopener noreferrer">
+            <img src="https://img.youtube.com/vi/${video.youtubeId}/hqdefault.jpg" alt="${video.title}" loading="lazy">
+            <div class="drawer-video-info">
+              <h4>${video.title}</h4>
+              <span>${video.category}</span>
+            </div>
+          </a>
+        `;
+      } else {
+        // Fallback placeholder if videos not fully loaded
+        content += `
+          <a class="drawer-link-card" href="https://www.youtube.com/watch?v=${videoId}" target="_blank" rel="noopener noreferrer">
+            <i class="fa-brands fa-youtube" style="color:#ff0000;"></i>
+            <div><strong>Watch Related Video on YouTube</strong></div>
+          </a>
+        `;
+      }
+    });
+    content += `</div>`;
+  }
+
+  // Official Docs
+  if (node.docs && node.docs.length > 0) {
+    content += `<h3>Official Documentation</h3>`;
+    node.docs.forEach(doc => {
+      content += `
+        <a class="drawer-link-card" href="${doc.url}" target="_blank" rel="noopener noreferrer">
+          <i class="fa-solid fa-arrow-up-right-from-square"></i>
+          <div><strong>${doc.title}</strong></div>
+        </a>
+      `;
+    });
+  }
+
+  return content;
+}
+
+function setupMapInteractions() {
+  const nodes = document.querySelectorAll('.node-button');
+  const lines = document.querySelectorAll('.connection-line');
+  const drawer = document.getElementById('detail-drawer');
+  const closeDrawerBtn = document.getElementById('close-drawer-btn');
+  const drawerOverlay = drawer ? drawer.querySelector('.drawer-overlay') : null;
+  const mobileSearch = document.getElementById('mobile-search-input');
+
+  // Node Hover / Focus Highlights
+  nodes.forEach(node => {
+    const id = node.dataset.id;
+    const itemData = KNOWLEDGE_MAP_DATA[id];
+    if (!itemData) return;
+
+    const highlightHandler = () => {
+      // 1. Dim all nodes except hovered and its connections
+      const connectedSet = new Set([id, ...itemData.connections]);
+      nodes.forEach(n => {
+        const nid = n.dataset.id;
+        if (!connectedSet.has(nid)) {
+          n.classList.add('dimmed');
+        } else if (nid !== id) {
+          n.classList.add('highlight-connected');
+        }
+      });
+
+      // 2. Highlight matching connection lines
+      lines.forEach(line => {
+        const from = line.dataset.from;
+        const to = line.dataset.to;
+        if (from === id || to === id) {
+          line.classList.add('highlighted');
+        }
+      });
+    };
+
+    const clearHighlightHandler = () => {
+      nodes.forEach(n => {
+        n.classList.remove('dimmed', 'highlight-connected');
+      });
+      lines.forEach(line => {
+        line.classList.remove('highlighted');
+      });
+    };
+
+    node.addEventListener('mouseenter', highlightHandler);
+    node.addEventListener('mouseleave', clearHighlightHandler);
+    node.addEventListener('focus', highlightHandler);
+    node.addEventListener('blur', clearHighlightHandler);
+
+    // Node Click -> Open Drawer
+    node.addEventListener('click', () => {
+      openDetailDrawer(id);
+    });
+  });
+
+  // Drawer Close Actions
+  if (closeDrawerBtn) {
+    closeDrawerBtn.addEventListener('click', closeDetailDrawer);
+  }
+  if (drawerOverlay) {
+    drawerOverlay.addEventListener('click', closeDetailDrawer);
+  }
+
+  // Keyboard trapping for Drawer
+  if (drawer) {
+    drawer.addEventListener('keydown', (event) => {
+      if (event.key === 'Escape') {
+        closeDetailDrawer();
+      }
+      if (event.key === 'Tab') {
+        const focusables = drawer.querySelectorAll('button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])');
+        if (focusables.length === 0) return;
+        const first = focusables[0];
+        const last = focusables[focusables.length - 1];
+
+        if (event.shiftKey && document.activeElement === first) {
+          last.focus();
+          event.preventDefault();
+        } else if (!event.shiftKey && document.activeElement === last) {
+          first.focus();
+          event.preventDefault();
+        }
+      }
+    });
+  }
+
+  // Mobile Accordion Toggles
+  const accordionHeaders = document.querySelectorAll('.accordion-header');
+  accordionHeaders.forEach(header => {
+    header.addEventListener('click', () => {
+      const parent = header.parentElement;
+      const panel = parent.querySelector('.accordion-panel');
+      const isExpanded = header.getAttribute('aria-expanded') === 'true';
+
+      // Toggle current
+      header.setAttribute('aria-expanded', !isExpanded);
+      parent.classList.toggle('active', !isExpanded);
+      if (!isExpanded) {
+        panel.style.maxHeight = panel.scrollHeight + "px";
+      } else {
+        panel.style.maxHeight = null;
+      }
+    });
+  });
+
+  // Mobile Search Filter
+  if (mobileSearch) {
+    mobileSearch.addEventListener('input', (event) => {
+      const query = event.target.value.toLowerCase();
+      const accordionItems = document.querySelectorAll('.accordion-item');
+
+      accordionItems.forEach(item => {
+        const text = item.dataset.searchText;
+        if (text.includes(query)) {
+          item.style.display = 'block';
+        } else {
+          item.style.display = 'none';
+        }
+      });
+    });
+  }
+}
+
+function openDetailDrawer(id) {
+  const node = KNOWLEDGE_MAP_DATA[id];
+  if (!node) return;
+
+  lastActiveFocusedElement = document.activeElement;
+
+  const drawer = document.getElementById('detail-drawer');
+  const titleTarget = document.getElementById('drawer-title');
+  const iconBadge = document.getElementById('drawer-icon-badge');
+  const bodyTarget = document.getElementById('drawer-body');
+  const nodeButton = document.getElementById(`node-${id}`);
+
+  if (!drawer || !bodyTarget) return;
+
+  // Set header info
+  if (titleTarget) titleTarget.textContent = node.title;
+  if (iconBadge) iconBadge.innerHTML = `<i class="fa-solid ${node.icon}"></i>`;
+
+  // Render Body Details
+  bodyTarget.innerHTML = `
+    <p style="font-size:1.05rem;font-weight:500;margin-top:0;">${node.summary}</p>
+    <p>${node.description}</p>
+    ${renderTopicLinks(node)}
+  `;
+
+  // Show Drawer
+  drawer.setAttribute('aria-hidden', 'false');
+  drawer.classList.add('active');
+  if (nodeButton) nodeButton.setAttribute('aria-expanded', 'true');
+
+  // Focus on close button inside the drawer
+  const closeBtn = document.getElementById('close-drawer-btn');
+  if (closeBtn) {
+    setTimeout(() => closeBtn.focus(), 50);
+  }
+}
+
+function closeDetailDrawer() {
+  const drawer = document.getElementById('detail-drawer');
+  if (!drawer) return;
+
+  drawer.setAttribute('aria-hidden', 'true');
+  drawer.classList.remove('active');
+
+  // Set all node expansion states to false
+  document.querySelectorAll('.node-button').forEach(n => {
+    n.setAttribute('aria-expanded', 'false');
+  });
+
+  // Restore focus
+  if (lastActiveFocusedElement) {
+    lastActiveFocusedElement.focus();
+  }
 }
 
 function renderCalculators() {
@@ -329,11 +853,35 @@ function wireEvents() {
 async function initApp() {
   applyTheme(getTheme());
   wireEvents();
+
+  // Load guide content from guides.json and merge with GUIDES_DATA
+  try {
+    const guideResponse = await fetch('data/guides.json');
+    if (guideResponse.ok) {
+      const guidePayload = await guideResponse.json();
+      if (Array.isArray(guidePayload)) {
+        guidePayload.forEach(remote => {
+          const local = GUIDES_DATA.find(g => g.slug === remote.slug);
+          if (local) {
+            // Merge any new fields from JSON into the local entry
+            Object.assign(local, remote);
+          } else {
+            // Brand-new guide from JSON — add it
+            GUIDES_DATA.push(remote);
+          }
+        });
+      }
+    }
+  } catch (err) {
+    console.warn('Could not load guides.json — using built-in guide stubs.', err);
+  }
+
   renderGuides();
   renderResources();
   renderKnowledgeMap();
   renderCalculators();
   renderBookmarks();
+
   try {
     const response = await fetch('data/videos.json');
     const payload = await response.json();
@@ -343,6 +891,8 @@ async function initApp() {
     }
     renderFeaturedVideo();
     renderVideoCards();
+    // Re-render knowledge map now that videos are loaded
+    renderKnowledgeMap();
   } catch (error) {
     console.error('Unable to load video data', error);
     if (document.getElementById('video-grid')) {
