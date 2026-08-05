@@ -1,0 +1,22 @@
+{
+  "name": "RoboCodex",
+  "short_name": "RoboCodex",
+  "description": "FTC robotics videos, guides, calculators, and tools from Jose Laurencio.",
+  "start_url": "/",
+  "scope": "/",
+  "display": "standalone",
+  "background_color": "#d5e2f3",
+  "theme_color": "#235986",
+  "icons": [
+    {
+      "src": "images/logo.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "images/logo.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ]
+}

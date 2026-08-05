@@ -1900,3 +1900,11 @@ input[type="number"] {
     content: 'Prev';
   }
 }
+
+#pwa-install {
+  position: fixed;
+  bottom: 1rem;
+  left: 1rem;
+  z-index: 60;
+  box-shadow: 0 8px 22px rgba(35, 89, 134, 0.28);
+}
