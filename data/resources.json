@@ -13,14 +13,102 @@
   { "title": "CTRL ALT FTC", "organization": "Community", "summary": "The mathematics and science behind robot control: PID, feedforward, feedback control, angle handling, state feedback, Kalman filters, and motor control.", "category": "Autonomous and programming", "url": "https://ctrlaltftc.com/" },
   { "title": "FTCLib", "organization": "FTCLib", "summary": "Command-based programming, odometry, computer vision, controllers, trajectories, and reusable robot-code architecture inspired by WPILib.", "category": "Autonomous and programming", "url": "https://ftclib.org/" },
   { "title": "FTC SIM", "organization": "Community", "summary": "Practice FTC Blocks and Java programming in a browser without needing a physical robot, with guided exercises, puzzles, virtual fields, and a robot simulator.", "category": "Autonomous and programming", "url": "https://ftcsim.org/" },
+  {
+    "title": "EasyOpenCV",
+    "organization": "OpenFTC",
+    "summary": "The most popular FTC OpenCV library for custom vision pipelines with numerous examples and documentation.",
+    "category": "Computer Vision",
+    "difficulty": "Intermediate → Advanced",
+    "url": "https://github.com/OpenFTC/EasyOpenCV"
+  },
+  {
+    "title": "OpenFTC",
+    "organization": "Community",
+    "summary": "Open-source FTC libraries including EasyOpenCV, OpenRC, dashboards, and advanced programming tools.",
+    "category": "Programming Libraries",
+    "difficulty": "Advanced",
+    "url": "https://github.com/OpenFTC"
+  },
+  {
+    "title": "FTC Dashboard",
+    "organization": "Acme Robotics",
+    "summary": "Live robot telemetry, PID tuning, graphing, variable editing, camera streaming, and autonomous debugging.",
+    "category": "Programming Tools",
+    "difficulty": "Intermediate → Advanced",
+    "url": "https://acmerobotics.github.io/ftc-dashboard/"
+  },
 
   { "title": "REV Robotics Documentation", "organization": "REV Robotics", "summary": "Control Hub, Driver Hub, Expansion Hub, motors, encoders, sensors, firmware updates, wiring diagrams, and control-system troubleshooting.", "category": "Hardware, CAD, and building", "url": "https://docs.revrobotics.com/" },
   { "title": "Onshape for FIRST Robotics", "organization": "Onshape", "summary": "Browser-based collaborative CAD, FTC parts libraries, field models, robotics curriculum, assemblies, version history, and team design management.", "category": "Hardware, CAD, and building", "url": "https://www.onshape.com/" },
   { "title": "goBILDA FTC Resources", "organization": "goBILDA", "summary": "Starter-robot guides, assembly instructions, CAD, example code, mechanism ideas, product specifications, and the goBILDA building ecosystem.", "category": "Hardware, CAD, and building", "url": "https://www.gobilda.com/" },
+  {
+    "title": "MKCad",
+    "organization": "Community",
+    "summary": "The most widely used CAD parts library for FTC and FRC including REV, goBILDA, AndyMark, and COTS components.",
+    "category": "CAD",
+    "difficulty": "Beginner → Advanced",
+    "url": "https://github.com/MKCad"
+  },
 
   { "title": "FTCScout", "organization": "Community", "summary": "Advanced match statistics, team research, event scouting, performance analysis, and exploring FTC competition data.", "category": "Competition data and robot research", "url": "https://ftcscout.org/" },
   { "title": "The Orange Alliance", "organization": "Community", "summary": "Search teams and events, review matches, watch archived competition footage, rankings, awards, and historical FTC results.", "category": "Competition data and robot research", "url": "https://www.theorangealliance.org/" },
+  {
+    "title": "FTC Stats",
+    "organization": "Community",
+    "summary": "Historical statistics, rankings, and event performance analytics for FTC teams.",
+    "category": "Competition Analysis",
+    "difficulty": "Intermediate",
+    "url": "https://www.ftcstats.org/"
+  },
 
   { "title": "Brogan M. Pratt", "organization": "YouTube", "summary": "High-quality FTC programming tutorials, Java instruction, Pedro Pathing, robot-building concepts, competition strategy, robot analysis, and season commentary.", "category": "Best FTC video creators", "url": "https://www.youtube.com/@BroganMPratt" },
   { "title": "FUN Robotics Network", "organization": "YouTube", "summary": "Behind the Bot, robot reveals, FTC Top 25, event coverage, Championship footage, interviews, and studying successful robots from many teams.", "category": "Best FTC video creators", "url": "https://www.youtube.com/@FUNRoboticsNetwork" }
+  ,{
+    "title": "REV Robotics YouTube",
+    "organization": "REV Robotics",
+    "summary": "Official tutorials for hardware, Control Hub setup, sensors, firmware, wiring, and robot assembly.",
+    "category": "YouTube",
+    "difficulty": "Beginner → Intermediate",
+    "url": "https://www.youtube.com/@REVRobotics"
+  },
+  {
+    "title": "goBILDA YouTube",
+    "organization": "goBILDA",
+    "summary": "Build tutorials, mechanism walkthroughs, product overviews, and robot design ideas.",
+    "category": "YouTube",
+    "difficulty": "Beginner → Advanced",
+    "url": "https://www.youtube.com/@goBILDA"
+  },
+  {
+    "title": "Chief Delphi FTC Forum",
+    "organization": "Chief Delphi",
+    "summary": "High-level technical discussions on robot design, software architecture, autonomous, and competition strategy.",
+    "category": "Community",
+    "difficulty": "Intermediate → Advanced",
+    "url": "https://www.chiefdelphi.com/c/ftc"
+  },
+  {
+    "title": "PhotonFTC",
+    "organization": "Community",
+    "summary": "Performance optimization framework that significantly improves FTC loop rates and robot responsiveness.",
+    "category": "Advanced Programming",
+    "difficulty": "Advanced",
+    "url": "https://github.com/PhotonFTC"
+  },
+  {
+    "title": "Limelight FTC Documentation",
+    "organization": "Limelight",
+    "summary": "Official Limelight 3A setup, AprilTag localization, MegaTag2, Python SnapScripts, and FTC integration guides.",
+    "category": "Computer Vision",
+    "difficulty": "Intermediate → Advanced",
+    "url": "https://docs.limelightvision.io/"
+  },
+  {
+    "title": "AprilTag Library Documentation",
+    "organization": "FIRST",
+    "summary": "Official documentation explaining AprilTag localization, camera calibration, pose estimation, and FTC implementation.",
+    "category": "Computer Vision",
+    "difficulty": "Intermediate",
+    "url": "https://ftc-docs.firstinspires.org/en/latest/apriltag/vision_portal/apriltag_intro/apriltag-intro.html"
+  }
 ]
