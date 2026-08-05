@@ -1784,6 +1784,17 @@ input[type="number"] {
   gap: 0.5rem;
 }
 
+.reader-header-actions {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.reader-header-top .btn-ghost.is-speaking {
+  color: var(--primary);
+  background: var(--accent-2);
+}
+
 .reader-title-group h2 {
   margin: 0.4rem 0 0;
 }

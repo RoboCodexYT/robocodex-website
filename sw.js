@@ -1,4 +1,4 @@
-const CACHE = 'robocodex-v1';
+const CACHE = 'robocodex-v2';
 const PRECACHE = [
   '/',
   '/index.html',
@@ -9,6 +9,7 @@ const PRECACHE = [
   '/js/pwa.js',
   '/js/path-viz.js',
   '/js/tuner.js',
+  '/js/tts.js',
   '/app/components/field-svg.js',
   '/data/videos.json',
   '/data/guides.json',
