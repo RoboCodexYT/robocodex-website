@@ -1,8 +1,8 @@
 # robocodex.github.io
 
-this is the site for **RoboCodex** — a free resource for students getting into FIRST Tech Challenge robotics, built by me, **Jose Laurencio**, at 16.
+this is the site for **RoboCodex**, a free resource for students getting into FIRST Tech Challenge robotics, built by me, **Jose Laurencio**.
 
-the whole point is the jump from FLL to FTC is way harder than anyone tells you, so this site is where i put everything i wish someone had handed me: videos, written guides, calculators, and a curated list of the tools and docs actually worth using.
+This site is where i put everything i wish someone had handed me: videos, written guides, calculators, and a curated list of the tools and docs actually worth using.
 
 ## what's on the site
 
