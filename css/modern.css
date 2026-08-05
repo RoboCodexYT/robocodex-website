@@ -842,6 +842,68 @@ button {
   min-height: 1.2em;
 }
 
+/* PID tuner */
+.mode-btn.active {
+  background: var(--primary);
+  color: #fff;
+  border-color: var(--primary);
+}
+
+#tuner-canvas {
+  width: 100%;
+  display: block;
+  border-radius: 12px;
+}
+
+.gain-label {
+  display: flex;
+  justify-content: space-between;
+  font-size: .92rem;
+  margin-top: .5rem;
+}
+
+.gain-val {
+  color: var(--primary);
+  font-weight: 700;
+  font-variant-numeric: tabular-nums;
+}
+
+input[type="range"].gain-range,
+.gain-label + input[type="range"] {
+  width: 100%;
+  accent-color: var(--primary-2);
+}
+
+.metric-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: .5rem 0;
+  border-bottom: 1px solid var(--border);
+  font-size: .92rem;
+}
+
+.metric-row span {
+  color: var(--muted);
+}
+
+.metric-row strong {
+  color: var(--primary);
+  font-variant-numeric: tabular-nums;
+}
+
+.preset-list {
+  display: flex;
+  flex-direction: column;
+  gap: .5rem;
+  margin-bottom: .75rem;
+}
+
+.preset-btn {
+  justify-content: flex-start;
+  font-size: .9rem;
+}
+
 .meta-row {
   display: flex;
   justify-content: space-between;

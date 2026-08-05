@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>PID Tuner • RoboCodex</title>
+  <meta name="description" content="Simulate a motor response and tune PIDF gains before you write real FTC code. Copy your tuned values straight into Java.">
+  <link rel="stylesheet" href="css/modern.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+  <header class="site-header">
+    <div class="container navbar">
+      <a class="brand" href="index.html"><img src="images/logo.png" alt="RoboCodex Logo" class="brand-logo"><span>RoboCodex</span></a>
+      <nav class="nav-links" aria-label="Main navigation">
+        <a href="index.html">Home</a>
+        <a href="content.html">Videos</a>
+        <a href="guides.html">Guides</a>
+        <a href="resources.html">Resources</a>
+        <a href="stats.html">Stats</a>
+        <a href="about.html">About</a>
+      </nav>
+      <div class="header-actions">
+        <button id="theme-toggle" class="btn btn-ghost" type="button" aria-label="Switch color theme"><i class="fa-solid fa-moon"></i></button>
+        <a class="btn btn-primary" href="content.html">Explore Videos</a>
+      </div>
+    </div>
+  </header>
+
+  <main class="section">
+    <div class="container">
+      <div class="section-title">
+        <div>
+          <div class="badge">Autonomous tools</div>
+          <h1>PID tuner</h1>
+          <p class="muted">A simulated motor on a virtual bench. Move the sliders and watch the response change — no robot, no build, no risk of launching your bot across the shop.</p>
+        </div>
+      </div>
+
+      <div class="card field-card">
+        <div class="viz-control-row">
+          <button class="btn mode-btn active" data-mode="pos" type="button">Position step</button>
+          <button class="btn mode-btn" data-mode="vel" type="button">Velocity step</button>
+          <span class="muted small-text">The controller gets a target at 0.5s and has 5.5s to reach it.</span>
+        </div>
+        <canvas id="tuner-canvas" aria-label="PID response graph"></canvas>
+      </div>
+
+      <div class="grid grid-2" style="margin-top:1.25rem;">
+        <div class="card viz-editor">
+          <h3>Tuning gains</h3>
+          <label class="gain-label">kP <span id="kp-val" class="gain-val">0.55</span></label>
+          <input id="kp" type="range" min="0" max="3" step="0.05" value="0.55">
+
+          <label class="gain-label">kI <span id="ki-val" class="gain-val">0.05</span></label>
+          <input id="ki" type="range" min="0" max="2" step="0.01" value="0.05">
+
+          <label class="gain-label">kD <span id="kd-val" class="gain-val">0.30</span></label>
+          <input id="kd" type="range" min="0" max="1" step="0.01" value="0.30">
+
+          <label class="gain-label">kF (feedforward) <span id="kf-val" class="gain-val">0.03</span></label>
+          <input id="kf" type="range" min="0" max="0.5" step="0.01" value="0.03">
+
+          <p class="muted small-text" style="margin:.75rem 0 0;">
+            <strong>kP</strong> pulls toward target · <strong>kI</strong> kills steady-state error but can wind up · <strong>kD</strong> damps and calms overshoot · <strong>kF</strong> does the heavy lifting on velocity targets.
+          </p>
+        </div>
+
+        <div class="card viz-editor">
+          <h3>Response</h3>
+          <div class="metric-row"><span>Overshoot</span><strong id="r-overshoot">—</strong></div>
+          <div class="metric-row"><span>Settle time</span><strong id="r-settle">—</strong></div>
+          <div class="metric-row"><span>Steady-state error</span><strong id="r-sserr">—</strong></div>
+
+          <h3>Presets</h3>
+          <div id="preset-list" class="preset-list"></div>
+
+          <button id="tuner-copy" class="btn btn-primary" type="button"><i class="fa-solid fa-copy"></i> Copy as Java</button>
+          <p class="muted small-text" style="margin:.6rem 0 0;">Copy copies a ready-to-paste <code>PIDFCoefficients</code> line for Android Studio.</p>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-contact">
+        <span class="footer-contact-label">Questions? Reach out:</span>
+        <a class="footer-email" href="mailto:robocode98@gmail.com"><i class="fa-solid fa-envelope"></i> robocode98@gmail.com</a>
+      </div>
+      <p>© 2026 RoboCodex. An independent educational resource.</p>
+      <div class="footer-links">
+        <a href="about.html">About</a>
+        <a href="guides.html">Guides</a>
+        <a href="resources.html">Resources</a>
+        <a href="stats.html">Stats</a>
+        <a href="content.html">Videos</a>
+        <a href="https://www.youtube.com/@RoboCodex" target="_blank" rel="noopener noreferrer">YouTube</a>
+      </div>
+    </div>
+  </footer>
+
+  <script src="js/tuner.js"></script>
+  <script src="js/app.js"></script>
+</body>
+</html>
