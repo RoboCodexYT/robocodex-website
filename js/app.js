@@ -50,7 +50,8 @@ function isBookmarked(type, id) {
 }
 
 function getTheme() {
-  return localStorage.getItem(STORAGE_KEYS.theme) || 'light';
+  const stored = localStorage.getItem(STORAGE_KEYS.theme);
+  return stored === 'dark' ? 'dark' : 'light';
 }
 
 function applyTheme(theme) {
