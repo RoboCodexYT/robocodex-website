@@ -157,6 +157,53 @@
     this.trail.setAttribute('points', attr);
   };
 
+  FTCField.prototype.segmentLengths = function () {
+    const pts = this.points;
+    if (!this._lengths || this._lengthsFor !== pts) {
+      this._lengths = [];
+      this._lengthsFor = pts;
+      for (let i = 0; i < pts.length - 1; i++) {
+        this._lengths.push(Math.hypot(pts[i + 1][0] - pts[i][0], pts[i + 1][1] - pts[i][1]));
+      }
+    }
+    return this._lengths;
+  };
+
+  FTCField.prototype.totalLength = function () {
+    return this.segmentLengths().reduce((sum, l) => sum + l, 0) || 0;
+  };
+
+  FTCField.prototype.getProgress = function () {
+    const total = this.totalLength();
+    if (!total) return 0;
+    let traveled = 0;
+    const lens = this.segmentLengths();
+    for (let i = 0; i < this.seg && i < lens.length; i++) traveled += lens[i];
+    if (this.seg < lens.length) traveled += Math.min(this.t, lens[this.seg]);
+    return Math.max(0, Math.min(1, traveled / total));
+  };
+
+  FTCField.prototype.seek = function (progress) {
+    const pts = this.points;
+    if (pts.length < 2) { this.seg = 0; this.t = 0; this.position(this.seg); return; }
+    const p = Math.max(0, Math.min(1, progress));
+    const target = p * this.totalLength();
+    const lens = this.segmentLengths();
+    let traveled = 0;
+    for (let i = 0; i < lens.length; i++) {
+      if (traveled + lens[i] >= target) {
+        this.seg = i;
+        this.t = target - traveled;
+        this.position(this.seg);
+        return;
+      }
+      traveled += lens[i];
+    }
+    this.seg = pts.length - 1;
+    this.t = 0;
+    this.position(this.seg);
+  };
+
   document.addEventListener('DOMContentLoaded', () => {
     document.querySelectorAll('.ftc-field').forEach((node) => {
       const path = node.getAttribute('data-path');

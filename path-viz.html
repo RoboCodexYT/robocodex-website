@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Path Visualizer • RoboCodex</title>
+  <meta name="description" content="Preview FTC autonomous paths on a virtual field. Paste your own points or load a sample and watch the robot run it.">
+  <link rel="stylesheet" href="css/modern.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+  <header class="site-header">
+    <div class="container navbar">
+      <a class="brand" href="index.html"><img src="images/logo.png" alt="RoboCodex Logo" class="brand-logo"><span>RoboCodex</span></a>
+      <nav class="nav-links" aria-label="Main navigation">
+        <a href="index.html">Home</a>
+        <a href="content.html">Videos</a>
+        <a href="guides.html">Guides</a>
+        <a href="resources.html">Resources</a>
+        <a href="stats.html">Stats</a>
+        <a href="about.html">About</a>
+      </nav>
+      <div class="header-actions">
+        <button id="theme-toggle" class="btn btn-ghost" type="button" aria-label="Switch color theme"><i class="fa-solid fa-moon"></i></button>
+        <a class="btn btn-primary" href="content.html">Explore Videos</a>
+      </div>
+    </div>
+  </header>
+
+  <main class="section">
+    <div class="container">
+      <div class="section-title">
+        <div>
+          <div class="badge">Autonomous tools</div>
+          <h1>Path visualizer</h1>
+          <p class="muted">Plan a route before you write a single line of autonomous code. Load a sample, or paste your own points, and watch the robot run it on the field.</p>
+        </div>
+      </div>
+
+      <div class="grid grid-2">
+        <div class="card field-card">
+          <div id="viz-field"></div>
+          <div class="viz-controls">
+            <div class="viz-control-row">
+              <button id="viz-play" class="btn btn-primary" type="button">Play</button>
+              <button id="viz-reset" class="btn btn-secondary" type="button">Reset</button>
+              <label class="viz-toggle"><input id="viz-loop" type="checkbox" checked> Loop</label>
+            </div>
+            <div class="viz-control-row">
+              <label for="viz-speed">Speed <span id="viz-speed-value">0.55</span></label>
+              <input id="viz-speed" type="range" min="0.1" max="3" step="0.05" value="0.55">
+            </div>
+            <div class="viz-control-row">
+              <input id="viz-scrubber" type="range" min="0" max="1000" value="0" aria-label="Scrub through the path">
+            </div>
+            <div class="viz-meta">
+              <span id="viz-points">0 points</span>
+              <span id="viz-source" class="muted">no path loaded</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="card viz-editor">
+          <h3>Load a sample</h3>
+          <select id="viz-sample" aria-label="Choose a sample path"></select>
+          <p id="viz-sample-desc" class="muted small-text" style="min-height:2.4em;"></p>
+
+          <h3>Or paste your own points</h3>
+          <textarea id="viz-input" rows="8" spellcheck="false" placeholder='A JSON array of [x, y] pairs:
+
+[
+  [20, 122],
+  [72, 72],
+  [122, 20]
+]
+
+or objects with x and y:
+[{"x":20,"y":122},{"x":72,"y":72}]
+
+or plain lines:
+20, 122
+72, 72
+122, 20'></textarea>
+          <p id="viz-error" class="viz-error" role="alert"></p>
+          <button id="viz-apply" class="btn btn-primary" type="button">Preview path</button>
+          <p id="viz-coords" class="muted small-text" style="margin-top:.75rem;"></p>
+        </div>
+      </div>
+
+      <div class="card list-item" style="margin-top:1.5rem;">
+        <strong>Units &amp; tips</strong> — coordinates are in inches on a 144x144 field, origin at the top-left. In Pedro Pathing, <code>point.x</code> and <code>point.y</code> map straight onto this. Pair this with the <a href="guides.html#guide-autonomous-intro">autonomous guide</a> to plan before you build.
+      </div>
+    </div>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-contact">
+        <span class="footer-contact-label">Questions? Reach out:</span>
+        <a class="footer-email" href="mailto:robocode98@gmail.com"><i class="fa-solid fa-envelope"></i> robocode98@gmail.com</a>
+      </div>
+      <p>© 2026 RoboCodex. An independent educational resource.</p>
+      <div class="footer-links">
+        <a href="about.html">About</a>
+        <a href="guides.html">Guides</a>
+        <a href="resources.html">Resources</a>
+        <a href="stats.html">Stats</a>
+        <a href="content.html">Videos</a>
+        <a href="https://www.youtube.com/@RoboCodex" target="_blank" rel="noopener noreferrer">YouTube</a>
+      </div>
+    </div>
+  </footer>
+
+  <script src="app/components/field-svg.js"></script>
+  <script src="js/path-viz.js"></script>
+  <script src="js/app.js"></script>
+</body>
+</html>

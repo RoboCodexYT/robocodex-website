@@ -1,0 +1,53 @@
+{
+  "samples": [
+    {
+      "name": "Demo scoring cycle",
+      "description": "Start in the corner, drive to center, curve out and score.",
+      "points": [
+        [20, 122],
+        [40, 118],
+        [40, 88],
+        [72, 72],
+        [104, 56],
+        [116, 36],
+        [122, 20]
+      ]
+    },
+    {
+      "name": "Straight to center, then score",
+      "description": "A simple two-phase autonomous: drive to the middle, then run to a scoring zone.",
+      "points": [
+        [18, 120],
+        [72, 72],
+        [120, 30]
+      ]
+    },
+    {
+      "name": "S-curve approach",
+      "description": "A curved autonomous path that weaves around the center line.",
+      "points": [
+        [18, 126],
+        [36, 96],
+        [72, 88],
+        [108, 96],
+        [126, 60],
+        [110, 30]
+      ]
+    },
+    {
+      "name": "Two-object loop",
+      "description": "Grab one element, score, grab another, score again — a full loop back to start.",
+      "points": [
+        [22, 122],
+        [48, 110],
+        [60, 74],
+        [96, 80],
+        [112, 52],
+        [84, 40],
+        [60, 40],
+        [22, 60],
+        [22, 122]
+      ]
+    }
+  ]
+}

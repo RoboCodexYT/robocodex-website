@@ -766,6 +766,82 @@ button {
   gap: .75rem;
 }
 
+/* Path visualizer */
+.viz-controls {
+  display: flex;
+  flex-direction: column;
+  gap: .75rem;
+  padding-top: .25rem;
+}
+
+.viz-control-row {
+  display: flex;
+  align-items: center;
+  gap: .75rem;
+  flex-wrap: wrap;
+}
+
+.viz-control-row input[type="range"] {
+  flex: 1;
+  min-width: 120px;
+  accent-color: var(--primary-2);
+}
+
+.viz-toggle {
+  display: inline-flex;
+  align-items: center;
+  gap: .4rem;
+  font-size: .9rem;
+  color: var(--muted);
+}
+
+.viz-meta {
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+  font-size: .85rem;
+}
+
+.viz-editor {
+  display: flex;
+  flex-direction: column;
+  gap: .5rem;
+}
+
+.viz-editor h3 {
+  margin: .75rem 0 0;
+  font-size: 1rem;
+}
+
+.viz-editor select,
+.viz-editor textarea {
+  width: 100%;
+  font-family: var(--font-body);
+  font-size: .9rem;
+  color: var(--text);
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: .6rem .75rem;
+}
+
+.viz-editor textarea {
+  resize: vertical;
+}
+
+.viz-editor select:focus,
+.viz-editor textarea:focus {
+  outline: 2px solid var(--accent);
+  outline-offset: 1px;
+}
+
+.viz-error {
+  color: #dc3545;
+  font-size: .85rem;
+  margin: 0;
+  min-height: 1.2em;
+}
+
 .meta-row {
   display: flex;
   justify-content: space-between;
