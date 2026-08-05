@@ -703,6 +703,69 @@ button {
   color: var(--primary);
 }
 
+/* Animated FTC field component */
+.ftc-field-svg {
+  display: block;
+  max-width: 100%;
+  height: auto;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+}
+
+.ftc-field-svg .field-tiles {
+  fill: var(--surface);
+}
+
+.ftc-field-svg .field-grid {
+  stroke: var(--border);
+  stroke-width: 0.5;
+}
+
+.ftc-field-svg .field-center {
+  stroke: var(--border);
+  stroke-width: 1;
+  stroke-dasharray: 3 3;
+}
+
+.ftc-field-svg .field-alliance-red {
+  fill: rgba(220, 80, 80, 0.35);
+}
+
+.ftc-field-svg .field-alliance-blue {
+  fill: rgba(70, 130, 220, 0.35);
+}
+
+.ftc-field-svg .field-goal {
+  fill: var(--accent);
+  opacity: 0.8;
+}
+
+.ftc-field-svg .field-trail {
+  stroke: var(--accent);
+  stroke-width: 2;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  opacity: 0.85;
+}
+
+.ftc-field-svg .field-robot rect {
+  fill: var(--primary-2);
+  stroke: var(--text);
+  stroke-width: 1;
+}
+
+.ftc-field-svg .field-robot-heading {
+  stroke: var(--surface);
+  stroke-width: 2;
+}
+
+.field-card {
+  display: flex;
+  flex-direction: column;
+  gap: .75rem;
+}
+
 .meta-row {
   display: flex;
   justify-content: space-between;
