@@ -4,3 +4,8 @@ node_modules/
 # misc
 .DS_Store
 *.log
+
+# secrets
+.env
+.env.local
+.env.*.local
