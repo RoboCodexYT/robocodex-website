@@ -177,6 +177,7 @@ function renderVideoCards() {
     return;
   }
   grid.innerHTML = visible.map(buildVideoCard).join('');
+  if (window.RoboAnim) RoboAnim.refresh(grid);
 }
 
 function renderFeaturedVideo() {
@@ -227,6 +228,7 @@ function renderGuides() {
       : ''}
     </article>
   `).join('');
+  if (window.RoboAnim) RoboAnim.refresh(target);
 }
 
 function escapeHtml(value) {
@@ -499,6 +501,7 @@ function renderResources() {
       </div>
     </article>
   `).join('');
+  if (window.RoboAnim) RoboAnim.refresh(target);
 }
 
 function renderBookmarks() {
@@ -532,6 +535,7 @@ function renderBookmarks() {
       </div>
     `;
   }).join('');
+  if (window.RoboAnim) RoboAnim.refresh(target);
 }
 
 // ==========================================================================
@@ -701,6 +705,8 @@ function renderKnowledgeMap() {
 
   // 4. Initialize interactions
   setupMapInteractions();
+
+  if (window.RoboAnim) RoboAnim.refresh(nodesContainer);
 }
 
 function renderMobileAccordion() {

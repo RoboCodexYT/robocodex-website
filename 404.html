@@ -32,7 +32,7 @@
   <main class="section">
     <div class="container">
       <section class="lost-hero">
-        <div class="lost-copy">
+        <div class="lost-copy" data-animate="left">
           <p class="lost-kicker"><i class="fa-solid fa-robot" aria-hidden="true"></i> telemetry: no such route</p>
           <h1 class="lost-numeral" aria-label="404">404</h1>
           <h2 class="lost-title">Robot ran a 404.</h2>
@@ -42,7 +42,7 @@
             <a class="btn btn-secondary" href="guides.html"><i class="fa-solid fa-book-open" aria-hidden="true"></i> Read the guides</a>
           </div>
         </div>
-        <div class="card lost-scene">
+        <div class="card lost-scene" data-animate="right">
           <div id="ftc-field-lost" class="lost-field" aria-hidden="true"></div>
           <div class="lost-scene-caption">
             <i class="fa-solid fa-magnifying-glass" aria-hidden="true"></i>
@@ -107,6 +107,7 @@
 
   <script src="js/app.js"></script>
 
+  <script src="js/scroll-anim.js" defer></script>
   <script src="js/pwa.js" defer></script>
 </body>
 </html>
