@@ -562,6 +562,30 @@ button {
   color: var(--primary);
 }
 
+.about-profile {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 1rem;
+}
+
+.about-profile h3 {
+  margin: 0 0 0.2rem;
+}
+
+.about-avatar {
+  width: 64px;
+  height: 64px;
+  border-radius: 16px;
+  box-shadow: var(--shadow);
+  flex-shrink: 0;
+}
+
+.about-numbers {
+  grid-template-columns: repeat(2, 1fr);
+  margin: 1rem 0;
+}
+
 .award-list {
   display: flex;
   flex-direction: column;
