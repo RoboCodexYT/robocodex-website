@@ -12,7 +12,7 @@ This site is where i put everything i wish someone had handed me: videos, writte
 | videos | `content.html` — the video library, searchable and filterable by category, with watch/save |
 | guides | `guides.html` — readable-inline FTC guides (encoders, PID tuning, etc.) with a knowledge map and a listen button |
 | resources | `resources.html` — a curated directory of official FIRST docs, programming libraries, CAD parts, scouting sites, and channels |
-| stats | `stats.html` — team 24813 season stats, awards, and match breakdowns |
+| stats | private — team-24813 season stats and match breakdowns, gated behind a passcode and removed from all navigation |
 | about | `about.html` — who i am and why this exists |
 | calculators | `calculators.html` — gear ratio, drivetrain speed, and encoder distance tools |
 | bookmarks | `bookmarks.html` — save videos and resources locally in your browser |

@@ -2053,3 +2053,59 @@ input[type="number"] {
     grid-template-columns: 1fr;
   }
 }
+
+#stats-gate {
+  position: fixed;
+  inset: 0;
+  z-index: 200;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1.5rem;
+  background: var(--bg);
+}
+
+.stats-gate-card {
+  width: 100%;
+  max-width: 24rem;
+  text-align: center;
+}
+
+.stats-gate-logo {
+  width: 72px;
+  height: 72px;
+  border-radius: 18px;
+  margin-bottom: 1rem;
+  box-shadow: var(--shadow);
+}
+
+.stats-gate-card h1 {
+  margin: 0 0 0.5rem;
+}
+
+.stats-gate-sub {
+  color: var(--muted);
+  margin: 0 0 1.25rem;
+}
+
+.stats-gate-form {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.stats-gate-form input {
+  padding: 0.7rem 1rem;
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  background: var(--surface);
+  color: var(--text);
+  font-family: var(--font-body);
+  font-size: 1rem;
+}
+
+.stats-gate-error {
+  color: #b03030;
+  font-size: 0.9rem;
+  margin: 0.75rem 0 0;
+}

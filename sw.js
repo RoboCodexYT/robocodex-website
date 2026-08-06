@@ -1,4 +1,4 @@
-const CACHE = 'robocodex-v2';
+const CACHE = 'robocodex-v3';
 const PRECACHE = [
   '/',
   '/index.html',
@@ -20,7 +20,6 @@ const PRECACHE = [
   '/content.html',
   '/guides.html',
   '/resources.html',
-  '/stats.html',
   '/about.html',
   '/calculators.html',
   '/bookmarks.html',
