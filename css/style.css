@@ -1,78 +1,27 @@
-@import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700&family=Poppins:wght@700&display=swap');
 
+/* colors, fonts and base element styles now come from modern.css.
+   only the legacy sizing tokens these older pages still use live here. */
 :root {
-    /* Colors */
-    --primary-color: #1D4D79; /* RoboCodex blue */
-    --secondary-color: #ffffff; /* white */
-    --accent-color: #ff6b35; /* orange for CTAs */
-    --dark-text: #415dcd;
-    --light-background: #f5f5f5;
-    --footer-background: #1a1a1a;
-    --success-color: #28a745;
-    --error-color: #d32f2f;
+    --secondary-color: var(--surface);
+    --success-color: #3FB37F;
+    --error-color: var(--danger);
 
-    /* Typography */
-    --heading-font: 'Poppins', sans-serif;
-    --body-font: 'Open Sans', sans-serif;
-
-    --h1-size: 56px;
-    --h2-size: 40px;
-    --h3-size: 28px;
-    --body-size: 16px;
+    --h1-size: 48px;
+    --h2-size: 34px;
+    --h3-size: 22px;
+    --body-size: 17px;
     --small-size: 14px;
 
-    /* Spacing */
     --spacing-unit: 8px;
-    --padding-sm: calc(2 * var(--spacing-unit)); /* 16px */
-    --padding-md: calc(5 * var(--spacing-unit)); /* 40px */
-    --padding-lg: calc(7.5 * var(--spacing-unit)); /* 60px */
-    --gap-sm: calc(2.5 * var(--spacing-unit)); /* 20px */
-    --gap-md: calc(3 * var(--spacing-unit)); /* 24px */
+    --padding-sm: calc(2 * var(--spacing-unit));
+    --padding-md: calc(5 * var(--spacing-unit));
+    --padding-lg: calc(7.5 * var(--spacing-unit));
+    --gap-sm: calc(2.5 * var(--spacing-unit));
+    --gap-md: calc(3 * var(--spacing-unit));
 
-    /* Border Radius */
     --border-radius-sm: 8px;
     --border-radius-md: 10px;
 }
-
-/* Base Styles & Reset */
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
-
-html {
-    scroll-behavior: smooth;
-}
-
-body {
-    font-family: var(--body-font);
-    font-size: var(--body-size);
-    line-height: 1.6;
-    color: var(--dark-text);
-    background-color: var(--secondary-color);
-}
-
-a {
-    color: var(--primary-color);
-    text-decoration: none;
-    transition: color 0.3s ease;
-}
-
-a:hover {
-    color: var(--accent-color);
-}
-
-h1, h2, h3, h4, h5, h6 {
-    font-family: var(--heading-font);
-    color: var(--dark-text);
-    line-height: 1.2;
-    margin-bottom: var(--padding-sm);
-}
-
-h1 { font-size: var(--h1-size); }
-h2 { font-size: var(--h2-size); }
-h3 { font-size: var(--h3-size); }
 
 img {
     max-width: 100%;
@@ -94,13 +43,13 @@ button, .button {
 /* Primary Button */
 .button-primary {
     background-color: var(--accent-color);
-    color: var(--secondary-color);
+    color: #fff;
     border: 2px solid var(--accent-color);
 }
 
 .button-primary:hover {
-    background-color: darken(var(--accent-color), 10%); /* Placeholder for darken, will adjust */
-    border-color: darken(var(--accent-color), 10%);
+    background-color: var(--btn-bg-hover); /* Placeholder for darken, will adjust */
+    border-color: var(--btn-bg-hover);
     transform: translateY(-2px);
 }
 
@@ -113,16 +62,12 @@ button, .button {
 
 .button-secondary:hover {
     background-color: var(--primary-color);
-    color: var(--secondary-color);
+    color: #fff;
     transform: translateY(-2px);
 }
 
 /* Utility Classes */
-.container {
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 0 var(--padding-sm);
-}
+
 
 .section-padding {
     padding: var(--padding-lg) var(--padding-md);
@@ -139,10 +84,12 @@ textarea {
     width: 100%;
     padding: 12px;
     margin-bottom: var(--padding-sm);
-    border: 1px solid #ccc;
+    border: 1px solid var(--border);
     border-radius: var(--border-radius-sm);
     font-family: var(--body-font);
     font-size: var(--body-size);
+    background: var(--bg);
+    color: var(--text);
 }
 
 textarea {
@@ -176,26 +123,13 @@ textarea {
 
 /* Desktop: 769px and above - already set by default */
 
-/* Navigation Bar */
-.navbar {
-    position: sticky;
-    top: 0;
-    left: 0;
-    width: 100%;
-    background-color: var(--primary-color);
-    padding: var(--padding-sm) var(--padding-md);
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    z-index: 1000;
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-}
+/* Navigation Bar (legacy .nav-menu only; .navbar is styled in modern.css) */
 
 .navbar .logo {
     font-family: var(--heading-font);
     font-size: 28px;
     font-weight: 700;
-    color: var(--secondary-color);
+    color: #fff;
     text-decoration: none;
 }
 
@@ -208,7 +142,7 @@ textarea {
 }
 
 .nav-menu a {
-    color: var(--secondary-color);
+    color: #fff;
     font-weight: 600;
     font-size: 18px;
     padding: 5px 0;
@@ -270,7 +204,7 @@ textarea {
     bottom: var(--padding-md);
     right: var(--padding-md);
     background-color: var(--primary-color);
-    color: var(--secondary-color);
+    color: #fff;
     border: none;
     border-radius: 50%;
     width: 50px;
@@ -330,25 +264,8 @@ textarea {
 }
 
 /* Footer Styles */
-footer {
-    background-color: var(--footer-background);
-    color: var(--secondary-color);
-    padding: var(--padding-lg) var(--padding-md);
-    text-align: center;
-}
-
-footer a {
-    color: var(--secondary-color);
-    transition: color 0.3s ease;
-}
-
 footer a:hover {
-    color: var(--accent-color);
-}
-
-.footer-links a {
-    margin: 0 var(--padding-sm);
-    font-size: var(--body-size);
+    color: var(--text);
 }
 
 .social-icons {
@@ -373,7 +290,7 @@ footer .container {
     display: flex;
     align-items: center;
     justify-content: center;
-    color: var(--secondary-color);
+    color: #fff;
     text-align: center;
     background: url('../images/hero-bg.jpg') no-repeat center center/cover; /* Placeholder image */
 }
@@ -394,7 +311,7 @@ footer .container {
 }
 
 .hero-content h1 {
-    color: var(--secondary-color);
+    color: #fff;
     font-size: var(--h1-size);
     margin-bottom: var(--padding-sm);
 }
@@ -402,7 +319,7 @@ footer .container {
 .hero-content .subheading {
     font-size: 24px;
     margin-bottom: var(--padding-md);
-    color: var(--secondary-color);
+    color: #fff;
 }
 
 .hero-buttons {
@@ -454,7 +371,7 @@ footer .container {
 
 .featured-content-section .subtitle {
     font-size: 18px;
-    color: #666;
+    color: var(--muted);
     margin-bottom: var(--padding-lg);
 }
 
@@ -496,7 +413,7 @@ footer .container {
 
 .video-info .video-date {
     font-size: var(--small-size);
-    color: #888;
+    color: var(--muted);
     display: block;
     margin-bottom: 5px;
 }
@@ -504,7 +421,7 @@ footer .container {
 .video-info .category-badge {
     display: inline-block;
     background-color: var(--primary-color);
-    color: var(--secondary-color);
+    color: #fff;
     font-size: 12px;
     padding: 4px 8px;
     border-radius: var(--border-radius-sm);
@@ -520,18 +437,18 @@ footer .container {
 
 /* Course Coming Soon Teaser */
 .course-teaser-section {
-    background: linear-gradient(to right, var(--primary-color), #0056b3);
-    color: var(--secondary-color);
+    background: linear-gradient(to right, var(--brand-deep), var(--brand));
+    color: #fff;
 }
 
 .course-teaser-section h2 {
-    color: var(--secondary-color);
+    color: #fff;
     margin-bottom: var(--padding-sm);
 }
 
 .course-teaser-section .subheading {
     font-size: 20px;
-    color: var(--secondary-color);
+    color: #fff;
     margin-bottom: var(--padding-md);
 }
 
@@ -592,22 +509,22 @@ footer .container {
 
 /* Small Hero Section for Content Page */
 .small-hero-section {
-    background: linear-gradient(to right, var(--primary-color), #0056b3);
-    color: var(--secondary-color);
+    background: transparent;
+    color: var(--text);
+    border-bottom: 1px solid var(--border);
     padding: var(--padding-md) var(--padding-md); /* 40px top/bottom, 40px left/right */
     text-align: center;
 }
 
 .small-hero-section h1 {
-    color: var(--secondary-color);
+    color: var(--text);
     font-size: var(--h2-size); /* Reusing H2 size for small hero H1 */
     margin-bottom: var(--padding-sm);
 }
 
 .small-hero-section .subheading {
     font-size: 18px;
-    color: var(--secondary-color);
-    opacity: 0.9;
+    color: var(--muted);
 }
 
 /* Filter Tabs/Buttons */
@@ -633,7 +550,7 @@ footer .container {
     flex-shrink: 0; /* Prevent buttons from shrinking */
     background-color: var(--secondary-color);
     color: var(--primary-color);
-    border: 1px solid #ccc;
+    border: 1px solid var(--border);
     padding: 10px 18px;
     border-radius: 20px; /* More rounded for tabs */
     font-size: var(--body-size);
@@ -650,7 +567,7 @@ footer .container {
 
 .filter-button.active {
     background-color: var(--accent-color);
-    color: var(--secondary-color);
+    color: #fff;
     border-color: var(--accent-color);
     font-weight: 700;
 }
@@ -717,7 +634,7 @@ footer .container {
 
 .video-grid .video-info .video-date {
     font-size: var(--small-size);
-    color: #888;
+    color: var(--muted);
     display: block;
     margin-bottom: 5px;
 }
@@ -733,7 +650,7 @@ footer .container {
     text-align: center;
     grid-column: 1 / -1; /* Span all columns */
     font-size: 1.2em;
-    color: #666;
+    color: var(--muted);
     padding: var(--padding-lg);
 }
 
@@ -755,7 +672,7 @@ footer .container {
 /* About Page Specific Styles */
 /* About Hero Section (reusing small-hero-section from content.html) */
 .about-hero-section {
-    background: linear-gradient(to right, var(--primary-color), #0056b3);
+    background: linear-gradient(to right, var(--brand-deep), var(--brand));
 }
 
 /* Main Content Section - Jose's Story */
@@ -834,7 +751,7 @@ footer .container {
 
 .stat-card p {
     font-size: var(--small-size);
-    color: #666;
+    color: var(--muted);
 }
 
 /* What's Coming Section */
@@ -869,17 +786,17 @@ footer .container {
 
 /* CTA Newsletter Section (reusing elements where possible) */
 .cta-newsletter-section {
-    background: linear-gradient(to right, var(--primary-color), #0056b3);
-    color: var(--secondary-color);
+    background: linear-gradient(to right, var(--brand-deep), var(--brand));
+    color: #fff;
 }
 
 .cta-newsletter-section h2 {
-    color: var(--secondary-color);
+    color: #fff;
     margin-bottom: var(--padding-sm);
 }
 
 .cta-newsletter-section .subheading {
-    color: var(--secondary-color);
+    color: #fff;
     margin-bottom: var(--padding-md);
 }
 
@@ -895,12 +812,12 @@ footer .container {
 .newsletter-form input[type="email"] {
     flex-grow: 1;
     min-width: 250px;
-    background-color: rgba(255, 255, 255, 0.9);
+    background-color: var(--surface);
     border: 1px solid rgba(255, 255, 255, 0.3);
     color: var(--dark-text);
 }
 .newsletter-form input[type="email"]::placeholder {
-    color: #666;
+    color: var(--muted);
 }
 
 /* Responsive adjustments for About page sections */
@@ -939,8 +856,8 @@ footer .container {
 
 /* Course Page Specific Styles */
 .course-hero-section {
-    background: linear-gradient(to right, var(--primary-color), #0056b3);
-    color: var(--secondary-color);
+    background: linear-gradient(to right, var(--brand-deep), var(--brand));
+    color: #fff;
     padding: 80px var(--padding-md);
     text-align: center;
 }
@@ -948,7 +865,7 @@ footer .container {
 .course-hero-section .badge {
     display: inline-block;
     background-color: var(--error-color); /* Red for 'COMING SOON' */
-    color: var(--secondary-color);
+    color: #fff;
     padding: 8px 16px;
     border-radius: var(--border-radius-sm);
     font-weight: 700;
@@ -958,7 +875,7 @@ footer .container {
 }
 
 .course-hero-section h1 {
-    color: var(--secondary-color);
+    color: #fff;
     font-size: var(--h1-size);
     margin-bottom: var(--padding-sm);
 }
@@ -966,7 +883,7 @@ footer .container {
 .course-hero-section .subheading {
     font-size: 24px;
     margin-bottom: var(--padding-md);
-    color: var(--secondary-color);
+    color: #fff;
 }
 
 .course-hero-section .button-large {
@@ -1046,7 +963,7 @@ footer .container {
 
 .detail-card p {
     font-size: var(--body-size);
-    color: #666;
+    color: var(--muted);
 }
 
 /* Why This Course Section */
@@ -1098,7 +1015,7 @@ footer .container {
 
 .testimonials-section .subheading {
     font-size: 18px;
-    color: #666;
+    color: var(--muted);
     margin-bottom: var(--padding-lg);
 }
 
@@ -1119,7 +1036,7 @@ footer .container {
 .testimonial-card .quote {
     font-style: italic;
     margin-bottom: var(--padding-sm);
-    color: #555;
+    color: var(--muted);
 }
 
 .testimonial-card .rating {
@@ -1135,8 +1052,8 @@ footer .container {
 
 /* Email Signup Section (Course Page) */
 .email-signup-section {
-    background: linear-gradient(to right, #ff6b35, #ff8c42); /* Orange gradient */
-    color: var(--secondary-color);
+    background: linear-gradient(to right, var(--brand-deep), var(--brand)); /* Orange gradient */
+    color: #fff;
     padding: var(--padding-lg) var(--padding-md);
     text-align: center;
 }
@@ -1144,16 +1061,16 @@ footer .container {
 .email-signup-section .signup-icon {
     font-size: 60px;
     margin-bottom: var(--padding-sm);
-    color: var(--secondary-color);
+    color: #fff;
 }
 
 .email-signup-section h2 {
-    color: var(--secondary-color);
+    color: #fff;
     margin-bottom: var(--padding-sm);
 }
 
 .email-signup-section .subheading {
-    color: var(--secondary-color);
+    color: #fff;
     font-size: 20px;
     margin-bottom: var(--padding-md);
 }
@@ -1170,12 +1087,12 @@ footer .container {
 .email-signup-form input[type="email"] {
     flex-grow: 1;
     min-width: 250px;
-    background-color: rgba(255, 255, 255, 0.9);
+    background-color: var(--surface);
     border: 1px solid rgba(255, 255, 255, 0.3);
     color: var(--dark-text);
 }
 .email-signup-form input[type="email"]::placeholder {
-    color: #666;
+    color: var(--muted);
 }
 
 /* FAQ Section */
@@ -1193,7 +1110,7 @@ footer .container {
 }
 
 .faq-item {
-    border: 1px solid #ddd;
+    border: 1px solid var(--border);
     border-radius: var(--border-radius-sm);
     margin-bottom: var(--padding-sm);
     overflow: hidden;
@@ -1322,13 +1239,13 @@ footer .container {
 
 /* Contact Page Specific Styles */
 .contact-hero-section {
-    background: linear-gradient(to right, var(--primary-color), #0056b3);
-    color: var(--secondary-color);
+    background: transparent;
+    color: var(--text);
 }
 
 /* Contact Form Section */
 .contact-form-section {
-    background-color: var(--secondary-color);
+    background-color: transparent;
 }
 
 .contact-form {
@@ -1356,7 +1273,7 @@ footer .container {
 .contact-form textarea {
     width: 100%;
     padding: 12px;
-    border: 1px solid #ccc;
+    border: 1px solid var(--border);
     border-radius: var(--border-radius-sm);
     font-family: var(--body-font);
     font-size: var(--body-size);
@@ -1431,7 +1348,7 @@ footer .container {
 
 .contact-option p {
     font-size: var(--body-size);
-    color: #666;
+    color: var(--muted);
     margin-bottom: var(--padding-sm);
 }
 

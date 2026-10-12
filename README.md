@@ -9,13 +9,18 @@ This site is where i put everything i wish someone had handed me: videos, writte
 | page | what it is |
 |---|---|
 | home | `index.html` — the pitch, featured videos, an animated FTC field, calculator previews, and match breakdown teaser |
-| videos | `content.html` — the video library, searchable and filterable by category, with watch/save |
+| videos | `content.html` — youtube videos, shorts, and instagram carousels in one library, with type tabs, search, and a swipeable carousel viewer |
+| robot doctor | `doctor.html` — describe a symptom, answer a few questions, get ranked likely causes with fixes, code, and sources. also has a status light decoder and a pre-match checkup |
 | guides | `guides.html` — readable-inline FTC guides (encoders, PID tuning, etc.) with a knowledge map and a listen button |
 | resources | `resources.html` — a curated directory of official FIRST docs, programming libraries, CAD parts, scouting sites, and channels |
 | stats | private — team-24813 season stats and match breakdowns, gated behind a passcode and removed from all navigation |
 | about | `about.html` — who i am and why this exists |
 | calculators | `calculators.html` — gear ratio, drivetrain speed, and encoder distance tools |
 | bookmarks | `bookmarks.html` — save videos and resources locally in your browser |
+
+## robot doctor
+
+`doctor.html` is a symptom checker for FTC robots. the knowledge base (`js/doctor-data.js`) has 31 symptoms, 79 causes, and 95 questions, all sourced from FIRST's FTC docs, REV, GM0, Pedro Pathing, and the community — see `docs/robot-doctor-research.md`. the engine (`js/doctor-engine.js`) does a bayesian-style update after each answer and picks the next question by expected information gain, cheapest checks first. every diagnosis lives in the url, so it can be shared.
 
 ## the ftc toolkit
 
@@ -28,9 +33,9 @@ a few interactive tools live in their own pages — no backend, all client-side.
 
 ## the little things that work
 
-- light mode by default, dark mode toggle that remembers your choice
-- cards and sections fade in as you scroll, staggered per row — and the whole thing stands down if you prefer reduced motion
-- everything reads fine on a phone (the nav collapses, grids reflow)
+- dark mode by default (League Spartan, RoboCodex blues), light mode toggle that remembers your choice
+- cards and sections rise in as you scroll, staggered per row, the field robot starts driving when it comes into view — and the whole thing stands down if you prefer reduced motion
+- everything reads fine on a phone (the nav folds into a menu button, grids reflow)
 - videos, resources, and guides are all bookmarkable without signing in
 - deep links like `guides.html#guide-pid-tuning` open a guide directly
 - guides read themselves out loud with the browser's speech synth (the listen button)
@@ -50,6 +55,27 @@ python3 -m http.server 8000
 ```
 
 then open `http://localhost:8000`. the service worker registers itself and caches the whole site, so a second visit works offline.
+
+## how the video library stays updated
+
+`.github/workflows/update-videos.yml` runs every hour:
+
+- `scripts/update-videos.mjs` reads the youtube channel feed, tags each upload as a video or a short, and merges it into `data/videos.json` (the feed only lists the newest 15, so older uploads are kept, not dropped)
+- `scripts/update-instagram.mjs` pulls **carousel posts only** from instagram into `data/instagram.json` and downloads every slide into `images/instagram/<post id>/`, since instagram's image links expire
+- it only commits when something actually changed
+
+instagram needs two repo secrets (Settings → Secrets and variables → Actions):
+
+- `IG_ACCESS_TOKEN`: a long-lived token from the Instagram API with Instagram Login (the account has to be a creator or business account)
+- `SECRETS_PAT`: a fine-grained github token with "Secrets: read and write" on this repo, so `refresh-instagram-token.yml` can renew the instagram token every week before its 60 days run out
+
+without them the youtube side still works and instagram just gets skipped.
+
+## seo
+
+`npm run seo` (scripts/seo.mjs) owns everything search engines and link previews see: titles, descriptions, canonical urls, open graph / twitter cards, structured data, and noindex on private pages (stats, match breakdowns, bookmarks). it also writes a static, crawlable guide for every robot doctor symptom into `fix/`, plus `sitemap.xml` and `robots.txt`. **re-run it after editing `js/doctor-data.js` or adding a page.**
+
+after deploying, add the site in [Google Search Console](https://search.google.com/search-console) and submit `sitemap.xml`. the site lives in a subfolder of github.io, so robots.txt there isn't read by crawlers — submitting the sitemap is what counts.
 
 ## shipping changes
 

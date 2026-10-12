@@ -1,33 +1,40 @@
-const CACHE = 'robocodex-v4';
+const CACHE = 'robocodex-v8';
 const PRECACHE = [
-  '/',
-  '/index.html',
-  '/css/modern.css',
-  '/css/style.css',
-  '/js/app.js',
-  '/js/script.js',
-  '/js/pwa.js',
-  '/js/path-viz.js',
-  '/js/tuner.js',
-  '/js/tts.js',
-  '/js/scroll-anim.js',
-  '/app/components/field-svg.js',
-  '/data/videos.json',
-  '/data/guides.json',
-  '/data/resources.json',
-  '/data/paths.json',
-  '/manifest.webmanifest',
-  '/images/logo.png',
-  '/content.html',
-  '/guides.html',
-  '/resources.html',
-  '/about.html',
-  '/calculators.html',
-  '/bookmarks.html',
-  '/path-viz.html',
-  '/tuner.html',
-  '/course.html',
-  '/404.html'
+  './',
+  './index.html',
+  './css/modern.css',
+  './css/style.css',
+  './js/app.js',
+  './js/script.js',
+  './js/pwa.js',
+  './js/path-viz.js',
+  './js/tuner.js',
+  './js/tts.js',
+  './js/scroll-anim.js',
+  './js/site-ui.js',
+  './js/doctor.js',
+  './js/doctor-data.js',
+  './js/doctor-engine.js',
+  './css/doctor.css',
+  './app/components/field-svg.js',
+  './data/videos.json',
+  './data/instagram.json',
+  './data/guides.json',
+  './data/resources.json',
+  './data/paths.json',
+  './manifest.webmanifest',
+  './images/logo-96.png',
+  './content.html',
+  './doctor.html',
+  './guides.html',
+  './resources.html',
+  './about.html',
+  './calculators.html',
+  './bookmarks.html',
+  './path-viz.html',
+  './tuner.html',
+  './course.html',
+  './404.html'
 ];
 
 self.addEventListener('install', (event) => {
@@ -60,7 +67,21 @@ self.addEventListener('fetch', (event) => {
           caches.open(CACHE).then((cache) => cache.put(req, copy));
           return res;
         })
-        .catch(() => caches.match(req).then((hit) => hit || caches.match('/index.html')))
+        .catch(() => caches.match(req).then((hit) => hit || caches.match('./index.html')))
+    );
+    return;
+  }
+
+  // the video/carousel library updates hourly, so always try the network first
+  if (url.pathname.includes('/data/')) {
+    event.respondWith(
+      fetch(req)
+        .then((res) => {
+          const copy = res.clone();
+          caches.open(CACHE).then((cache) => cache.put(req, copy));
+          return res;
+        })
+        .catch(() => caches.match(req))
     );
     return;
   }

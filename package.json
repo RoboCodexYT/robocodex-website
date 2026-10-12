@@ -5,8 +5,9 @@
   "description": "FTC learning resource site (static HTML/CSS/JS).",
   "scripts": {
     "prepare": "husky",
-    "validate": "node scripts/validate-guides.mjs",
-    "serve": "python3 -m http.server 8000"
+    "validate": "node scripts/validate-guides.mjs && node scripts/validate-doctor.mjs",
+    "serve": "python3 -m http.server 8000",
+    "seo": "node scripts/seo.mjs"
   },
   "devDependencies": {
     "husky": "^9.1.7"

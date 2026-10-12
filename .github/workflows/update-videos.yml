@@ -1,33 +1,49 @@
 name: Update video library
 
+# pulls new youtube videos/shorts and instagram carousels every hour.
+# instagram needs the IG_ACCESS_TOKEN repo secret; without it that step just skips.
+
 on:
   schedule:
-    - cron: '0 * * * *'
+    - cron: '7 * * * *'
   workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: update-videos
+  cancel-in-progress: false
 
 jobs:
   refresh:
     runs-on: ubuntu-latest
     steps:
       - name: Check out repository
-        uses: actions/checkout@v4
+        uses: actions/checkout@v5
 
       - name: Set up Node.js
-        uses: actions/setup-node@v4
+        uses: actions/setup-node@v5
         with:
-          node-version: '20'
+          node-version: '22'
 
-      - name: Refresh videos
+      - name: Refresh YouTube videos and shorts
         run: node scripts/update-videos.mjs
+
+      - name: Refresh Instagram carousels
+        env:
+          IG_ACCESS_TOKEN: ${{ secrets.IG_ACCESS_TOKEN }}
+        run: node scripts/update-instagram.mjs
 
       - name: Commit updated library
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add data/videos.json
+          git add data/videos.json data/instagram.json images/instagram
           if git diff --cached --quiet; then
-            echo "No video changes to commit."
+            echo "No library changes to commit."
           else
-            git commit -m "Refresh the video library"
+            git commit -m "refresh the video + carousel library"
+            git pull --rebase
             git push
           fi
