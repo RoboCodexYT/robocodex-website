@@ -207,7 +207,21 @@
   document.addEventListener('DOMContentLoaded', () => {
     document.querySelectorAll('.ftc-field').forEach((node) => {
       const path = node.getAttribute('data-path');
-      new FTCField(node, path ? { path: JSON.parse(path), loop: false } : {});
+      const opts = path ? { path: JSON.parse(path), loop: false } : {};
+      // only drive while the field is on screen, so it starts when you scroll to it
+      if (!('IntersectionObserver' in window)) {
+        new FTCField(node, opts);
+        return;
+      }
+      opts.animate = false;
+      const field = new FTCField(node, opts);
+      if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+      new IntersectionObserver((entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) field.start();
+          else field.stop();
+        });
+      }, { threshold: 0.35 }).observe(node);
     });
   });
 

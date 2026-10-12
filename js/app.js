@@ -51,12 +51,12 @@ function isBookmarked(type, id) {
 
 function getTheme() {
   const stored = localStorage.getItem(STORAGE_KEYS.theme);
-  return stored === 'dark' ? 'dark' : 'light';
+  return stored === 'light' ? 'light' : 'dark';
 }
 
 function applyTheme(theme) {
   const isDark = theme === 'dark';
-  document.documentElement.classList.toggle('dark', isDark);
+  document.documentElement.classList.toggle('light', !isDark);
   document.body.classList.toggle('dark', isDark);
   const toggle = document.getElementById('theme-toggle');
   if (toggle) {
@@ -144,12 +144,12 @@ function buildVideoCard(video) {
           <span><i class="fa-regular fa-calendar"></i> ${formatDate(video.date)}</span>
           <span class="view-count">${views}</span>
         </div>
-      </div>
-      <div class="inline-list video-actions">
-        <a class="btn btn-primary" href="https://www.youtube.com/watch?v=${video.youtubeId}" target="_blank" rel="noopener noreferrer">
-          <i class="fa-solid fa-play"></i> Watch
-        </a>
-        <button class="bookmark-btn ${isBookmarked('video', video.id) ? 'active' : ''}" data-type="video" data-id="${video.id}">★ Save</button>
+        <div class="video-actions">
+          <a class="btn btn-primary" href="https://www.youtube.com/watch?v=${video.youtubeId}" target="_blank" rel="noopener noreferrer">
+            <i class="fa-solid fa-play"></i> Watch
+          </a>
+          <button class="bookmark-btn ${isBookmarked('video', video.id) ? 'active' : ''}" data-type="video" data-id="${video.id}">★ Save</button>
+        </div>
       </div>
     </article>
   `;
@@ -185,20 +185,21 @@ function renderFeaturedVideo() {
   if (!target) return;
   const video = state.videos[0];
   if (!video) return;
+  const title = cleanVideoTitle(video.title);
+  // first paragraph only, the rest of a YouTube description is usually links and plugs
+  const summary = (video.description || '').split(/\n\s*\n/)[0].replace(/\s+/g, ' ').trim();
   target.innerHTML = `
-    <div class="card" style="padding:1.25rem;">
-      <div class="badge">Featured video</div>
-      <h3>${video.title}</h3>
-      <p class="muted">${video.description}</p>
-      <div class="meta-row">
-        <span>${video.category}</span>
-        <span>${video.duration || 'Video'}</span>
+    <a class="card featured-card" href="https://www.youtube.com/watch?v=${video.youtubeId}" target="_blank" rel="noopener noreferrer">
+      <div class="featured-thumb">
+        <img src="https://img.youtube.com/vi/${video.youtubeId}/hqdefault.jpg" alt="">
+        <span class="play-badge"><i class="fa-solid fa-play"></i></span>
       </div>
-      <div class="hero-actions">
-        <a class="btn btn-primary" href="https://www.youtube.com/watch?v=${video.youtubeId}" target="_blank" rel="noopener noreferrer">Watch now</a>
-        <a class="btn btn-secondary" href="content.html">Open library</a>
+      <div class="featured-body">
+        <span class="eyebrow">Latest video · ${escapeHtml(video.category)}</span>
+        <h3>${escapeHtml(title)}</h3>
+        ${summary ? `<p>${escapeHtml(summary)}</p>` : ''}
       </div>
-    </div>
+    </a>
   `;
 }
 

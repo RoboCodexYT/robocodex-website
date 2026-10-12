@@ -6,10 +6,14 @@
   <link rel="apple-touch-icon" href="images/logo.png">
 
   <meta charset="UTF-8">
+  <script>try{if(localStorage.getItem('robocodex-theme')==='light')document.documentElement.classList.add('light')}catch(e){}</script>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>RoboCodex | FTC Videos, Robotics Guides, and Engineering Tools</title>
   <meta name="description"
     content="Explore RoboCodex robotics videos, practical FIRST Tech Challenge guides, interactive engineering calculators, and trusted resources for FTC teams and students.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=League+Spartan:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;600&display=swap">
   <link rel="stylesheet" href="css/modern.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 </head>
@@ -42,126 +46,145 @@
     <section class="hero">
       <div class="container">
         <div class="grid grid-2">
-          <div data-animate="left">
-            <div class="badge">FTC toolkit • robotics videos • practical guides</div>
-            <h1>Build smarter robots. Understand how they work.</h1>
-            <p>Explore RoboCodex videos, practical FIRST Tech Challenge guides, interactive engineering tools, and
-              trusted resources for designing, programming, and competing with confidence.</p>
+          <div class="hero-in">
+            <div class="badge">FTC toolkit • videos • guides</div>
+            <h1>Build smarter robots. <span class="accent">Understand how they work.</span></h1>
+            <p>Videos, practical FIRST Tech Challenge guides, and interactive engineering tools for designing,
+              programming, and competing with confidence.</p>
             <div class="hero-actions">
-              <a class="btn btn-primary" href="content.html">Explore Videos</a>
-              <a class="btn btn-secondary" href="guides.html">Open FTC Toolkit</a>
+              <a class="btn btn-primary" href="content.html">Explore videos</a>
+              <a class="btn btn-secondary" href="#toolkit">Open the FTC toolkit</a>
             </div>
           </div>
-          <div id="featured-video" data-animate="right"></div>
+          <div id="featured-video" class="hero-in-delay"></div>
         </div>
       </div>
     </section>
 
     <section class="section">
       <div class="container">
-        <div class="section-title">
+        <div class="section-head">
+          <span class="eyebrow">Start here</span>
           <h2>Three ways to use RoboCodex</h2>
         </div>
-        <div class="feature-grid">
-          <article class="card feature-card">
-            <div class="badge">Watch</div>
-            <h3>RoboCodex videos</h3>
-            <p class="muted">Follow robotics stories, build tips, and FTC-focused lessons in one place.</p>
-            <a class="btn btn-secondary" href="content.html">Browse videos</a>
-          </article>
-          <article class="card feature-card">
-            <div class="badge">Learn</div>
-            <h3>Read concise FTC guides</h3>
-            <p class="muted">Start with beginner-friendly guides that connect technical concepts to real team work.</p>
-            <a class="btn btn-secondary" href="guides.html">Open guides</a>
-          </article>
-          <article class="card feature-card">
-            <div class="badge">Calculate</div>
-            <h3>Use practical engineering calculators</h3>
-            <p class="muted">Check gear ratios, drivetrain speed, and encoder distance before you build or test.</p>
-            <a class="btn btn-secondary" href="calculators.html">Try calculators</a>
-          </article>
+        <div class="ways-grid">
+          <a class="way" href="content.html">
+            <div class="icon-tile"><i class="fa-solid fa-play"></i></div>
+            <h3>Watch the videos</h3>
+            <p>Robotics stories, build breakdowns, and FTC-focused lessons in one place.</p>
+            <span class="link-arrow">Browse videos <i class="fa-solid fa-arrow-right"></i></span>
+          </a>
+          <a class="way" href="guides.html">
+            <div class="icon-tile"><i class="fa-solid fa-book-open"></i></div>
+            <h3>Read concise guides</h3>
+            <p>Beginner-friendly guides that connect technical concepts to real team work.</p>
+            <span class="link-arrow">Open guides <i class="fa-solid fa-arrow-right"></i></span>
+          </a>
+          <a class="way" href="calculators.html">
+            <div class="icon-tile"><i class="fa-solid fa-calculator"></i></div>
+            <h3>Run the numbers</h3>
+            <p>Check gear ratios, drivetrain speed, and encoder distance before you build or test.</p>
+            <span class="link-arrow">Try calculators <i class="fa-solid fa-arrow-right"></i></span>
+          </a>
         </div>
       </div>
     </section>
 
-    <section class="section-sm" style="background: rgba(255,255,255,0.35);">
+    <section class="section section-alt" id="toolkit">
       <div class="container">
         <div class="section-title">
-          <h2>FTC toolkit preview</h2>
-          <a href="calculators.html">View all calculators</a>
-        </div>
-        <div class="tool-grid grid-3">
-          <article class="card tool-card">
-            <h3>Encoder Distance Calculator</h3>
-            <p class="muted">Estimate how many encoder ticks are required for a target travel distance.</p>
-            <a class="btn btn-secondary" href="calculators.html#encoder-distance">Open calculator</a>
-          </article>
-          <article class="card tool-card">
-            <h3>Gear Ratio Calculator</h3>
-            <p class="muted">Model simple or compound gear reductions and estimate output speed and torque.</p>
-            <a class="btn btn-secondary" href="calculators.html#gear-ratio">Open calculator</a>
-          </article>
-          <article class="card tool-card">
-            <h3>Drivetrain Speed Calculator</h3>
-            <p class="muted">Estimate theoretical drivetrain speed from motor, gear reduction, and wheel size.</p>
-            <a class="btn btn-secondary" href="calculators.html#drivetrain-speed">Open calculator</a>
-          </article>
-          <article class="card tool-card">
-            <h3>Path Visualizer</h3>
-            <p class="muted">Plan an autonomous route and watch it run on a virtual FTC field.</p>
-            <a class="btn btn-secondary" href="path-viz.html">Open visualizer</a>
-          </article>
-          <article class="card tool-card">
-            <h3>PID Tuner</h3>
-            <p class="muted">Simulate motor response and tune PIDF gains before writing real code.</p>
-            <a class="btn btn-secondary" href="tuner.html">Open tuner</a>
-          </article>
-        </div>
-      </div>
-    </section>
-
-    <section class="section-sm" style="background: rgba(255,255,255,0.35);">
-      <div class="container">
-        <div class="section-title">
-          <h2>Know the field before the whistle</h2>
-          <a href="path-viz.html">Open path visualizer</a>
-        </div>
-        <div class="grid grid-2">
-          <div class="card field-card">
-            <div class="ftc-field" aria-hidden="true"></div>
-            <p class="muted">A 12x12 FTC field. This little robot is running a demo scoring cycle — watch it, then build your own path in the visualizer.</p>
+          <div>
+            <span class="eyebrow">Toolkit</span>
+            <h2>FTC tools that run in your browser</h2>
           </div>
-          <div class="card field-card">
-            <h3>Understand the game, not just the robot</h3>
-            <p class="muted">Autonomous points come from knowing the field better than the other team. Open the path visualizer to play with real trajectories, or check the autonomous guide to plan your routine step by step.</p>
-            <div class="inline-list">
-              <a class="btn btn-primary" href="path-viz.html">Open path visualizer</a>
-              <a class="btn btn-secondary" href="guides.html#guide-autonomous-intro">Read the autonomous guide</a>
+          <a href="calculators.html">All calculators <i class="fa-solid fa-arrow-right"></i></a>
+        </div>
+        <div class="tool-grid toolkit">
+          <a class="card tool-card" href="calculators.html#encoder-distance">
+            <div class="icon-tile"><i class="fa-solid fa-ruler-horizontal"></i></div>
+            <div>
+              <h3>Encoder distance</h3>
+              <p>How many encoder ticks you need for a target travel distance.</p>
             </div>
-          </div>
+            <span class="link-arrow">Open calculator <i class="fa-solid fa-arrow-right"></i></span>
+          </a>
+          <a class="card tool-card" href="calculators.html#gear-ratio">
+            <div class="icon-tile"><i class="fa-solid fa-gear"></i></div>
+            <div>
+              <h3>Gear ratio</h3>
+              <p>Model simple or compound reductions and estimate output speed and torque.</p>
+            </div>
+            <span class="link-arrow">Open calculator <i class="fa-solid fa-arrow-right"></i></span>
+          </a>
+          <a class="card tool-card" href="calculators.html#drivetrain-speed">
+            <div class="icon-tile"><i class="fa-solid fa-gauge-high"></i></div>
+            <div>
+              <h3>Drivetrain speed</h3>
+              <p>Theoretical top speed from motor, reduction, and wheel size.</p>
+            </div>
+            <span class="link-arrow">Open calculator <i class="fa-solid fa-arrow-right"></i></span>
+          </a>
+          <a class="card tool-card" href="path-viz.html">
+            <div class="icon-tile"><i class="fa-solid fa-route"></i></div>
+            <div>
+              <h3>Path visualizer</h3>
+              <p>Plan an autonomous route and watch it run on a virtual FTC field.</p>
+            </div>
+            <span class="link-arrow">Open visualizer <i class="fa-solid fa-arrow-right"></i></span>
+          </a>
+          <a class="card tool-card" href="tuner.html">
+            <div class="icon-tile"><i class="fa-solid fa-sliders"></i></div>
+            <div>
+              <h3>PID tuner</h3>
+              <p>Simulate motor response and tune PIDF gains before writing real code.</p>
+            </div>
+            <span class="link-arrow">Open tuner <i class="fa-solid fa-arrow-right"></i></span>
+          </a>
         </div>
       </div>
     </section>
 
     <section class="section">
+      <div class="container field-showcase">
+        <div class="card field-card">
+          <div class="ftc-field" aria-hidden="true"></div>
+        </div>
+        <div class="field-copy">
+          <span class="eyebrow">Know the field</span>
+          <h2>Understand the game, not just the robot</h2>
+          <p>Autonomous points come from knowing the field better than the other team. This little robot is running
+            a demo scoring cycle on a 12x12 field. Play with real trajectories in the visualizer, or plan your
+            routine step by step with the autonomous guide.</p>
+          <div class="hero-actions">
+            <a class="btn btn-primary" href="path-viz.html">Open path visualizer</a>
+            <a class="btn btn-secondary" href="guides.html#guide-autonomous-intro">Autonomous guide</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section section-alt">
       <div class="container">
-        <div class="section-title">
+        <div class="section-head">
+          <span class="eyebrow">New here?</span>
           <h2>Helpful starting points</h2>
         </div>
         <div class="start-grid grid-3">
-          <article class="card start-card">
+          <a class="card start-card" href="guides.html#guide-what-is-ftc">
             <h3>New to FTC</h3>
             <p class="muted">Learn the roles, structure, and basic expectations for a first season.</p>
-          </article>
-          <article class="card start-card">
+            <span class="link-arrow">Read the guide <i class="fa-solid fa-arrow-right"></i></span>
+          </a>
+          <a class="card start-card" href="guides.html#guide-programming-paths">
             <h3>Programming your first robot</h3>
             <p class="muted">Start simple, then expand to more reliable autonomous and control patterns.</p>
-          </article>
-          <article class="card start-card">
+            <span class="link-arrow">Read the guide <i class="fa-solid fa-arrow-right"></i></span>
+          </a>
+          <a class="card start-card" href="resources.html">
             <h3>Preparing for inspection</h3>
             <p class="muted">Use checklists and official guidance to reduce last-minute surprises.</p>
-          </article>
+            <span class="link-arrow">Official resources <i class="fa-solid fa-arrow-right"></i></span>
+          </a>
         </div>
       </div>
     </section>
@@ -189,6 +212,8 @@
   <script src="js/app.js"></script>
 
   <script src="js/scroll-anim.js" defer></script>
+
+  <script src="js/site-ui.js" defer></script>
   <script src="js/pwa.js" defer></script>
 </body>
 

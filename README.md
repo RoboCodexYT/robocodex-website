@@ -28,9 +28,9 @@ a few interactive tools live in their own pages — no backend, all client-side.
 
 ## the little things that work
 
-- light mode by default, dark mode toggle that remembers your choice
-- cards and sections fade in as you scroll, staggered per row — and the whole thing stands down if you prefer reduced motion
-- everything reads fine on a phone (the nav collapses, grids reflow)
+- dark mode by default (League Spartan, RoboCodex blues), light mode toggle that remembers your choice
+- cards and sections rise in as you scroll, staggered per row, the field robot starts driving when it comes into view — and the whole thing stands down if you prefer reduced motion
+- everything reads fine on a phone (the nav folds into a menu button, grids reflow)
 - videos, resources, and guides are all bookmarkable without signing in
 - deep links like `guides.html#guide-pid-tuning` open a guide directly
 - guides read themselves out loud with the browser's speech synth (the listen button)

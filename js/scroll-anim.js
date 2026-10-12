@@ -13,10 +13,11 @@
     '.video-card',
     '.calc-card',
     '.section-title',
-    '.hero-copy',
-    '.hero-preview',
+    '.section-head',
     '.feature-row',
-    '.status-card'
+    '.status-card',
+    '.way',
+    '.field-copy'
   ];
 
   function decorate(node) {
@@ -24,33 +25,39 @@
     var els = scope.querySelectorAll(AUTO_SELECTORS.join(','));
     for (var i = 0; i < els.length; i++) {
       var el = els[i];
-      if (el.closest('.guide-reader') || el.closest('[hidden]') || el.hasAttribute('data-animate')) continue;
+      if (el.closest('.guide-reader') || el.closest('.hero') || el.closest('[hidden]') || el.querySelector('h1')) continue;
+      if (el.hasAttribute('data-animate') || el.classList.contains('is-settled')) continue;
       el.setAttribute('data-animate', '');
     }
   }
 
+  // after the reveal finishes, drop the reveal styles so hover transitions work normally
+  function settle(el) {
+    el.removeAttribute('data-animate');
+    el.classList.remove('is-visible');
+    el.classList.add('is-settled');
+    el.style.transitionDelay = '';
+  }
+
   function reveal(el, index) {
-    if (!el.classList.contains('is-visible')) {
-      el.classList.add('is-visible');
-      if (index) el.style.transitionDelay = Math.min(index * 60, 600) + 'ms';
-    }
+    if (el.classList.contains('is-visible')) return;
+    var delay = index ? Math.min(index * 50, 300) : 0;
+    if (delay) el.style.transitionDelay = delay + 'ms';
+    el.classList.add('is-visible');
+    setTimeout(function () { settle(el); }, delay + 550);
   }
 
   function observe(root) {
     if (REDUCED) return;
     if (!observer) {
       observer = new IntersectionObserver(function (entries) {
-        entries.forEach(function (entry) {
-          if (!entry.isIntersecting) return;
-          var el = entry.target;
-          observer.unobserve(el);
-          var siblings = Array.prototype.filter.call(el.parentNode ? el.parentNode.children : [], function (s) {
-            return s !== el && s.hasAttribute('data-animate');
-          });
-          var index = siblings.indexOf(el) + 1;
-          requestAnimationFrame(function () { reveal(el, index); });
+        // stagger only the items that come into view together
+        var batch = entries.filter(function (e) { return e.isIntersecting; });
+        batch.forEach(function (entry, i) {
+          observer.unobserve(entry.target);
+          requestAnimationFrame(function () { reveal(entry.target, i); });
         });
-      }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
+      }, { threshold: 0.08, rootMargin: '0px 0px -8% 0px' });
     }
 
     var targets = (root || document).querySelectorAll('[data-animate]:not(.is-visible)');
@@ -58,11 +65,7 @@
   }
 
   function init() {
-    if (REDUCED) {
-      decorate();
-      document.querySelectorAll('[data-animate]').forEach(function (el) { el.classList.add('is-visible'); });
-      return;
-    }
+    if (REDUCED) return;
     decorate();
     observe();
   }
