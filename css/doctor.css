@@ -1933,3 +1933,262 @@ input:checked ~ .rx-step-text {
     animation: none;
   }
 }
+
+/* ---------------------------------------------------------------- written guide list (doctor.html) */
+.doc-library {
+  margin: 1rem 0 5rem;
+  padding-top: 3rem;
+  border-top: 1px solid var(--border);
+}
+
+.doc-library h2 {
+  margin: 0 0 1.75rem;
+}
+
+#doctor.is-diagnosing .doc-library {
+  display: none;
+}
+
+.doc-library-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  gap: 1.5rem 2rem;
+}
+
+.doc-library-group h3 {
+  display: flex;
+  align-items: center;
+  gap: .5rem;
+  margin: 0 0 .6rem;
+  font-size: 1rem;
+}
+
+.doc-library-group h3 i {
+  color: var(--accent);
+  font-size: .9em;
+}
+
+.doc-library-group ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: .35rem;
+}
+
+.doc-library-group a {
+  color: var(--muted);
+  font-size: .95rem;
+  line-height: 1.4;
+  transition: color .2s ease;
+}
+
+.doc-library-group a:hover {
+  color: var(--text);
+}
+
+/* ---------------------------------------------------------------- fix/ guide pages */
+.fix-layout {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 300px;
+  gap: 3rem;
+  align-items: start;
+}
+
+.fix-crumbs {
+  display: flex;
+  align-items: center;
+  gap: .5rem;
+  font-size: .88rem;
+  color: var(--muted);
+  margin-bottom: 1rem;
+}
+
+.fix-crumbs a {
+  color: var(--accent);
+}
+
+.fix-crumbs i {
+  font-size: .65rem;
+}
+
+.fix-article h1 {
+  font-size: clamp(2rem, 4vw, 2.8rem);
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  margin: 0 0 1rem;
+}
+
+.fix-lede {
+  font-size: 1.12rem;
+  color: var(--muted);
+  max-width: 44rem;
+  margin: 0 0 1.75rem;
+}
+
+.fix-cta {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 1.1rem 1.25rem;
+  margin-bottom: 2.5rem;
+  border-radius: var(--radius);
+  border: 1px solid var(--border-strong);
+  background: radial-gradient(120% 140% at 0% 0%, var(--glow), transparent 60%), var(--surface);
+  transition: transform .3s var(--ease-out), box-shadow .3s ease;
+}
+
+.fix-cta:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-hover);
+}
+
+.fix-cta-icon {
+  flex: none;
+  width: 2.8rem;
+  height: 2.8rem;
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  color: #fff;
+  background: linear-gradient(135deg, var(--brand), var(--brand-deep));
+}
+
+.fix-cta span:nth-child(2) {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: .2rem;
+}
+
+.fix-cta small {
+  color: var(--muted);
+  font-size: .92rem;
+}
+
+.fix-cta > i {
+  color: var(--accent);
+  transition: transform .25s var(--ease-out);
+}
+
+.fix-cta:hover > i {
+  transform: translateX(4px);
+}
+
+.fix-checks,
+.fix-causes {
+  margin-bottom: 2.5rem;
+}
+
+.fix-checks h2,
+.fix-causes > h2 {
+  font-size: 1.5rem;
+  margin: 0 0 1rem;
+}
+
+.fix-checks ul {
+  margin: 0;
+  padding-left: 1.2rem;
+  display: grid;
+  gap: .6rem;
+}
+
+.fix-checks li span {
+  display: block;
+  color: var(--muted);
+  font-size: .95rem;
+}
+
+.fix-cause {
+  padding: 1.5rem 0;
+  border-top: 1px solid var(--border);
+  scroll-margin-top: 90px;
+}
+
+.fix-cause h3 {
+  display: flex;
+  align-items: center;
+  gap: .75rem;
+  margin: 0 0 .6rem;
+  font-size: 1.3rem;
+}
+
+.fix-cause > p {
+  color: var(--muted);
+  margin: 0 0 1rem;
+}
+
+.fix-cause h4 {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  margin: 0 0 .5rem;
+  font-size: .8rem;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+.fix-cause ol {
+  margin: 0 0 1rem;
+  padding-left: 1.3rem;
+  display: grid;
+  gap: .45rem;
+  line-height: 1.55;
+}
+
+.fix-cause .rx-code {
+  margin-bottom: 1rem;
+}
+
+.fix-sources {
+  font-size: .88rem;
+  color: var(--muted);
+}
+
+.fix-sources a {
+  color: var(--accent);
+}
+
+.fix-side {
+  position: sticky;
+  top: 90px;
+}
+
+.fix-side-card {
+  padding: 1.25rem;
+}
+
+.fix-side-card h2 {
+  font-size: 1rem;
+  margin: 0 0 .75rem;
+}
+
+.fix-side-card ul {
+  list-style: none;
+  margin: 0 0 1rem;
+  padding: 0;
+  display: grid;
+  gap: .55rem;
+}
+
+.fix-side-card li a {
+  color: var(--muted);
+  font-size: .93rem;
+  line-height: 1.35;
+  transition: color .2s ease;
+}
+
+.fix-side-card li a:hover {
+  color: var(--text);
+}
+
+@media (max-width: 900px) {
+  .fix-layout {
+    grid-template-columns: 1fr;
+  }
+
+  .fix-side {
+    position: static;
+  }
+}

@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://robocodexyt.github.io/robocodex-website/sitemap.xml

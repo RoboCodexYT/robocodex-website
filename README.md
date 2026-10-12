@@ -71,6 +71,12 @@ instagram needs two repo secrets (Settings → Secrets and variables → Actions
 
 without them the youtube side still works and instagram just gets skipped.
 
+## seo
+
+`npm run seo` (scripts/seo.mjs) owns everything search engines and link previews see: titles, descriptions, canonical urls, open graph / twitter cards, structured data, and noindex on private pages (stats, match breakdowns, bookmarks). it also writes a static, crawlable guide for every robot doctor symptom into `fix/`, plus `sitemap.xml` and `robots.txt`. **re-run it after editing `js/doctor-data.js` or adding a page.**
+
+after deploying, add the site in [Google Search Console](https://search.google.com/search-console) and submit `sitemap.xml`. the site lives in a subfolder of github.io, so robots.txt there isn't read by crawlers — submitting the sitemap is what counts.
+
 ## shipping changes
 
 - the commit hook runs `node scripts/validate-guides.mjs` to check the guides and knowledge-map links

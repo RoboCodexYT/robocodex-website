@@ -28,6 +28,11 @@
   let current = { route: null, symptom: null, answers: [] };
   const tried = new Set();
 
+  // must match slugFor() in scripts/seo.mjs, which builds the fix/ pages
+  function guideSlug(symptom) {
+    return `ftc-${symptom.title.toLowerCase().replace(/['"]/g, '').replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '')}`;
+  }
+
   function esc(s) {
     return String(s).replace(/[&<>"']/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
   }
@@ -555,6 +560,7 @@
             </div>
           </div>
           <div class="dx-actions">
+            <a class="btn btn-secondary btn-sm" href="fix/${guideSlug(symptom)}.html"><i class="fa-regular fa-file-lines"></i> Full guide</a>
             <button type="button" class="btn btn-secondary btn-sm" data-copy-summary><i class="fa-regular fa-copy"></i> Copy summary</button>
             <button type="button" class="btn btn-secondary btn-sm" data-share><i class="fa-solid fa-share-nodes"></i> Share</button>
             <a class="btn btn-secondary btn-sm" href="#/">New diagnosis</a>
