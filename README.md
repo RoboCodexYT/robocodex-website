@@ -10,12 +10,17 @@ This site is where i put everything i wish someone had handed me: videos, writte
 |---|---|
 | home | `index.html` — the pitch, featured videos, an animated FTC field, calculator previews, and match breakdown teaser |
 | videos | `content.html` — youtube videos, shorts, and instagram carousels in one library, with type tabs, search, and a swipeable carousel viewer |
+| robot doctor | `doctor.html` — describe a symptom, answer a few questions, get ranked likely causes with fixes, code, and sources. also has a status light decoder and a pre-match checkup |
 | guides | `guides.html` — readable-inline FTC guides (encoders, PID tuning, etc.) with a knowledge map and a listen button |
 | resources | `resources.html` — a curated directory of official FIRST docs, programming libraries, CAD parts, scouting sites, and channels |
 | stats | private — team-24813 season stats and match breakdowns, gated behind a passcode and removed from all navigation |
 | about | `about.html` — who i am and why this exists |
 | calculators | `calculators.html` — gear ratio, drivetrain speed, and encoder distance tools |
 | bookmarks | `bookmarks.html` — save videos and resources locally in your browser |
+
+## robot doctor
+
+`doctor.html` is a symptom checker for FTC robots. the knowledge base (`js/doctor-data.js`) has 31 symptoms, 79 causes, and 95 questions, all sourced from FIRST's FTC docs, REV, GM0, Pedro Pathing, and the community — see `docs/robot-doctor-research.md`. the engine (`js/doctor-engine.js`) does a bayesian-style update after each answer and picks the next question by expected information gain, cheapest checks first. every diagnosis lives in the url, so it can be shared.
 
 ## the ftc toolkit
 

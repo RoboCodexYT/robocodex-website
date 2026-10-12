@@ -9,4 +9,12 @@ if git diff --cached --name-only | grep -qE '(^data/guides\.json$|^js/app\.js$)'
     exit 1
   }
 fi
+if git diff --cached --name-only | grep -qE '^js/doctor-(data|engine)\.js$'; then
+  echo "-> validating robot doctor..."
+  node scripts/validate-doctor.mjs || {
+    echo "x robot doctor validation failed."
+    echo "  Fix the issue and git add again, or bypass with: git commit --no-verify"
+    exit 1
+  }
+fi
 exit 0

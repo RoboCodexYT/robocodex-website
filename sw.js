@@ -1,4 +1,4 @@
-const CACHE = 'robocodex-v6';
+const CACHE = 'robocodex-v7';
 const PRECACHE = [
   '/',
   '/index.html',
@@ -12,6 +12,10 @@ const PRECACHE = [
   '/js/tts.js',
   '/js/scroll-anim.js',
   '/js/site-ui.js',
+  '/js/doctor.js',
+  '/js/doctor-data.js',
+  '/js/doctor-engine.js',
+  '/css/doctor.css',
   '/app/components/field-svg.js',
   '/data/videos.json',
   '/data/instagram.json',
@@ -21,6 +25,7 @@ const PRECACHE = [
   '/manifest.webmanifest',
   '/images/logo.png',
   '/content.html',
+  '/doctor.html',
   '/guides.html',
   '/resources.html',
   '/about.html',

@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <link rel="manifest" href="manifest.webmanifest">
+  <link rel="apple-touch-icon" href="images/logo.png">
+
+  <meta charset="UTF-8">
+  <script>try{if(localStorage.getItem('robocodex-theme')==='light')document.documentElement.classList.add('light')}catch(e){}</script>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Robot Doctor • RoboCodex</title>
+  <meta name="description" content="Robot Doctor: describe what's wrong with your FTC robot and get the most likely causes and fixes in a few questions. Built from FIRST, REV, GM0, and Pedro Pathing docs.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=League+Spartan:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;600&display=swap">
+  <link rel="stylesheet" href="css/modern.css">
+  <link rel="stylesheet" href="css/doctor.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body class="doctor-page">
+  <header class="site-header">
+    <div class="container navbar">
+      <a class="brand" href="index.html">
+        <img src="images/logo.png" alt="RoboCodex Logo" class="brand-logo">
+        <span>RoboCodex</span>
+      </a>
+      <nav class="nav-links" aria-label="Main navigation">
+        <a href="index.html">Home</a>
+        <a href="content.html">Videos</a>
+        <a href="guides.html">Guides</a>
+        <a class="active" href="doctor.html">Robot Doctor</a>
+        <a href="resources.html">Resources</a>
+        <a href="about.html">About</a>
+      </nav>
+      <div class="header-actions">
+        <button id="theme-toggle" class="btn btn-ghost" type="button" aria-label="Switch color theme"><i class="fa-solid fa-moon"></i></button>
+        <a class="btn btn-primary" href="content.html">Explore Videos</a>
+      </div>
+    </div>
+  </header>
+
+  <main id="doctor">
+    <!-- landing hero -->
+    <section class="doc-hero" id="doc-hero">
+      <div class="container doc-hero-grid">
+        <div class="doc-hero-copy hero-in">
+          <span class="badge"><i class="fa-solid fa-stethoscope"></i> Robot Doctor</span>
+          <h1>What's wrong with your robot?</h1>
+          <p>Describe the symptom. A few quick questions narrow it down to the most likely causes, with fixes, code, and the official docs behind every answer.</p>
+
+          <div class="doc-search" role="combobox" aria-expanded="false" aria-owns="doc-search-results" aria-haspopup="listbox">
+            <i class="fa-solid fa-magnifying-glass" aria-hidden="true"></i>
+            <input id="doc-search" type="search" autocomplete="off" spellcheck="false"
+              placeholder="e.g. robot drifts left, servo jitters, disconnects mid-match"
+              aria-label="Describe what's wrong" aria-controls="doc-search-results">
+            <kbd class="doc-kbd" aria-hidden="true">/</kbd>
+            <ul id="doc-search-results" class="doc-search-results" role="listbox" hidden></ul>
+          </div>
+
+          <div class="doc-popular" id="doc-popular" aria-label="Common problems"></div>
+        </div>
+
+        <div class="doc-monitor hero-in-delay" aria-hidden="true">
+          <div class="monitor-top">
+            <span class="monitor-dot"></span>
+            <span>VITALS</span>
+            <span class="monitor-spacer"></span>
+            <span class="monitor-reading" id="monitor-reading">12.8 V</span>
+          </div>
+          <svg class="ecg" viewBox="0 0 400 120" preserveAspectRatio="none">
+            <defs>
+              <linearGradient id="ecg-fade" x1="0" x2="1">
+                <stop offset="0" stop-color="currentColor" stop-opacity="0"></stop>
+                <stop offset="0.75" stop-color="currentColor" stop-opacity="1"></stop>
+                <stop offset="1" stop-color="currentColor" stop-opacity="1"></stop>
+              </linearGradient>
+            </defs>
+            <g class="ecg-grid">
+              <path d="M0 30H400M0 60H400M0 90H400M50 0V120M100 0V120M150 0V120M200 0V120M250 0V120M300 0V120M350 0V120"></path>
+            </g>
+            <path class="ecg-trace" d="M0 70 L60 70 L72 70 L80 58 L88 70 L110 70 L118 78 L126 18 L136 100 L144 70 L170 70 L182 62 L196 70 L260 70 L272 70 L280 58 L288 70 L310 70 L318 78 L326 18 L336 100 L344 70 L370 70 L382 62 L396 70 L400 70"></path>
+          </svg>
+          <div class="monitor-stats">
+            <div><strong id="stat-symptoms">31</strong><span>symptoms</span></div>
+            <div><strong id="stat-causes">79</strong><span>causes</span></div>
+            <div><strong id="stat-sources">43</strong><span>sources</span></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <div class="container">
+      <nav class="doc-tabs" aria-label="Robot Doctor tools" id="doc-tabs">
+        <a href="#/" data-tab="diagnose"><i class="fa-solid fa-stethoscope"></i> Diagnose</a>
+        <a href="#/lights" data-tab="lights"><i class="fa-solid fa-traffic-light"></i> Status light decoder</a>
+        <a href="#/checkup" data-tab="checkup"><i class="fa-solid fa-clipboard-check"></i> Pre-match checkup</a>
+        <span class="doc-tab-ink" aria-hidden="true"></span>
+      </nav>
+
+      <div id="doc-view" class="doc-view" aria-live="polite"></div>
+    </div>
+  </main>
+
+  <canvas id="doc-confetti" class="doc-confetti" aria-hidden="true"></canvas>
+  <div id="doc-toast" class="doc-toast" role="status" aria-live="polite"></div>
+
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-contact">
+        <span class="footer-contact-label">Questions? Reach out:</span>
+        <a class="footer-email" href="mailto:robocode98@gmail.com"><i class="fa-solid fa-envelope"></i> robocode98@gmail.com</a>
+      </div>
+      <p>© 2026 RoboCodex. An independent educational resource. Robot Doctor points you at likely causes — always double-check before changing a working robot.</p>
+      <div class="footer-links">
+        <a href="about.html">About</a>
+        <a href="guides.html">Guides</a>
+        <a href="doctor.html">Robot Doctor</a>
+        <a href="resources.html">Resources</a>
+        <a href="content.html">Videos</a>
+        <a href="https://www.youtube.com/@RoboCodex" target="_blank" rel="noopener noreferrer">YouTube</a>
+      </div>
+    </div>
+  </footer>
+
+  <script src="js/app.js"></script>
+  <script src="js/doctor-data.js"></script>
+  <script src="js/doctor-engine.js"></script>
+  <script src="js/doctor.js" defer></script>
+
+  <script src="js/site-ui.js" defer></script>
+  <script src="js/pwa.js" defer></script>
+</body>
+</html>
