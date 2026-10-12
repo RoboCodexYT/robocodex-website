@@ -1,4 +1,4 @@
-const CACHE = 'robocodex-v5';
+const CACHE = 'robocodex-v6';
 const PRECACHE = [
   '/',
   '/index.html',
@@ -14,6 +14,7 @@ const PRECACHE = [
   '/js/site-ui.js',
   '/app/components/field-svg.js',
   '/data/videos.json',
+  '/data/instagram.json',
   '/data/guides.json',
   '/data/resources.json',
   '/data/paths.json',
@@ -62,6 +63,20 @@ self.addEventListener('fetch', (event) => {
           return res;
         })
         .catch(() => caches.match(req).then((hit) => hit || caches.match('/index.html')))
+    );
+    return;
+  }
+
+  // the video/carousel library updates hourly, so always try the network first
+  if (url.pathname.startsWith('/data/')) {
+    event.respondWith(
+      fetch(req)
+        .then((res) => {
+          const copy = res.clone();
+          caches.open(CACHE).then((cache) => cache.put(req, copy));
+          return res;
+        })
+        .catch(() => caches.match(req))
     );
     return;
   }

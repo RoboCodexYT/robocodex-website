@@ -42,18 +42,23 @@
       <div class="section-title">
         <div>
           <div class="badge">Video library</div>
-          <h1>RoboCodex video library</h1>
-          <p class="muted">This section is meant to be a practical starting point for the current RoboCodex catalog. It will grow as more videos are added and better metadata is collected.</p>
+          <h1>Everything RoboCodex posts</h1>
+          <p class="muted">YouTube videos, Shorts, and Instagram carousels in one place. New posts show up here automatically.</p>
         </div>
       </div>
 
       <div class="card library-controls">
         <div class="library-controls-top">
-          <div class="badge">Browse</div>
-          <span id="video-count" class="status-pill">Loading current video list…</span>
+          <div id="library-tabs" class="type-tabs" role="tablist" aria-label="Filter by type">
+            <button type="button" role="tab" class="type-tab active" data-type-tab="all" aria-selected="true">All <span class="tab-count"></span></button>
+            <button type="button" role="tab" class="type-tab" data-type-tab="video" aria-selected="false"><i class="fa-brands fa-youtube"></i> Videos <span class="tab-count"></span></button>
+            <button type="button" role="tab" class="type-tab" data-type-tab="short" aria-selected="false"><i class="fa-solid fa-mobile-alt"></i> Shorts <span class="tab-count"></span></button>
+            <button type="button" role="tab" class="type-tab" data-type-tab="carousel" aria-selected="false" hidden><i class="fa-brands fa-instagram"></i> Carousels <span class="tab-count"></span></button>
+          </div>
+          <span id="video-count" class="status-pill">Loading…</span>
         </div>
         <div class="filter-bar">
-          <input id="video-search" type="search" placeholder="Search videos, topics, or keywords">
+          <input id="video-search" type="search" placeholder="Search videos, shorts, and carousels">
           <select id="video-category">
             <option value="All">All categories</option>
           </select>
@@ -63,7 +68,7 @@
             <option value="most-viewed">Most viewed</option>
           </select>
         </div>
-        <p id="video-status" class="muted library-status">The library updates from your latest uploads when new data is available.</p>
+        <p id="video-status" class="muted library-status">Synced from YouTube and Instagram every hour.</p>
       </div>
 
       <div id="video-grid" class="feature-grid"></div>

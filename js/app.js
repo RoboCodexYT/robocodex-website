@@ -5,9 +5,11 @@ const STORAGE_KEYS = {
 
 const state = {
   videos: [],
+  posts: [],
+  libraryUpdated: null,
   resources: [],
   resourceFilter: 'All',
-  filters: { query: '', category: 'All', sort: 'newest' },
+  filters: { query: '', category: 'All', sort: 'newest', type: 'all' },
 };
 
 function getBookmarks() {
@@ -74,81 +76,154 @@ function setTheme(theme) {
 }
 
 function formatDate(input) {
-  const date = new Date(input);
+  // plain YYYY-MM-DD dates are calendar days, don't let the timezone shift them
+  const day = /^\d{4}-\d{2}-\d{2}$/.test(input || '') ? `${input}T12:00:00` : input;
+  const date = new Date(day);
   if (Number.isNaN(date.getTime())) return 'Date coming soon';
   return new Intl.DateTimeFormat('en', { month: 'short', day: 'numeric', year: 'numeric' }).format(date);
 }
 
-function sortVideos(videos) {
-  const list = [...videos];
+function itemTime(item) {
+  return new Date(item.publishedAt || item.date).getTime() || 0;
+}
+
+// youtube videos, youtube shorts and instagram carousels as one list
+function getLibraryItems() {
+  return [
+    ...state.videos.map((v) => ({ ...v, kind: v.format === 'short' ? 'short' : 'video' })),
+    ...state.posts.map((p) => ({ ...p, kind: 'carousel' })),
+  ];
+}
+
+function sortVideos(items) {
+  const list = [...items];
   switch (state.filters.sort) {
     case 'oldest':
-      return list.sort((a, b) => new Date(a.date) - new Date(b.date));
+      return list.sort((a, b) => itemTime(a) - itemTime(b));
     case 'most-viewed':
       return list.sort((a, b) => (b.views || 0) - (a.views || 0));
     default:
-      return list.sort((a, b) => new Date(b.date) - new Date(a.date));
+      return list.sort((a, b) => itemTime(b) - itemTime(a));
   }
 }
 
-function filterVideos(videos) {
+function filterVideos(items) {
   const query = state.filters.query.toLowerCase();
-  return videos.filter((video) => {
-    const matchesCategory = state.filters.category === 'All' || video.category === state.filters.category;
-    const haystack = [video.title, video.description, video.category, ...(video.keywords || [])].join(' ').toLowerCase();
+  return items.filter((item) => {
+    const matchesType = state.filters.type === 'all' || item.kind === state.filters.type;
+    const matchesCategory = state.filters.category === 'All' || item.category === state.filters.category;
+    const haystack = [item.title, item.description, item.caption, item.category, ...(item.keywords || [])].join(' ').toLowerCase();
     const matchesQuery = !query || haystack.includes(query);
-    return matchesCategory && matchesQuery;
+    return matchesType && matchesCategory && matchesQuery;
   });
 }
 
 function cleanVideoTitle(title) {
-  const cleaned = (title || '').replace(/\s+#[^\s]+/g, '').trim();
+  const cleaned = (title || '').replace(/\s*#[^\s#]+/g, '').replace(/\s{2,}/g, ' ').trim();
   return cleaned || title;
 }
 
 function populateVideoCategorySelect() {
   const select = document.getElementById('video-category');
-  if (!select || !state.videos.length) return;
-  const categories = ['All', ...new Set(state.videos.map((v) => v.category).filter(Boolean))];
-  if (select.options.length === categories.length) return;
+  const items = getLibraryItems();
+  if (!select || !items.length) return;
+  const categories = ['All', ...new Set(items.map((v) => v.category).filter(Boolean))];
   const current = state.filters.category;
   select.innerHTML = categories.map((c) => {
     const label = c === 'All' ? 'All categories' : c;
-    return `<option value="${c}">${label}</option>`;
+    return `<option value="${escapeHtml(c)}">${escapeHtml(label)}</option>`;
   }).join('');
-  select.value = current;
+  select.value = categories.includes(current) ? current : 'All';
 }
 
-function formatDuration(video) {
-  if (!video.duration || video.duration === 'Video') return '';
-  return video.duration;
+function renderTypeTabs() {
+  const wrap = document.getElementById('library-tabs');
+  if (!wrap) return;
+  const items = getLibraryItems();
+  const count = (kind) => items.filter((i) => kind === 'all' || i.kind === kind).length;
+  wrap.querySelectorAll('[data-type-tab]').forEach((tab) => {
+    const kind = tab.dataset.typeTab;
+    const n = count(kind);
+    tab.querySelector('.tab-count').textContent = n;
+    tab.classList.toggle('active', state.filters.type === kind);
+    tab.setAttribute('aria-selected', String(state.filters.type === kind));
+    tab.hidden = kind !== 'all' && n === 0;
+  });
 }
 
-function buildVideoCard(video) {
-  const title = cleanVideoTitle(video.title);
-  const thumb = `https://img.youtube.com/vi/${video.youtubeId}/hqdefault.jpg`;
-  const duration = formatDuration(video);
-  const views = video.views ? `${video.views.toLocaleString()} views` : 'New';
-  const desc = (video.description || '').replace(/\s+/g, ' ').trim() || 'No description yet — check back soon.';
+function youtubeUrl(video) {
+  return video.format === 'short'
+    ? `https://www.youtube.com/shorts/${video.youtubeId}`
+    : `https://www.youtube.com/watch?v=${video.youtubeId}`;
+}
+
+// shorts and carousels are portrait, so they sit on a blurred copy of themselves
+// inside the same 16:9 frame as everything else
+function mediaFrame(src, fallback, portrait, badges) {
+  const onError = fallback ? ` onerror="this.onerror=null;this.src='${fallback}';this.previousElementSibling&&(this.previousElementSibling.src='${fallback}')"` : '';
+  return `
+    <div class="video-thumb${portrait ? ' is-portrait' : ''}">
+      ${portrait ? `<img class="thumb-backdrop" src="${src}" alt="" aria-hidden="true" loading="lazy">` : ''}
+      <img class="thumb-main" src="${src}" alt="" loading="lazy"${onError}>
+      ${badges}
+    </div>`;
+}
+
+function buildVideoCard(item) {
+  if (item.kind === 'carousel') return buildCarouselCard(item);
+  const title = cleanVideoTitle(item.title);
+  const isShort = item.kind === 'short';
+  const hq = `https://img.youtube.com/vi/${item.youtubeId}/hqdefault.jpg`;
+  const thumb = isShort ? `https://i.ytimg.com/vi/${item.youtubeId}/oar2.jpg` : hq;
+  const views = item.views ? `${item.views.toLocaleString()} views` : 'New';
+  const desc = (item.description || '').split(/\n\s*\n/)[0].replace(/\s+/g, ' ').trim();
+  const badges = `
+      <span class="video-badge category">${escapeHtml(item.category || '')}</span>
+      <span class="video-badge kind kind-${item.kind}"><i class="fa-brands fa-youtube"></i> ${isShort ? 'Short' : 'Video'}</span>`;
   return `
     <article class="card video-card">
-      <div class="video-thumb">
-        <img src="${thumb}" alt="${video.title}" loading="lazy">
-        <span class="video-badge category">${escapeHtml(video.category)}</span>
-        ${duration ? `<span class="video-badge duration">${duration}</span>` : ''}
-      </div>
+      <a href="${youtubeUrl(item)}" target="_blank" rel="noopener noreferrer" aria-label="Watch ${escapeHtml(title)} on YouTube">
+        ${mediaFrame(thumb, isShort ? hq : '', isShort, badges)}
+      </a>
       <div class="video-card-body">
         <h3>${escapeHtml(title)}</h3>
-        <p class="muted video-desc">${escapeHtml(desc)}</p>
+        ${desc ? `<p class="video-desc">${escapeHtml(desc)}</p>` : ''}
         <div class="meta-row">
-          <span><i class="fa-regular fa-calendar"></i> ${formatDate(video.date)}</span>
+          <span><i class="fa-regular fa-calendar"></i> ${formatDate(item.date)}</span>
           <span class="view-count">${views}</span>
         </div>
         <div class="video-actions">
-          <a class="btn btn-primary" href="https://www.youtube.com/watch?v=${video.youtubeId}" target="_blank" rel="noopener noreferrer">
+          <a class="btn btn-primary" href="${youtubeUrl(item)}" target="_blank" rel="noopener noreferrer">
             <i class="fa-solid fa-play"></i> Watch
           </a>
-          <button class="bookmark-btn ${isBookmarked('video', video.id) ? 'active' : ''}" data-type="video" data-id="${video.id}">★ Save</button>
+          <button class="bookmark-btn ${isBookmarked('video', item.id) ? 'active' : ''}" data-type="video" data-id="${item.id}">★ Save</button>
+        </div>
+      </div>
+    </article>
+  `;
+}
+
+function buildCarouselCard(post) {
+  const cover = post.slides[0]?.src || '';
+  const badges = `
+      <span class="video-badge category">${escapeHtml(post.category || '')}</span>
+      <span class="video-badge kind kind-carousel"><i class="fa-brands fa-instagram"></i> ${post.slides.length} slides</span>`;
+  return `
+    <article class="card video-card">
+      <button type="button" class="thumb-button" data-open-carousel="${post.id}" aria-label="View ${escapeHtml(post.title)}">
+        ${mediaFrame(cover, '', true, badges)}
+      </button>
+      <div class="video-card-body">
+        <h3>${escapeHtml(post.title)}</h3>
+        <div class="meta-row">
+          <span><i class="fa-regular fa-calendar"></i> ${formatDate(post.date)}</span>
+          <span class="view-count">Carousel</span>
+        </div>
+        <div class="video-actions">
+          <button class="btn btn-primary" type="button" data-open-carousel="${post.id}">
+            <i class="fa-regular fa-images"></i> View
+          </button>
+          <button class="bookmark-btn ${isBookmarked('post', post.id) ? 'active' : ''}" data-type="post" data-id="${post.id}">★ Save</button>
         </div>
       </div>
     </article>
@@ -160,36 +235,111 @@ function renderVideoCards() {
   const countTarget = document.getElementById('video-count');
   const statusTarget = document.getElementById('video-status');
   if (!grid) return;
-  const visible = sortVideos(filterVideos(state.videos));
+  renderTypeTabs();
+  const visible = sortVideos(filterVideos(getLibraryItems()));
   if (countTarget) {
-    countTarget.textContent = `${visible.length} video${visible.length === 1 ? '' : 's'} shown`;
+    countTarget.textContent = `${visible.length} item${visible.length === 1 ? '' : 's'} shown`;
   }
   if (statusTarget) {
-    const source = state.videos?.[0]?.source || 'local';
-    const lastUpdated = state.videos?.[0]?.lastUpdated || state.videos?.[0]?.date;
-    const label = source === 'youtube' && lastUpdated
-      ? `Last refreshed ${formatDate(lastUpdated)}`
-      : 'The library updates whenever new video data is added.';
-    statusTarget.textContent = label;
+    statusTarget.textContent = state.libraryUpdated
+      ? `Synced from YouTube and Instagram · updated ${formatDate(state.libraryUpdated)}`
+      : 'Synced from YouTube and Instagram every hour.';
   }
   if (!visible.length) {
-    grid.innerHTML = '<div class="card list-item">No RoboCodex videos currently match this search.</div>';
+    grid.innerHTML = '<div class="card list-item">Nothing matches this search yet.</div>';
     return;
   }
   grid.innerHTML = visible.map(buildVideoCard).join('');
   if (window.RoboAnim) RoboAnim.refresh(grid);
 }
 
+// --- carousel viewer -------------------------------------------------------
+
+function openCarousel(id, opener) {
+  const post = state.posts.find((p) => p.id === id);
+  if (!post) return;
+  let modal = document.getElementById('carousel-modal');
+  if (!modal) {
+    modal = document.createElement('div');
+    modal.id = 'carousel-modal';
+    modal.className = 'carousel-modal';
+    modal.setAttribute('role', 'dialog');
+    modal.setAttribute('aria-modal', 'true');
+    document.body.appendChild(modal);
+  }
+  const caption = (post.caption || '').trim();
+  modal.innerHTML = `
+    <div class="carousel-overlay" data-close-carousel></div>
+    <div class="carousel-panel">
+      <div class="carousel-top">
+        <div>
+          <span class="eyebrow"><i class="fa-brands fa-instagram"></i> Carousel · ${formatDate(post.date)}</span>
+          <h2>${escapeHtml(post.title)}</h2>
+        </div>
+        <button type="button" class="close-btn" data-close-carousel aria-label="Close">&times;</button>
+      </div>
+      <div class="carousel-stage">
+        <button type="button" class="carousel-nav prev" data-step="-1" aria-label="Previous slide"><i class="fa-solid fa-chevron-left"></i></button>
+        <div class="carousel-track" tabindex="0">
+          ${post.slides.map((s, i) => `
+            <figure class="carousel-slide">
+              <img src="${s.src}" alt="Slide ${i + 1} of ${post.slides.length}" ${i > 1 ? 'loading="lazy"' : ''}>
+              ${s.video ? '<span class="video-badge kind"><i class="fa-solid fa-video"></i> Video slide</span>' : ''}
+            </figure>`).join('')}
+        </div>
+        <button type="button" class="carousel-nav next" data-step="1" aria-label="Next slide"><i class="fa-solid fa-chevron-right"></i></button>
+      </div>
+      <div class="carousel-dots">${post.slides.map((_, i) => `<button type="button" data-goto="${i}" aria-label="Go to slide ${i + 1}"></button>`).join('')}</div>
+      ${caption ? `<p class="carousel-caption">${escapeHtml(caption)}</p>` : ''}
+      <a class="link-arrow" href="${post.permalink}" target="_blank" rel="noopener noreferrer">Open on Instagram <i class="fa-solid fa-arrow-right"></i></a>
+    </div>
+  `;
+  const track = modal.querySelector('.carousel-track');
+  const dots = [...modal.querySelectorAll('.carousel-dots button')];
+  const slideWidth = () => track.clientWidth;
+  const current = () => Math.round(track.scrollLeft / slideWidth());
+  const goTo = (i) => track.scrollTo({ left: Math.max(0, Math.min(post.slides.length - 1, i)) * slideWidth(), behavior: 'smooth' });
+  const sync = () => {
+    const i = current();
+    dots.forEach((d, n) => d.classList.toggle('active', n === i));
+    modal.querySelector('.prev').disabled = i === 0;
+    modal.querySelector('.next').disabled = i === post.slides.length - 1;
+  };
+  track.addEventListener('scroll', () => requestAnimationFrame(sync), { passive: true });
+  modal.querySelectorAll('[data-step]').forEach((b) => b.addEventListener('click', () => goTo(current() + Number(b.dataset.step))));
+  dots.forEach((d) => d.addEventListener('click', () => goTo(Number(d.dataset.goto))));
+  const close = () => {
+    modal.classList.remove('active');
+    document.body.classList.remove('modal-open');
+    document.removeEventListener('keydown', onKey);
+    if (opener) opener.focus();
+  };
+  const onKey = (e) => {
+    if (e.key === 'Escape') close();
+    if (e.key === 'ArrowRight') goTo(current() + 1);
+    if (e.key === 'ArrowLeft') goTo(current() - 1);
+  };
+  modal.querySelectorAll('[data-close-carousel]').forEach((el) => el.addEventListener('click', close));
+  document.addEventListener('keydown', onKey);
+  document.body.classList.add('modal-open');
+  requestAnimationFrame(() => {
+    modal.classList.add('active');
+    sync();
+    modal.querySelector('.close-btn').focus();
+  });
+}
+
 function renderFeaturedVideo() {
   const target = document.getElementById('featured-video');
   if (!target) return;
-  const video = state.videos[0];
+  // prefer the newest full-length video, shorts are too small for the hero
+  const video = state.videos.find((v) => v.format !== 'short') || state.videos[0];
   if (!video) return;
   const title = cleanVideoTitle(video.title);
   // first paragraph only, the rest of a YouTube description is usually links and plugs
   const summary = (video.description || '').split(/\n\s*\n/)[0].replace(/\s+/g, ' ').trim();
   target.innerHTML = `
-    <a class="card featured-card" href="https://www.youtube.com/watch?v=${video.youtubeId}" target="_blank" rel="noopener noreferrer">
+    <a class="card featured-card" href="${youtubeUrl(video)}" target="_blank" rel="noopener noreferrer">
       <div class="featured-thumb">
         <img src="https://img.youtube.com/vi/${video.youtubeId}/hqdefault.jpg" alt="">
         <span class="play-badge"><i class="fa-solid fa-play"></i></span>
@@ -524,7 +674,17 @@ function renderBookmarks() {
     }
     if (item.type === 'video') {
       const video = state.videos.find((v) => v.id === item.id || v.youtubeId === item.id);
-      if (video) label = video.title;
+      if (video) {
+        label = cleanVideoTitle(video.title);
+        link = youtubeUrl(video);
+      }
+    }
+    if (item.type === 'post') {
+      const post = state.posts.find((p) => p.id === item.id);
+      if (post) {
+        label = post.title;
+        link = post.permalink;
+      }
     }
     const linkHtml = link
       ? ` <a class="bookmark-open" href="${link}">Open →</a>`
@@ -1094,6 +1254,19 @@ function wireEvents() {
       renderVideoCards();
     });
   }
+  const typeTabs = document.getElementById('library-tabs');
+  if (typeTabs) {
+    typeTabs.addEventListener('click', (event) => {
+      const tab = event.target.closest('[data-type-tab]');
+      if (!tab) return;
+      state.filters.type = tab.dataset.typeTab;
+      renderVideoCards();
+    });
+  }
+  document.addEventListener('click', (event) => {
+    const opener = event.target.closest('[data-open-carousel]');
+    if (opener) openCarousel(opener.dataset.openCarousel, opener);
+  });
   const sortSelect = document.getElementById('video-sort');
   if (sortSelect) {
     sortSelect.addEventListener('change', (event) => {
@@ -1170,24 +1343,27 @@ async function initApp() {
     if (target && target.content) openGuideReader(target.slug, { scroll: false });
   }
 
-  try {
-    const response = await fetch('data/videos.json');
-    const payload = await response.json();
-    state.videos = payload.videos || [];
-    if (payload.lastUpdated) {
-      state.videos = state.videos.map((video) => ({ ...video, lastUpdated: payload.lastUpdated, source: payload.source || 'local' }));
-    }
-    populateVideoCategorySelect();
-    renderFeaturedVideo();
-    renderVideoCards();
-    // Re-render knowledge map now that videos are loaded
-    renderKnowledgeMap();
-  } catch (error) {
-    console.error('Unable to load video data', error);
-    if (document.getElementById('video-grid')) {
-      document.getElementById('video-grid').innerHTML = '<div class="card list-item">Video data could not be loaded. The fallback library will be restored soon.</div>';
-    }
+  // youtube + instagram load side by side; either one failing leaves the other working
+  const [videoData, postData] = await Promise.all(
+    ['data/videos.json', 'data/instagram.json'].map((url) =>
+      fetch(url, { cache: 'no-cache' }).then((r) => (r.ok ? r.json() : null)).catch(() => null)),
+  );
+  state.videos = videoData?.videos || [];
+  state.posts = (postData?.posts || []).filter((p) => p.slides?.length);
+  state.libraryUpdated = [videoData?.lastUpdated, postData?.lastUpdated].filter(Boolean).sort().pop() || null;
+
+  if (!videoData && !postData) {
+    console.error('Unable to load the video library');
+    const grid = document.getElementById('video-grid');
+    if (grid) grid.innerHTML = '<div class="card list-item">The video library could not be loaded right now. Try refreshing in a minute.</div>';
+    return;
   }
+  populateVideoCategorySelect();
+  renderFeaturedVideo();
+  renderVideoCards();
+  renderBookmarks();
+  // re-render knowledge map now that videos are loaded
+  renderKnowledgeMap();
 }
 
 document.addEventListener('DOMContentLoaded', initApp);

@@ -1,0 +1,32 @@
+name: Refresh Instagram token
+
+# long-lived instagram tokens die after 60 days unless refreshed. this swaps in a
+# fresh one every week. needs a SECRETS_PAT secret: a fine-grained token with
+# "Secrets: read and write" on this repo, so it can update IG_ACCESS_TOKEN.
+
+on:
+  schedule:
+    - cron: '0 9 * * 1'
+  workflow_dispatch:
+
+jobs:
+  refresh:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Refresh and store token
+        env:
+          IG_ACCESS_TOKEN: ${{ secrets.IG_ACCESS_TOKEN }}
+          GH_TOKEN: ${{ secrets.SECRETS_PAT }}
+        run: |
+          if [ -z "$IG_ACCESS_TOKEN" ] || [ -z "$GH_TOKEN" ]; then
+            echo "IG_ACCESS_TOKEN or SECRETS_PAT missing, nothing to refresh."
+            exit 0
+          fi
+          NEW=$(curl -sf "https://graph.instagram.com/refresh_access_token?grant_type=ig_refresh_token&access_token=${IG_ACCESS_TOKEN}" | jq -r '.access_token // empty')
+          if [ -z "$NEW" ]; then
+            echo "::error::Instagram refused the refresh. The token may already be expired; make a new one."
+            exit 1
+          fi
+          echo "::add-mask::$NEW"
+          printf '%s' "$NEW" | gh secret set IG_ACCESS_TOKEN --repo "$GITHUB_REPOSITORY"
+          echo "Token refreshed."

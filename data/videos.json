@@ -1,7 +1,175 @@
 {
-  "lastUpdated": "2026-08-04T16:51:16.678Z",
+  "lastUpdated": "2026-10-12T15:04:23.901Z",
   "source": "youtube",
   "videos": [
+    {
+      "id": "KaJLj_Rco5g",
+      "youtubeId": "KaJLj_Rco5g",
+      "title": "Someone Scored 850 Points SOLO in BIOBUZZ?! #FTC #RoboCodex #BioBuzz #firsttechchallenge",
+      "description": "The current solo record in DSIM, the free FTC BIOBUZZ simulator: double turret, double intake, and a scoop that pulls pollen out of the flowers.\n\nFull video on my channel\nDSIM: The Free BIOBUZZ Simulator Your Drivers Should Be Playing\nTry to beat it: https://www.playdsim.com/\n\n#FTC #BIOBUZZ #Shorts #RoboCodex",
+      "date": "2026-10-12",
+      "publishedAt": "2026-10-12T14:05:30+00:00",
+      "format": "short",
+      "views": 17,
+      "category": "Strategy",
+      "source": "youtube"
+    },
+    {
+      "id": "X3WH5bhxu70",
+      "youtubeId": "X3WH5bhxu70",
+      "title": "Every FTC Team Needs to Know About This Simulator",
+      "description": "DSIM is a free FTC BIOBUZZ driving simulator, and it might be the best way to get your drivers extra practice. I tested it in 2D and 3D, set up a custom robot, watched the 850-point solo record, played against the AI, and broke down how your team can actually use it — at home, for drive team tryouts, or while your robot is on the bench.\n\nPlay DSIM (free, runs in your browser): https://www.playdsim.com/\nDSIM on GitHub: https://github.com/genius0412/dsim\nOffset Robotics: https://offsetrobotics.com/?ref=2064&campaign=robocode\nRoboCodex Discord (come play against me): https://discord.gg/5HTHMFzUGp\nRoboCodex Instagram: https://www.instagram.com/robocodex_/\n🎙️ My interview with Pedro Pathing co-founder Baron Henderson: https://youtu.be/2tAzZp2HzLQ\n\nWhat's your best DSIM score? Drop it in the comments 👇\n\nCHAPTERS\n0:00 Intro\n0:36 What Is DSIM?\n1:03 Setup & Robot Config\n1:57 2D View\n2:34 The 850-Point Record\n3:14 Practice vs AI\n4:51 Sim vs Real\n5:24 How Teams Can Use It\n6:01 Outro\n\nMUSIC\n\"Pulsar,\" \"Nebula\" and \"Singularity\" by The Grey Room & Density & Time\n\"Pixelated Autumn Leaves\" and \"Trinity\" by Jeremy Blake\n\"Glacier\" by Chris Haugen\n(YouTube Audio Library)\nSound effects: Soundly, Pixabay\n\nDSIM is an independent fan project and is not affiliated with, endorsed by, or sponsored by FIRST® or FIRST Tech Challenge. DSIM is presented by Offset Robotics.\n\nDisclosure: the Offset Robotics link above is an affiliate link. If you buy through it, RoboCodex may earn a small commission at no extra cost to you — it helps support the channel!\n\n#FTC #BIOBUZZ #FTCRobotics",
+      "date": "2026-10-12",
+      "publishedAt": "2026-10-12T11:00:08+00:00",
+      "format": "video",
+      "views": 24,
+      "category": "Programming",
+      "source": "youtube"
+    },
+    {
+      "id": "lcdek2SDXeY",
+      "youtubeId": "lcdek2SDXeY",
+      "title": "The most underrated FTC sensor right now? #FTC #shorts #robocodex #firsttechchallenge",
+      "description": "",
+      "date": "2026-10-11",
+      "publishedAt": "2026-10-11T14:01:10+00:00",
+      "format": "short",
+      "views": 207,
+      "category": "Programming",
+      "source": "youtube"
+    },
+    {
+      "id": "Ey_bNYplM8E",
+      "youtubeId": "Ey_bNYplM8E",
+      "title": "Every FTC rookie should suffer through this 😂 #FTC #shorts #robocodex #firsttechchallenge",
+      "description": "",
+      "date": "2026-10-09",
+      "publishedAt": "2026-10-09T11:00:33+00:00",
+      "format": "short",
+      "views": 270,
+      "category": "FTC Basics",
+      "source": "youtube"
+    },
+    {
+      "id": "gkiyi0M_sKw",
+      "youtubeId": "gkiyi0M_sKw",
+      "title": "Baron Henderson shares advice every FTC programmer should hear. #FTC #robocodex #firsttechchallenge",
+      "description": "",
+      "date": "2026-10-08",
+      "publishedAt": "2026-10-08T13:47:13+00:00",
+      "format": "short",
+      "views": 210,
+      "category": "Interviews",
+      "source": "youtube"
+    },
+    {
+      "id": "2tAzZp2HzLQ",
+      "youtubeId": "2tAzZp2HzLQ",
+      "title": "The Secret to Perfect FTC Robot Movement | Pedro Pathing Co-Founder Interview",
+      "description": "How do you tune a full FTC autonomous in 5 minutes? I sat down with Baron Henderson, co-founder of Pedro Pathing, to talk about how Pedro started, why it exists, what's new in Pedro 3 (Foresight + auto-tuning), and the lessons he's learned building one of the most-used path-following libraries in FTC.\n\nWhether you're a rookie programmer trying to get your first auto working or a top team pushing for extra cycles, this one's for you.\n\nLINKS\nFollow RoboCodex on Instagram: https://www.instagram.com/robocodex_/\nJoin the RoboCodex Discord: https://discord.gg/5HTHMFzUGp\nOffset Robotics: https://offsetrobotics.com/?ref=2064&campaign=robocode\nPedro Pathing Docs: https://pedropathing.com/docs/pathing/pedro3\nPedro Pathing GitHub: https://github.com/Pedro-Pathing\nPedro Pathing Instagram: https://www.instagram.com/pedropathing/\n\nCHAPTERS\n00:00 Intro\n00:26 Meet Baron\n02:58 Becoming a Programmer\n06:16 From Team Tool to Everyone's\n08:05 Why Pedro Exists\n10:54 Pedro v1 to v2\n13:41 Pedro 3: The Rewrite\n17:37 Foresight & Auto-Tuning\n24:11 The Hardest Problem\n26:18 Code Others Can Read\n27:54 How Path Following Works\n32:37 Underrated Tools\n34:51 Lessons & Advice\n37:21 Rapid Fire\n42:34 Final Takeaway\n\nABOUT THE GUEST\nBaron Henderson is a co-founder and developer of Pedro Pathing, an open-source path following library for FIRST Tech Challenge. He's a four-year FTC competitor and won the Jemison Division in Into the Deep with The Indubitables (#20077).\n\nABOUT ROBOCODEX\nRoboCodex helps the next generation of robotics engineers and programmers level up, one interview and tutorial at a time. Subscribe so you don't miss the next one.\n\nMUSIC\n\"Stake Out,\" \"Fire In The Sky,\" and \"The Light\" by Alex Jones & Xander Jones (YouTube Audio Library)\nSound effects from Pixabay\n\nDisclosure: Some links above are affiliate links. If you buy through them, RoboCodex may earn a small commission at no extra cost to you. It helps support the channel!\n\n#FTC #PedroPathing #Robotics",
+      "date": "2026-10-08",
+      "publishedAt": "2026-10-08T11:00:09+00:00",
+      "format": "video",
+      "views": 886,
+      "category": "Interviews",
+      "source": "youtube"
+    },
+    {
+      "id": "QayI_R-6Pdk",
+      "youtubeId": "QayI_R-6Pdk",
+      "title": "Passive BioBuzz Nectar and Pollen Sorting #ftc #robocodex #firsttechchallenge #biobuzz",
+      "description": "",
+      "date": "2026-09-28",
+      "publishedAt": "2026-09-28T12:01:02+00:00",
+      "format": "short",
+      "views": 13001,
+      "category": "Robot Mechanics",
+      "source": "youtube"
+    },
+    {
+      "id": "B3KIyB3zLTM",
+      "youtubeId": "B3KIyB3zLTM",
+      "title": "intake prototype works as the shooter 😂 #firsttechchallenge #robocodex #biobuzz",
+      "description": "",
+      "date": "2026-09-27",
+      "publishedAt": "2026-09-27T23:16:31+00:00",
+      "format": "short",
+      "views": 22289,
+      "category": "Robot Mechanics",
+      "source": "youtube"
+    },
+    {
+      "id": "KaDT7xExKvw",
+      "youtubeId": "KaDT7xExKvw",
+      "title": "Every possible way to score points in BioBuzz. #robocodex #biobuzz #ftc #firsttechchallenge",
+      "description": "",
+      "date": "2026-09-16",
+      "publishedAt": "2026-09-16T21:42:53+00:00",
+      "format": "short",
+      "views": 745,
+      "category": "Strategy",
+      "source": "youtube"
+    },
+    {
+      "id": "_9jeqfoeW40",
+      "youtubeId": "_9jeqfoeW40",
+      "title": "baby you better swerve #robocodex #robotics #firsttechchallenge #ftc #swerve",
+      "description": "",
+      "date": "2026-09-16",
+      "publishedAt": "2026-09-16T05:47:09+00:00",
+      "format": "short",
+      "views": 468,
+      "category": "Robot Mechanics",
+      "source": "youtube"
+    },
+    {
+      "id": "SmUQe-J8Deo",
+      "youtubeId": "SmUQe-J8Deo",
+      "title": "I Interviewed a PedroPathing Co-Founder… Here’s What I Learned 🤯 #firsttechchallenge #pedropathing",
+      "description": "",
+      "date": "2026-09-08",
+      "publishedAt": "2026-09-08T04:03:15+00:00",
+      "format": "short",
+      "views": 152,
+      "category": "Interviews",
+      "source": "youtube"
+    },
+    {
+      "id": "dUDgVTCWsdA",
+      "youtubeId": "dUDgVTCWsdA",
+      "title": "1,000 FOLLOWERS. ❤️ Thank You. #robocodex #robotics #firsttechchallenge #ftc #coding",
+      "description": "",
+      "date": "2026-09-06",
+      "publishedAt": "2026-09-06T23:31:57+00:00",
+      "format": "short",
+      "views": 1139,
+      "category": "FIRST News",
+      "source": "youtube"
+    },
+    {
+      "id": "FWzDrpKuaeQ",
+      "youtubeId": "FWzDrpKuaeQ",
+      "title": "BioBuzz's Corners Might Be a HUGE Problem #FTC #BioBuzz #robocodex #firsttechchallenge",
+      "description": "I think the corners of the BioBuzz field might be way more important than people realize. 👀\nFIRST has already told us pollen will naturally roll toward the walls and into the corners, which means having a fast intake might not be enough.\nThe real question is: can your robot actually collect the pollen the field gives you?\nThat could completely change how teams design their intakes and drivetrain strategy.\nWhat do you think will be the best way to handle corners? 👇\n#FTC #FIRSTTechChallenge #BioBuzz #FTC2026 #FTCrobotics #Robotics #STEM #RoboCodex",
+      "date": "2026-08-30",
+      "publishedAt": "2026-08-30T12:30:56+00:00",
+      "format": "short",
+      "views": 2780,
+      "category": "Strategy",
+      "source": "youtube"
+    },
+    {
+      "id": "vMdORJ090iU",
+      "youtubeId": "vMdORJ090iU",
+      "title": "Don’t Design Your FTC BioBuzz Robot Yet 👀 #FTC #BioBuzz #Robotics #robocodex",
+      "description": "I don’t think FTC teams should be designing their BioBuzz robot yet.\n\nBefore kickoff, we don’t know enough to lock in a full design. Instead, build small prototypes, test specific problems, and collect real data.\n\nBy kickoff, you should have answers—not guesses.\n\nWhat are you testing before BioBuzz kickoff? 👀\n\n#FTC #FIRSTTechChallenge #FTCBioBuzz #Robotics #FTC2026 #RoboCodex",
+      "date": "2026-08-28",
+      "publishedAt": "2026-08-28T22:04:22+00:00",
+      "format": "short",
+      "views": 1364,
+      "category": "Robot Mechanics",
+      "source": "youtube"
+    },
     {
       "id": "7jyLT9H6CSI",
       "youtubeId": "7jyLT9H6CSI",
@@ -9,8 +177,10 @@
       "description": "Building an FTC swerve drive gives your robot 360-degree mobility on the field.\n\nThis breakdown covers the mechanical design of our coaxial swerve modules, including the belt-driven motor setup and the internal structure. We also walk through the underlying software logic required to control these complex movements.\n\nSubscribe for more FTC robotics engineering builds.",
       "date": "2026-08-02",
       "category": "Robot Mechanics",
-      "duration": "Video",
-      "source": "youtube"
+      "source": "youtube",
+      "publishedAt": "2026-08-02T11:30:35+00:00",
+      "format": "short",
+      "views": 1592
     },
     {
       "id": "leWZTYAR42s",
@@ -18,9 +188,9 @@
       "title": "The Secret Behind Smooth FTC Autonomous  #robocodex #robotics #firsttechchallenge #pedropathing",
       "description": "",
       "date": "2026-07-31",
-      "category": "Strategy",
-      "duration": "Video",
-      "source": "youtube"
+      "category": "Programming",
+      "source": "youtube",
+      "format": "short"
     },
     {
       "id": "bdOogbHBDNY",
@@ -28,9 +198,9 @@
       "title": "The FTC Concept That Finally Made Autonomous Click #robocodex #robotics #firsttechchallenge",
       "description": "Discover the revolutionary FTC concept that has finally made autonomous click a reality. In this video, we delve into the world of robotics and the First Tech Challenge, exploring the innovative ideas and technologies that have enabled autonomous systems to reach new heights. With the help of robocodex, a cutting-edge robotics platform, we'll examine the key components and strategies that have made autonomous click possible. Whether you're a seasoned robotics enthusiast or just starting out, this video is packed with valuable insights and expert knowledge to help you take your robotics skills to the next level. Join us as we explore the exciting world of autonomous robotics and learn how to harness the power of FTC and robocodex to create your own innovative projects.",
       "date": "2026-07-30",
-      "category": "Strategy",
-      "duration": "Video",
-      "source": "youtube"
+      "category": "Programming",
+      "source": "youtube",
+      "format": "short"
     },
     {
       "id": "noN-R8Zt6GQ",
@@ -38,9 +208,9 @@
       "title": "We Fixed These 5 Robot Coding Mistakes #shorts#Robotics #Code #Engineering #firsttechchallenge",
       "description": "Learn from common pitfalls and improve your robotics coding skills by watching us fix these 5 robot coding mistakes. Whether you're a beginner or an experienced engineer, understanding and rectifying errors is crucial for successful robot operation. This video is particularly useful for those participating in the First Tech Challenge, where coding accuracy and efficiency can make all the difference. By identifying and correcting these mistakes, you'll gain valuable insights into best practices for robotics and coding, ultimately enhancing your project's performance and reliability. Tune in to upgrade your coding skills and take your robotics projects to the next level.",
       "date": "2026-07-29",
-      "category": "FTC Basics",
-      "duration": "Video",
-      "source": "youtube"
+      "category": "Programming",
+      "source": "youtube",
+      "format": "short"
     },
     {
       "id": "QK5E3F7vqrE",
@@ -48,9 +218,9 @@
       "title": "The FTC Programming Trick That Saved Our Autonomous #FTC #FIRSTTechChallenge #Tips #tutorial",
       "description": "",
       "date": "2026-07-29",
-      "category": "FTC Basics",
-      "duration": "Video",
-      "source": "youtube"
+      "category": "Programming",
+      "source": "youtube",
+      "format": "short"
     },
     {
       "id": "yag-qghEC1c",
@@ -58,9 +228,9 @@
       "title": "We Realized Our Autonomous Was Completely Wrong #robocodex #robotics #firsttechchallenge",
       "description": "🤖 Welcome to RoboCodex! Subscribe for Robotics & STEM Fun! 🚀\n\nBuy a SPIKE Prime Robot: https://amzn.to/4eZV60u\n\nIn this channel, we explore the exciting world of robotics, STEM education, and more! Join us as we dive into hands-on projects, tutorials, and competitions like FIRST LEGO League and SPIKE Prime.\n\n🔔 Subscribe to RoboCodex for weekly updates on:\n\nRobotics Tutorials: Learn how to build and program robots using LEGO SPIKE Prime and more.\n\nSTEM Education: Discover fun ways to learn science, technology, engineering, and math.\nCompetition Tips: Get ready for competitions like FIRST LEGO League with expert tips and strategies.\n\n🎥 Watch Next:\n\n[Insert Playlist or Video Link]\n🔗 Resources Mentioned:\n\nGet professional video editing tools to enhance your content.\nOpus Pro:\n\n📩 Get More Resources:\n\nClick to download additional resources, guides, and exclusive content.\n\n\nThanks for watching! Don’t forget to like, comment, and share. Your support helps us grow and create more exciting content for you!\n\n#RoboCodex #RoboticsForKids #STEMEducation #FIRSTLEGOLeague #LEGOEducation #OpusProClips",
       "date": "2026-07-29",
-      "category": "Robot Mechanics",
-      "duration": "Video",
-      "source": "youtube"
+      "category": "Programming",
+      "source": "youtube",
+      "format": "short"
     },
     {
       "id": "HIBxntPlIus",
@@ -68,9 +238,9 @@
       "title": "5 FTC Programming Mistakes Every New Programmer Makes",
       "description": "Welcome to RoboCodex — Robotics Programming, FTC Tutorials, and STEM Projects.\n\nThis season completely changed the way our FTC team programmed robots. We didn't become the best team overnight, but we learned lessons that transformed our autonomous from relying on timers and hope to using localization, PedroPathing, finite state machines, telemetry, and vision processing.\n\nIn this video, I break down the 5 biggest FTC programming mistakes our team made this season, how we fixed them, and what every new FTC programmer can learn from our experience.\n\nWhether you're just getting started with FTC programming or looking to build a more reliable autonomous, I hope this video saves you some of the mistakes we made.\n\nSubscribe for more FTC programming tutorials, robotics projects, and STEM content!\n\nWhat You'll Learn\n\n• Why timer-based autonomous eventually breaks down\n\n• How PedroPathing improved our autonomous\n\n• Why PID and localization matter\n\n• How subsystem architecture simplified our code\n\n• Why finite state machines made our robot faster\n\n• How telemetry made debugging dramatically easier\n\n• The biggest programming mindset shift we learned this season\n\n🎥 Coming Soon on RoboCodex\n\n• FTC Programming for Beginners\n\n• FTC Blocks Programming Series\n\n• FTC Java Programming Series\n\n• PedroPathing Tutorials\n\n• Autonomous Programming\n\n• Vision Processing & OpenCV\n\n• Limelight Tutorials\n\n• FTC Software Architecture\n\nRobotics Resources\n\nBuy a LEGO SPIKE Prime Robot:\nhttps://amzn.to/4eZV60u\n\nIf you've learned a programming lesson the hard way, leave it in the comments! I'd love to hear what your team struggled with this season.\n\nIf this video helped you, consider leaving a like and subscribing. It really helps support the channel and allows me to continue creating free FTC programming tutorials.\n\nThanks for watching, and I'll see you in the next video!\n\n00:00 How We Completely Changed Our FTC Programming\n00:51 Meet Team 24813 & Our Journey\n01:35 Why We Rebuilt Our Autonomous\n02:34 Learning Pedro Pathing\n03:59 Mistake #1: Relying on Timers\n04:48 Mistake #2: Bad Robot Turning\n05:34 Mistake #3: One Giant Code File\n06:16 Mistake #4: Making the Robot Wait\n06:52 Mistake #5: Not Using Telemetry\n07:43 The Biggest Lesson We Learned\n08:00 Our Plans for Next Season\n08:35 FTC Programming Tutorials Coming Soon\n09:00 Advice for Every FTC Programmer\n09:34 Thanks for Watching!\n\n#FTC #FIRSTTechChallenge #FTCProgramming #PedroPathing #JavaProgramming #Robotics #STEM #Autonomous #RobotProgramming #RoboCodex",
       "date": "2026-07-28",
-      "category": "Robot Mechanics",
-      "duration": "Video",
-      "source": "youtube"
+      "category": "Programming",
+      "source": "youtube",
+      "format": "video"
     },
     {
       "id": "oI0S3t9Ubpc",
@@ -78,9 +248,9 @@
       "title": "FIRST's Vision vs LEGO's: Why They Split #robotics #education #FIRST #LEGO #robot",
       "description": "🤖 Welcome to RoboCodex! Subscribe for Robotics & STEM Fun! 🚀\n\nBuy a SPIKE Prime Robot: https://amzn.to/4eZV60u\n\nIn this channel, we explore the exciting world of robotics, STEM education, and more! Join us as we dive into hands-on projects, tutorials, and competitions like FIRST LEGO League and SPIKE Prime.\n\n🔔 Subscribe to RoboCodex for weekly updates on:\n\nRobotics Tutorials: Learn how to build and program robots using LEGO SPIKE Prime and more.\n\nSTEM Education: Discover fun ways to learn science, technology, engineering, and math.\nCompetition Tips: Get ready for competitions like FIRST LEGO League with expert tips and strategies.\n\n🎥 Watch Next:\n\n[Insert Playlist or Video Link]\n🔗 Resources Mentioned:\n\nGet professional video editing tools to enhance your content.\nOpus Pro:\n\n📩 Get More Resources:\n\nClick to download additional resources, guides, and exclusive content.\n\n\nThanks for watching! Don’t forget to like, comment, and share. Your support helps us grow and create more exciting content for you!\n\n#RoboCodex #RoboticsForKids #STEMEducation #FIRSTLEGOLeague #LEGOEducation #OpusProClips",
       "date": "2026-07-25",
-      "category": "Robot Mechanics",
-      "duration": "Video",
-      "source": "youtube"
+      "category": "FIRST News",
+      "source": "youtube",
+      "format": "short"
     },
     {
       "id": "Qvg_6qWTRoA",
@@ -88,9 +258,9 @@
       "title": "The End of LEGO & FIRST's Partneriship #robotics #education #robocodex  #engineering #lego",
       "description": "🤖 Welcome to RoboCodex! Subscribe for Robotics & STEM Fun! 🚀\n\nBuy a SPIKE Prime Robot: https://amzn.to/4eZV60u\n\nIn this channel, we explore the exciting world of robotics, STEM education, and more! Join us as we dive into hands-on projects, tutorials, and competitions like FIRST LEGO League and SPIKE Prime.\n\n🔔 Subscribe to RoboCodex for weekly updates on:\n\nRobotics Tutorials: Learn how to build and program robots using LEGO SPIKE Prime and more.\n\nSTEM Education: Discover fun ways to learn science, technology, engineering, and math.\nCompetition Tips: Get ready for competitions like FIRST LEGO League with expert tips and strategies.\n\n🎥 Watch Next:\n\n[Insert Playlist or Video Link]\n🔗 Resources Mentioned:\n\nGet professional video editing tools to enhance your content.\nOpus Pro:\n\n📩 Get More Resources:\n\nClick to download additional resources, guides, and exclusive content.\n\n\nThanks for watching! Don’t forget to like, comment, and share. Your support helps us grow and create more exciting content for you!\n\n#RoboCodex #RoboticsForKids #STEMEducation #FIRSTLEGOLeague #LEGOEducation #OpusProClips",
       "date": "2026-07-24",
-      "category": "Robot Mechanics",
-      "duration": "Video",
-      "source": "youtube"
+      "category": "FIRST News",
+      "source": "youtube",
+      "format": "short"
     },
     {
       "id": "HYWmbw93HbI",
@@ -98,9 +268,9 @@
       "title": "8 years of FLL, now it's time for FTC #robotics #evolution #firsttech",
       "description": "🤖 Welcome to RoboCodex! Subscribe for Robotics & STEM Fun! 🚀\n\nBuy a SPIKE Prime Robot: https://amzn.to/4eZV60u\n\nIn this channel, we explore the exciting world of robotics, STEM education, and more! Join us as we dive into hands-on projects, tutorials, and competitions like FIRST LEGO League and SPIKE Prime.\n\n🔔 Subscribe to RoboCodex for weekly updates on:\n\nRobotics Tutorials: Learn how to build and program robots using LEGO SPIKE Prime and more.\n\nSTEM Education: Discover fun ways to learn science, technology, engineering, and math.\nCompetition Tips: Get ready for competitions like FIRST LEGO League with expert tips and strategies.\n\n🎥 Watch Next:\n\n[Insert Playlist or Video Link]\n🔗 Resources Mentioned:\n\nGet professional video editing tools to enhance your content.\nOpus Pro:\n\n📩 Get More Resources:\n\nClick to download additional resources, guides, and exclusive content.\n\n\nThanks for watching! Don’t forget to like, comment, and share. Your support helps us grow and create more exciting content for you!\n\n#RoboCodex #RoboticsForKids #STEMEducation #FIRSTLEGOLeague #LEGOEducation #OpusProClips",
       "date": "2026-07-24",
-      "category": "Robot Mechanics",
-      "duration": "Video",
-      "source": "youtube"
+      "category": "FIRST News",
+      "source": "youtube",
+      "format": "short"
     },
     {
       "id": "h60NvS6MYV8",
@@ -108,9 +278,9 @@
       "title": "The LEGO Education Partnership is Over (FTC is Next)",
       "description": "Why I'm Moving to FIRST Tech Challenge (FTC)\n\nFor the past few years, RoboCodex has been focused on FIRST LEGO League (FLL), but it's time for the next chapter.\n\nIn this video, I explain why the LEGO Education and FIRST partnership is coming to an end, what that means for FIRST LEGO League after the 2026–2027 season, and why RoboCodex is transitioning to FIRST Tech Challenge (FTC).\n\nThis isn't a goodbye to the FLL community—it's the next step in my own robotics journey. I'll also share what kind of content you can expect on the channel going forward and give you a preview of my upcoming FTC Nationals season breakdown.\n\nJoin the RoboCodex Community\n\n💬 Discord: https://discord.gg/j5qHDePZF6\n\n📺 Subscribe for upcoming FTC videos, programming tutorials, robot design, strategy, CAD, Java, vision systems, competition insights, and behind-the-scenes content from our team's journey.\n\n00:00 RoboCodex Is Moving to FTC\n00:22 The End of FIRST LEGO League Explained\n00:40 Why LEGO Education Is Leaving FIRST\n01:33 FIRST's Future vs. LEGO's Future\n02:20 What Happens to FLL Next?\n02:57 Why I'm Focusing on FIRST Tech Challenge\n03:44 Will I Still Help FIRST LEGO League Teams?\n04:06 FTC Nationals Video Coming Next\n04:31 Final Thoughts & What's Next\n\nComing Soon\n\nFull FTC Nationals Season Breakdown\n\nI'll be sharing:\n\n- How our robot was designed\n- Programming and autonomous development\n- Match strategy\n- Lessons our team learned throughout the season\n\nIf you're interested in robotics, engineering, programming, or FIRST competitions, you're in the right place.\n\nThanks for watching and supporting RoboCodex as we begin this new chapter.\n\n\n#FIRST #FIRSTTechChallenge #FTC #FIRSTLEGOLeague #FLL #Robotics #STEM #Engineering #RoboCodex",
       "date": "2026-06-30",
-      "category": "Robot Mechanics",
-      "duration": "Video",
-      "source": "youtube"
+      "category": "FIRST News",
+      "source": "youtube",
+      "format": "video"
     },
     {
       "id": "138ZD3LkfxU",
@@ -118,9 +288,9 @@
       "title": "STEM Students: Here’s How You Can Change the World with Clean Water",
       "description": "🤖 Welcome to RoboCodex! Subscribe for Robotics & STEM Fun! 🚀\nTeam Water: https://teamwater.org\n\nBuy a SPIKE Prime Robot: https://amzn.to/4eZV60u\n\nIn this channel, we explore the exciting world of robotics, STEM education, and more! Join us as we dive into hands-on projects, tutorials, and competitions like FIRST LEGO League and SPIKE Prime.\n\n🔔 Subscribe to RoboCodex for weekly updates on:\n\nRobotics Tutorials: Learn how to build and program robots using LEGO SPIKE Prime and more.\n\nSTEM Education: Discover fun ways to learn science, technology, engineering, and math.\nCompetition Tips: Get ready for competitions like FIRST LEGO League with expert tips and strategies.\n\nThanks for watching! Don’t forget to like, comment, and share. Your support helps us grow and create more exciting content for you!\n\n#RoboCodex #RoboticsForKids #STEMEducation #FIRSTLEGOLeague #LEGOEducation",
       "date": "2025-08-08",
-      "category": "Robot Mechanics",
-      "duration": "Video",
-      "source": "youtube"
+      "category": "FIRST News",
+      "source": "youtube",
+      "format": "video"
     },
     {
       "id": "MonuMktPY1M",
@@ -128,9 +298,9 @@
       "title": "First Look at Mission 2 - Map Reveal #firstlegoleaguechallenge #unearthed #newmissions",
       "description": "",
       "date": "2025-08-08",
-      "category": "Strategy",
-      "duration": "Video",
-      "source": "youtube"
+      "category": "FIRST News",
+      "source": "youtube",
+      "format": "short"
     },
     {
       "id": "8jQkbk6VJmc",
@@ -138,9 +308,9 @@
       "title": "First Look at Mission 1 - Surface Brushing #firstlegoleaguechallenge #unearthed #newmissions",
       "description": "First Look at Mission 1 - Surface Brushing #firstlegoleaguechallenge #unearthed #newmissions",
       "date": "2025-08-07",
-      "category": "Strategy",
-      "duration": "Video",
-      "source": "youtube"
+      "category": "FIRST News",
+      "source": "youtube",
+      "format": "short"
     },
     {
       "id": "0dd-FH8rcHA",
@@ -148,9 +318,9 @@
       "title": "First Look at Mission 9 - What's on Sale? #firstlegoleaguechallenge #unearthed #newmissions",
       "description": "",
       "date": "2025-08-07",
-      "category": "Strategy",
-      "duration": "Video",
-      "source": "youtube"
+      "category": "FIRST News",
+      "source": "youtube",
+      "format": "short"
     }
   ]
 }
